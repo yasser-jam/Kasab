@@ -9,7 +9,7 @@ export default {
           'primary-content': '#fff',
           secondary: '#7E78F3',
           accent: '#5950F6',
-          'base-100': '#DAD9F8', // background color
+          'base-100': '#F6F6FD', // background color
           neutral: '#DAD9F8', // cards background
           'neutral-content': '#040316' // base text color
 
@@ -26,9 +26,13 @@ export default {
     "./error.vue",
   ],
   theme: {
-    plugins: [require('daisyui')],
+    container: {
+      padding: {
+        DEFAULT: '2rem'
+      }
+    }
   },
-  plugins: [require('daisyui')],
+    plugins: [require('daisyui')],
 
 }
 
