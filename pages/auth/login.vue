@@ -1,11 +1,11 @@
 <template>
-  <div class="grid grid-cols-2 items-center h-full gap-8 mt-24">
+  <div class="grid grid-cols-2 items-center h-full gap-6 mt-24">
     <div class="max-w-[500px]">
       <span class="img-bg"></span>
       <img src="~/assets/images/auth/login.svg" alt="login" />
     </div>
 
-    <div>
+    <div class="">
         <div class="text-4xl font-bold text-neutral-content mb-8">Login</div>
 
         <div class="grid grid-cols-1 gap-4 w-full">
