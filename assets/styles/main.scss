@@ -2,8 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 // body {
 //     background: red;
 // }
+
+// Auth
+.img-bg {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    width: 500px;
+    height: 500px;
+    z-index: -1;
+  background-color: #fefefe;
+  border-radius: 50%;
+  /* animation-name: move; */
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes move {
+  0% {
+    scale: 1;
+    left: 2rem;
+    top: 2rem;
+  }
+  50% {
+    scale: 1.5;
+    left: 5rem;
+    top: 5rem;
+  }
+  100% {
+    scale: 1;
+    left: 2rem;
+    top: 2rem;
+  }
+}
