@@ -1,11 +1,11 @@
 <template>
-  <div class="grid grid-cols-2 items-center h-full gap-8 mt-24">
-    <div class="max-w-[500px]">
+  <div class="grid grid-cols-2 items-center min-h-screen">
+    <div class="w-[500px]">
       <span class="img-bg"></span>
       <img src="~/assets/images/auth/signup.svg" alt="signup" />
     </div>
 
-    <div>
+    <div class="">
       <div class="text-4xl font-bold text-neutral-content mb-8">Sign-up</div>
 
       <div class="grid grid-cols-2 gap-4">

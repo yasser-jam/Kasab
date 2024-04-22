@@ -1,6 +1,6 @@
 <template>
-  <div class="grid grid-cols-2 items-center h-full gap-6 mt-24">
-    <div class="max-w-[500px]">
+  <div class="grid grid-cols-2 items-center min-h-screen gap-6">
+    <div class="w-[500px]">
       <span class="img-bg"></span>
       <img src="~/assets/images/auth/login.svg" alt="login" />
     </div>
