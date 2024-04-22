@@ -1,45 +1,46 @@
 <template>
   <div class="grid grid-cols-2 items-center min-h-screen gap-6">
-    <div class="w-[500px]">
-      <span class="img-bg"></span>
-      <img src="~/assets/images/auth/login.svg" alt="login" />
-    </div>
-
     <div class="">
-        <div class="text-4xl font-bold text-neutral-content mb-8">Login</div>
+        <div class="text-4xl font-bold text-neutral-content mb-8">تسجيل الدخول</div>
 
         <div class="grid grid-cols-1 gap-4 w-full">
           <div>
-            <base-label>Email</base-label>
+            <base-label>الإيميل</base-label>
             <base-input></base-input>
           </div>
       
           <div>
-            <base-label>Password</base-label>
+            <base-label>كلمة المرور</base-label>
             <base-input type="password"></base-input>
       
             <nuxt-link to="/auth/forget-password">
-              <div class="text-slate-900 font-medium mt-2">forget password?</div>
+              <div class="text-slate-900 font-medium mt-2">هل نسيت كلمة المرور؟</div>
             </nuxt-link>
           </div>
         </div>
       
         <div class="mt-12">
-          <base-btn class="btn-block mb-4">Login</base-btn>
+          <base-btn class="btn-block mb-4">الدخول</base-btn>
       
           <div class="flex justify-center items-center gap-2 text-slate-500">
-            Do not have account yet?
+            ليس لديك حساب بعد؟
             <nuxt-link to="/auth/signup">
-              <div class="text-slate-900 font-medium">Sign up now!</div>
+              <div class="text-slate-900 font-medium">أنشئ حسابك الآن!</div>
             </nuxt-link>
           </div>
       
           <div class="w-[90%] h-[1px] bg-slate-400 mt-12 mb-4 mx-auto"></div>
       
-          <base-btn class="btn-outline btn-block mb-4">Sign-up with Google</base-btn>
+          <base-btn class="btn-outline btn-block mb-4">تسجيل الدخول عن طريق غوغل</base-btn>
         </div>
 
     </div>
+
+    <div class="w-[500px] ms-auto">
+      <span class="img-bg"></span>
+      <img src="~/assets/images/auth/login.svg" alt="login" />
+    </div>
+
   </div>
 
 
