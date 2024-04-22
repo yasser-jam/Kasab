@@ -15,8 +15,13 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n'
   ],
 
-  i18n: {
-    vueI18n: './i18n.config.ts' // if you are using custom path, default
-  }
+  // i18n: {
+  //   locales: [
+  //     { code: 'en', iso: 'en-US',  dir: 'ltr' },
+  //     { code: 'ar', iso: 'ar-EG', dir: 'rtl' },
+  //   ],
+  //   defaultLocale: 'ar'
+  //   // vueI18n: './i18n.config.ts' // if you are using custom path, default
+  // }
 
 })

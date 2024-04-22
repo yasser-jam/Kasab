@@ -1,6 +1,8 @@
 <template>
+  <div dir="rtl">
+    <layout-header></layout-header>
+  
+    <NuxtPage />
+  </div>
 
-  <layout-header></layout-header>
-
-  <NuxtPage />
 </template>

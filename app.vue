@@ -1,3 +1,3 @@
 <template>
-  <NuxtLayout />
+  <NuxtLayout dir="rtl" />
 </template>

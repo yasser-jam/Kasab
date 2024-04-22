@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex justify-center gap-24">
+  <nav class="flex justify-center gap-20">
     <nuxt-link
       v-for="item in links"
       :to="item.link"
@@ -18,19 +18,19 @@ interface Link {
 
 const links = ref<Link[]>([
   {
-    title: "Home",
+    title: "الصفحة الرئيسية",
     link: "/",
   },
   {
-    title: "Jobs",
-    link: "/jobs",
-  },
-  {
-    title: "Offers",
+    title: "عروض التوظيف",
     link: "/offers",
   },
   {
-    title: "My Account",
+    title: "متجر الخدمات",
+    link: "/offers",
+  },
+  {
+    title: "حسابي",
     link: "/my-account",
   },
 ]);
