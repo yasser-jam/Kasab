@@ -1,7 +1,16 @@
 <template>
   <div class="container">
 
-    <layout-breadcrumb class="my-8"></layout-breadcrumb>
+    <div class="flex justify-between my-8">
+
+      <layout-breadcrumb></layout-breadcrumb>
+
+      <div class="flex gap-2">
+        <base-btn type="cancel" color="gray">إلغاء</base-btn>
+        <base-btn>حفظ</base-btn>
+      </div>
+    </div>
+
     
     <div class="grid grid-cols-3 gap-8">
       <div class="col-span-2">
