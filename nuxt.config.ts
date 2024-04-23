@@ -12,7 +12,9 @@ export default defineNuxtConfig({
   css: ['~/assets/styles/main.scss'],
 
   modules: [
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    'nuxt-icon',
+    '@vueuse/nuxt',
   ],
 
   // i18n: {
