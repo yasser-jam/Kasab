@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <div class="grid grid-cols-3 gap-8 mt-8">
+
+    <layout-breadcrumb class="my-8"></layout-breadcrumb>
+    
+    <div class="grid grid-cols-3 gap-8">
       <div class="col-span-2">
         <div class="card bg-white p-4">
           <div class="text-xl text-slate-800 font-semibold mb-8">
