@@ -14,7 +14,7 @@
       
       <div class="grid grid-cols-3 gap-8">
         <div class="col-span-2">
-          <div class="card bg-white p-4">
+          <!-- <div class="card bg-white p-4">
             <div class="text-xl text-slate-800 font-semibold mb-8">
               معلومات المستخدم
             </div>
@@ -58,9 +58,9 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
   
-          <div class="card bg-white p-4 mt-8">
+          <div class="card bg-white p-4">
             <div class="text-xl text-slate-800 font-semibold mb-8">
               معلومات الشركة
             </div>
@@ -80,8 +80,8 @@
   
               <div>
                 <base-label>المنطقة</base-label>
-  
-                <base-input></base-input>
+
+                <system-city-select v-model="city"></system-city-select>
               </div>
   
               <div class="col-span-2">
@@ -141,4 +141,9 @@
       </div>
     </div>
   </template>
-  
+  <script setup lang="ts">
+const city = ref({
+  title: 'حلب',
+  value: 'Aleppo'
+})
+</script>
