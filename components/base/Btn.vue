@@ -1,14 +1,31 @@
 <template>
-  <button class="btn btn-md" :class="type == 'default' ? 'btn-primary' : 'btn-gray'"><slot /></button>
+  <button
+    class="btn btn-md"
+    :class="color"
+  >
+  <Icon v-if="icon" :name="icon" size="1.25rem" />
+    <slot v-else />
+  </button>
 </template>
 
 <script setup lang="ts">
-withDefaults(
+const  props = withDefaults(
   defineProps<{
-    type: "default" | "cancel";
+    color: 'primary' | 'success' | 'secondary' | 'error' | 'gray'
+    icon?: string
   }>(),
   {
-    type: "default",
+    color: 'primary',
   }
 );
+
+const color = computed(() => {
+  switch (props.color) {
+    case 'primary': return 'btn-primary';
+    case 'success': return 'btn-success';
+    case 'secondary': return 'btn-secondary';
+    case 'error': return 'btn-error';
+    case 'gray': return 'btn-gray';
+  }
+})
 </script>

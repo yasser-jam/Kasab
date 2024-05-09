@@ -31,7 +31,7 @@ const links = ref<Link[]>([
   },
   {
     title: "حسابي",
-    link: "/my-account",
+    link: "/accounts",
   },
 ]);
 </script>

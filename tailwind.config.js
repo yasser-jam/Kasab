@@ -9,9 +9,13 @@ export default {
           'primary-content': '#fff',
           secondary: '#7E78F3',
           accent: '#5950F6',
+          success: '#00A96E',
+          'success-content': '#fff',
+          'error': '#FF6971',
+          'error-content': '#fff',
           'base-100': '#F6F6FD', // background color
           neutral: '#DAD9F8', // cards background
-          'neutral-content': '#040316' // base text color
+          'neutral-content': '#040316', // base text color
 
         },
       }
