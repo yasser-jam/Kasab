@@ -1,5 +1,5 @@
 <template>
-    <base-select :items="cities" placeholder="اختر مدينة"></base-select>
+    <base-select :items="cities" placeholder="الميدان"></base-select>
 </template>
 
 <script setup>

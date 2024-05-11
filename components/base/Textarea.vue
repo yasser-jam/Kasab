@@ -1,10 +1,9 @@
 <template>
-  <input
-    type="text"
-    class="input input-primary relative w-full max-w-none bg-slate-200 border-0 ring-0 focus:border-0 focus:ring-0 focus:outline-0"
+  <textarea
+    class="textarea textarea-primary relative w-full max-w-none text-base bg-slate-200 border-0 ring-0 focus:border-0 focus:ring-0 focus:outline-0"
+    rows="5"
     :disabled="fixed"
-  />
-
+  ></textarea>
 </template>
 
 <script setup lang="ts">

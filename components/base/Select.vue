@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import { onClickOutside } from "@vueuse/core";
 
-const isOpen = ref<boolean>(true);
+const isOpen = ref<boolean>(false);
 
 const menu = ref(null);
 
