@@ -15,10 +15,15 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     'nuxt-icon',
     '@vueuse/nuxt',
+    '@pinia/nuxt',
     'nuxt-swiper'
   ],
 
-  swiper: {}
+  swiper: {},
+  
+  imports: {
+    dirs: ['./types/index.ts']
+  }
 
   // i18n: {
   //   locales: [
