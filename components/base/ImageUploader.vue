@@ -1,13 +1,16 @@
 <template>
-  <div class="relative w-fit">
+  <div class="relative">
     <div
       v-if="!modelValue && !isLoading"
       class="flex flex-col justify-center items-center w-44 h-44 border-2 border-dashed border-slate-300 hover:bg-slate-50 rounded-lg cursor-pointer"
+      :class="widthFull && `w-full`"
       @click="fileInput?.click"
     >
       <Icon name="mdi:upload-circle-outline" color="#2D547C" size="4rem" />
 
-      <span class="text-slate-500 text-lg font-semibold font mt-2">اختر صورة</span>
+      <span class="text-slate-500 text-lg font-semibold font mt-2"
+        >اختر صورة</span
+      >
     </div>
 
     <!-- Loading indicator -->
@@ -34,18 +37,18 @@
     />
 
     <template v-if="modelValue">
-        <base-btn
-          icon="mdi:pencil"
-          color="primary"
-          btn-class="btn-circle btn-sm shadow-md absolute -left-4 -top-4"
-        ></base-btn>
-    
-        <base-btn
-          icon="mdi:close"
-          color="error"
-          btn-class="btn-circle btn-sm shadow-md absolute -left-4 -bottom-4"
-          @click="emit('update:model-value', '')"
-        ></base-btn>
+      <base-btn
+        icon="mdi:pencil"
+        color="primary"
+        btn-class="btn-circle btn-sm shadow-md absolute -left-4 -top-4"
+      ></base-btn>
+
+      <base-btn
+        icon="mdi:close"
+        color="error"
+        btn-class="btn-circle btn-sm shadow-md absolute -left-4 -bottom-4"
+        @click="emit('update:model-value', '')"
+      ></base-btn>
     </template>
   </div>
 </template>
@@ -57,6 +60,7 @@ const fileInput = ref<HTMLElement | null>(null);
 
 defineProps<{
   modelValue: string;
+  widthFull?: boolean
 }>();
 
 const emit = defineEmits(["update:model-value"]);

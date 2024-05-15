@@ -57,7 +57,7 @@
         <div class="card bg-white p-4 mt-8">
           <base-label class="mb-4">معرض الصور</base-label>
 
-          <company-gallery-slider></company-gallery-slider>
+          <company-gallery-slider v-model="company.gallery_images"></company-gallery-slider>
           
         </div>
       </div>
