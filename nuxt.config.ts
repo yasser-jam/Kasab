@@ -15,7 +15,10 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     'nuxt-icon',
     '@vueuse/nuxt',
+    'nuxt-swiper'
   ],
+
+  swiper: {}
 
   // i18n: {
   //   locales: [

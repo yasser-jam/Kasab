@@ -1,17 +1,17 @@
 <template>
   <div class="relative w-fit">
     <div
-    v-if="!modelValue && !isLoading"
-      class="flex flex-col justify-center items-center w-48 h-48 border-2 border-dashed border-slate-300 cursor-pointer"
+      v-if="!modelValue && !isLoading"
+      class="flex flex-col justify-center items-center w-44 h-44 border-2 border-dashed border-slate-300 hover:bg-slate-50 rounded-lg cursor-pointer"
       @click="fileInput?.click"
     >
       <Icon name="mdi:upload-circle-outline" color="#2D547C" size="4rem" />
 
-      <span class="text-slate-500 font-bold mt-2">اختر صورة</span>
+      <span class="text-slate-500 text-lg font-semibold font mt-2">اختر صورة</span>
     </div>
 
     <!-- Loading indicator -->
-    <div v-if="isLoading" class="w-48 h-48 flex justify-center items-center">
+    <div v-if="isLoading" class="w-44 h-44 flex justify-center items-center">
       <span class="animate-spin">
         <Icon name="mdi:loading" color="#2D547C" size="2rem" />
       </span>
@@ -22,7 +22,7 @@
       v-if="modelValue"
       :src="modelValue"
       alt="Uploaded Image"
-      class="w-48 h-48 object-cover"
+      class="w-44 h-44 object-cover"
     />
 
     <input
@@ -33,34 +33,33 @@
       accept="image/*"
     />
 
-    <base-btn
-      icon="mdi:pencil"
-      color="primary"
-      btn-class="btn-circle btn-sm shadow-md absolute -left-4 -top-4"
-    ></base-btn>
-
-    <base-btn
-    v-if="modelValue"
-      icon="mdi:close"
-      color="error"
-      btn-class="btn-circle btn-sm shadow-md absolute -left-4 -bottom-4"
-      @click="emit('update:model-value', '')"
-    ></base-btn>
+    <template v-if="modelValue">
+        <base-btn
+          icon="mdi:pencil"
+          color="primary"
+          btn-class="btn-circle btn-sm shadow-md absolute -left-4 -top-4"
+        ></base-btn>
+    
+        <base-btn
+          icon="mdi:close"
+          color="error"
+          btn-class="btn-circle btn-sm shadow-md absolute -left-4 -bottom-4"
+          @click="emit('update:model-value', '')"
+        ></base-btn>
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
-
 const isLoading = ref(false);
 const imageSrc = ref(null);
 const fileInput = ref<HTMLElement | null>(null);
 
-
 defineProps<{
-  modelValue: string
-}>()
+  modelValue: string;
+}>();
 
-const emit = defineEmits(['update:model-value'])
+const emit = defineEmits(["update:model-value"]);
 
 async function handleFileChange(event: any) {
   const file = event.target.files[0];
@@ -74,8 +73,7 @@ async function handleFileChange(event: any) {
       const reader = new FileReader();
 
       reader.onload = (e) => {
-
-        emit('update:model-value', e.target?.result)
+        emit("update:model-value", e.target?.result);
 
         isLoading.value = false;
       };

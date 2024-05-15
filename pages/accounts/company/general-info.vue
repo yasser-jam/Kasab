@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mb-96">
     <div class="flex justify-between my-8">
       <layout-breadcrumb></layout-breadcrumb>
 
@@ -55,9 +55,10 @@
         </div>
 
         <div class="card bg-white p-4 mt-8">
-          <base-label>معرض الصور</base-label>
+          <base-label class="mb-4">معرض الصور</base-label>
 
-          <base-image-uploader v-model="test"></base-image-uploader>
+          <account-company-gallery-slider></account-company-gallery-slider>
+          
         </div>
       </div>
 
@@ -111,5 +112,5 @@ const city = ref({
   value: "Aleppo",
 });
 
-const test = ref()
+const test = ref();
 </script>
