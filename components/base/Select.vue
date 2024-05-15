@@ -5,6 +5,7 @@
       class="disabled:cursor-pointer disabled:bg-slate-200 disabled:pointer-events-auto disabled:text-inherit"
       :placeholder="placeholder"
       :value="modelValue.title"
+      @click="isOpen = !isOpen"
     ></base-input>
 
     <span class="overlay cursor-pointer" @click="() => (isOpen = true)"></span>
