@@ -11,7 +11,9 @@
 
     <div class="flex justify-between items-center mb-8">
       <base-title>معلومات الشركة</base-title>
-      <base-btn color="neutral" icon="mdi:tag" to="/accounts/company/offers">عروضي</base-btn>
+      <base-btn color="neutral" icon="mdi:tag" to="/accounts/company/offers"
+        >عروضي</base-btn
+      >
     </div>
 
     <div class="grid grid-cols-3 gap-8">
@@ -45,9 +47,17 @@
             <div class="col-span-2">
               <base-label>تفاصيل الشركة</base-label>
 
-              <base-textarea placeholder="شركة مهتمة بالتعاقد مع المصممين"></base-textarea>
+              <base-textarea
+                placeholder="شركة مهتمة بالتعاقد مع المصممين"
+              ></base-textarea>
             </div>
           </div>
+        </div>
+
+        <div class="card bg-white p-4 mt-8">
+          <base-label>معرض الصور</base-label>
+
+          <base-image-uploader v-model="test"></base-image-uploader>
         </div>
       </div>
 
@@ -100,4 +110,6 @@ const city = ref({
   title: "حلب",
   value: "Aleppo",
 });
+
+const test = ref()
 </script>

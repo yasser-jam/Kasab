@@ -1,6 +1,6 @@
 <template>
   <nuxt-link :to="to ?? undefined">
-    <button class="btn btn-md" :class="`${color}`">
+    <button class="btn" :class="`${color} ${btnClass}`">
       <slot />
 
       <Icon v-if="icon" :name="icon" size="1.25rem" />
@@ -16,9 +16,11 @@ const props = withDefaults(
     tonal?: boolean;
     link?: boolean;
     to?: string;
+    btnClass?: string
   }>(),
   {
     color: "primary",
+    btnClass: 'btn-md'
   }
 );
 
