@@ -77,7 +77,7 @@
 
             <div>
               <base-label>حجم الشركة</base-label>
-              <base-input></base-input>
+              <company-size-select v-model="company.size"></company-size-select>
             </div>
           </div>
         </div>
