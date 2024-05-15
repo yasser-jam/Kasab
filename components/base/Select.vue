@@ -68,7 +68,7 @@ const props = defineProps<{
 const emit = defineEmits(["update:model-value"]);
 
 const select = (item: Item) => {
-  emit("update:model-value", item);
+  emit("update:model-value", item.value);
 
   // close menu
   isOpen.value = false;

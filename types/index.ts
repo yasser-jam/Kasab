@@ -1,3 +1,8 @@
+export interface Category {
+  name: string
+}
+
+
 export interface Company {
   id?: number
   profile_image_url: string | null

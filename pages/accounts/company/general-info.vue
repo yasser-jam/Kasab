@@ -71,7 +71,8 @@
           <div class="grid gap-8">
             <div>
               <base-label>نوع الشركة</base-label>
-              <base-input></base-input>
+              
+              <company-category-select v-model="company.industry_name"></company-category-select>
             </div>
 
             <div>
@@ -107,6 +108,10 @@
   <NuxtPage />
 </template>
 <script setup lang="ts">
+const companyStore = useCompanyStore()
+
+const { company } = storeToRefs(companyStore)
+
 const city = ref({
   title: "حلب",
   value: "Aleppo",

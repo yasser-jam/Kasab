@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   swiper: {},
   
   imports: {
-    dirs: ['./types/index.ts']
+    dirs: ['./types']
   }
 
   // i18n: {

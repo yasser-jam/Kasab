@@ -4,5 +4,5 @@ export default (url: string, options?: any) => {
     
     return $fetch(`https://freelancer-l1w8.onrender.com/api/${url}`, {
         ...options
-    })
+    }) as any
 }
