@@ -97,7 +97,7 @@
             <div>
               <base-label>أرقام التواصل</base-label>
 
-              <base-input></base-input>
+              <company-phone-input v-model="company.company_phones"></company-phone-input>
             </div>
           </div>
         </div>
