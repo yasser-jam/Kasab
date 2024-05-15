@@ -1,24 +1,44 @@
 <template>
   <div ref="menu" class="relative">
-    <base-input
-      fixed
-      class="disabled:cursor-pointer disabled:bg-slate-200 disabled:pointer-events-auto disabled:text-inherit"
-      :placeholder="placeholder"
-      :value="modelValue.title"
-      @click="isOpen = !isOpen"
-    ></base-input>
+    <div>
+      <base-input
+        fixed
+        class="disabled:cursor-pointer disabled:bg-slate-200 disabled:pointer-events-auto disabled:text-inherit"
+        :placeholder="placeholder"
+        :value="modelValue.title"
+      ></base-input>
 
-    <span class="overlay cursor-pointer" @click="() => (isOpen = true)"></span>
+      <div
+        v-if="true"
+        class="absolute inset-y-0 left-4 flex items-center"
+      >
+        <Icon :name="`mdi:chevron-${isOpen ? 'up' : 'down'}`" size="1.5rem" color="gray" />
+      </div>
+    </div>
+
+    <span
+      class="overlay cursor-pointer"
+      @click="() => (isOpen = !isOpen)"
+    ></span>
 
     <Transition>
       <ul
         v-if="isOpen"
         class="min-w-[200px] max-h-[300px] overflow-auto w-full absolute top-14 z-50 shadow-lg"
       >
-        <li v-for="item in items" class="list-item" :class="modelValue.value == item.value && 'selected'" @click="select(item)">
+        <li
+          v-for="item in items"
+          class="list-item"
+          :class="modelValue.value == item.value && 'selected'"
+          @click="select(item)"
+        >
           <span>{{ item.title }}</span>
 
-          <Icon v-if="modelValue.value == item.value && 'selected'" name="mdi:check" size="1rem" />
+          <Icon
+            v-if="modelValue.value == item.value && 'selected'"
+            name="mdi:check"
+            size="1rem"
+          />
         </li>
       </ul>
     </Transition>
@@ -61,7 +81,7 @@ const select = (item: Item) => {
 }
 
 .list-item.selected {
-    @apply bg-slate-200 !important;
+  @apply bg-slate-200 !important;
 }
 
 .overlay {
