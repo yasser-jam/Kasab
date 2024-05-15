@@ -8,7 +8,7 @@
     <div class="max-h-[200px] overflow-auto">
         <div v-for="phone in phones" class="flex gap-4 my-4">
             <base-input :model-value="phone" @update:model-value="$emit('')"></base-input>
-            <base-btn btn-class="btn-outline btn-error" icon="mdi:close"></base-btn>
+            <base-btn btn-class="btn-outline btn-error" icon="mdi:close" @click="removePhone(phone)"></base-btn>
         </div>
 
     </div>
@@ -29,6 +29,10 @@ const addPhone = () => {
 
     // reset phoneInput
     phoneInput.value = ''
+}
+
+const removePhone = (phone: string) => {
+    phones.value = phones.value.filter(ph => ph != phone)
 }
 
 </script>

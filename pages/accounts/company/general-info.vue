@@ -89,9 +89,9 @@
 
           <div class="grid gap-4 grow">
             <div>
-              <base-label>بريد الشركة الإلكتروني</base-label>
+              <base-label>روابط التواصل</base-label>
 
-              <base-input></base-input>
+              <company-contact-input v-model="company.contact_links"></company-contact-input>
             </div>
 
             <div>
