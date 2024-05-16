@@ -29,13 +29,13 @@
             <div>
               <base-label>المدينة</base-label>
 
-              <base-input placeholder="دمشق"></base-input>
+              <system-city-select v-model="company.city"></system-city-select>
             </div>
-
+            
             <div>
               <base-label>المنطقة</base-label>
-
-              <system-city-select v-model="city"></system-city-select>
+              
+              <base-input placeholder="الميدان"></base-input>
             </div>
 
             <div class="col-span-2">
@@ -111,11 +111,6 @@
 const companyStore = useCompanyStore()
 
 const { company } = storeToRefs(companyStore)
-
-const city = ref({
-  title: "حلب",
-  value: "Aleppo",
-});
 
 const test = ref();
 </script>

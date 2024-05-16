@@ -1,25 +1,22 @@
 <template>
-    <base-select :items="cities" placeholder="الميدان"></base-select>
+  <base-select :items="cities" placeholder="دمشق"></base-select>
 </template>
 
-<script setup>
-const cities = ref([
-    {
-        title: 'دمشق',
-        value: 'Damascus'
-    },
-    {
-        title: 'حلب',
-        value: 'Aleppo'
-    },
-    {
-        title: 'حمص',
-        value: 'Homs'
-    },
-    {
-        title: 'حماة',
-        value: 'Hamah'
-    },
+<script setup lang="ts">
+const cities = ref<string[]>([
+    'دمشق',
+    'ريف دمشق',
+    'السويداء',
+    'حمص',
+    'حماة',
+    'دير الزور',
+    'حلب',
+    'اللاذقية',
+    'طرطوس',
+    'بانياس',
+    'إدلب',
+    'الرقة',
+    'الحسكة',
+    'الرقة',
 ])
-
 </script>

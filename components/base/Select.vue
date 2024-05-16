@@ -5,14 +5,15 @@
         fixed
         class="disabled:cursor-pointer disabled:bg-slate-200 disabled:pointer-events-auto disabled:text-inherit"
         :placeholder="placeholder"
-        :value="modelValue.title"
+        :value="selectedTitle"
       ></base-input>
 
-      <div
-        v-if="true"
-        class="absolute inset-y-0 left-4 flex items-center"
-      >
-        <Icon :name="`mdi:chevron-${isOpen ? 'up' : 'down'}`" size="1.5rem" color="gray" />
+      <div v-if="true" class="absolute inset-y-0 left-4 flex items-center">
+        <Icon
+          :name="`mdi:chevron-${isOpen ? 'up' : 'down'}`"
+          size="1.5rem"
+          color="gray"
+        />
       </div>
     </div>
 
@@ -27,15 +28,15 @@
         class="min-w-[200px] max-h-[300px] overflow-auto w-full absolute top-14 z-50 shadow-lg"
       >
         <li
-          v-for="item in items"
+          v-for="item in computedItems"
           class="list-item"
-          :class="modelValue.value == item.value && 'selected'"
+          :class="selectedValue == item.value && 'selected'"
           @click="select(item)"
         >
           <span>{{ item.title }}</span>
 
           <Icon
-            v-if="modelValue.value == item.value && 'selected'"
+            v-if="selectedValue == item.value && 'selected'"
             name="mdi:check"
             size="1rem"
           />
@@ -59,11 +60,45 @@ interface Item {
   value: string;
 }
 
-const props = defineProps<{
-  items: Item[];
-  placeholder?: string;
-  modelValue: Item;
-}>();
+const computedItems = computed(() => {
+  if (typeof props.items[0] == "string") {
+    return props.items.map((item) => ({
+      title: item,
+      value: item,
+    }));
+  } else {
+    return props.items.map((item) => ({
+      title: item[props.itemTitle],
+      value: item[props.itemValue],
+    }));
+  }
+});
+
+const props = withDefaults(
+  defineProps<{
+    items: any[];
+    placeholder?: string;
+    modelValue?: any;
+    itemTitle?: string;
+    itemValue?: string;
+  }>(),
+  {
+    itemTitle: "title",
+    itemValue: "value",
+  }
+);
+
+const selectedTitle = computed(() =>
+  typeof props.modelValue == "string"
+    ? props.modelValue
+    : props.modelValue?.title
+);
+
+const selectedValue = computed(() =>
+  typeof props.modelValue == "string"
+    ? props.modelValue
+    : props.modelValue?.value
+);
 
 const emit = defineEmits(["update:model-value"]);
 
