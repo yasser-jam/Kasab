@@ -8,7 +8,7 @@
         :value="selectedTitle"
       ></base-input>
 
-      <div v-if="true" class="absolute inset-y-0 left-4 flex items-center">
+      <div class="absolute inset-y-0 left-4 flex items-center">
         <Icon
           :name="`mdi:chevron-${isOpen ? 'up' : 'down'}`"
           size="1.5rem"
@@ -44,6 +44,7 @@
       </ul>
     </Transition>
   </div>
+
 </template>
 
 <script setup lang="ts">
@@ -81,6 +82,7 @@ const props = withDefaults(
     modelValue?: any;
     itemTitle?: string;
     itemValue?: string;
+    returnObject?: boolean
   }>(),
   {
     itemTitle: "title",
@@ -91,19 +93,19 @@ const props = withDefaults(
 const selectedTitle = computed(() =>
   typeof props.modelValue == "string"
     ? props.modelValue
-    : props.modelValue?.title
+    : props.modelValue?.[props.itemTitle]
 );
 
 const selectedValue = computed(() =>
   typeof props.modelValue == "string"
     ? props.modelValue
-    : props.modelValue?.value
+    : props.modelValue?.[props.itemValue]
 );
 
 const emit = defineEmits(["update:model-value"]);
 
 const select = (item: Item) => {
-  emit("update:model-value", item.value);
+  emit("update:model-value", props.returnObject ? props.items.find(i => i[props.itemValue] == item.value) : item.value);
 
   // close menu
   isOpen.value = false;
