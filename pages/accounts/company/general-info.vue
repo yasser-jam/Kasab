@@ -4,8 +4,10 @@
       <layout-breadcrumb></layout-breadcrumb>
 
       <div class="flex gap-2">
-        <base-btn type="cancel" color="gray">إلغاء</base-btn>
-        <base-btn>حفظ</base-btn>
+        <base-btn type="cancel" color="gray" @click="$router.push('/accounts')"
+          >إلغاء</base-btn
+        >
+        <base-btn @click="save" :loading>حفظ</base-btn>
       </div>
     </div>
 
@@ -20,34 +22,57 @@
       <div class="col-span-2">
         <div class="card bg-white p-4">
           <div class="grid grid-cols-2 gap-4 grow">
-            <div class="col-span-2">
-              <base-label>اسم الشركة</base-label>
+            <div class="col-span-2 grid grid-cols-4">
+              <div class="col-span-1">
+                <base-image-uploader
+                  v-model="company.background_image_url"
+                  class="mt-1 w-fit"
+                ></base-image-uploader>
+              </div>
 
-              <base-input placeholder="شركة المصممين"></base-input>
-            </div>
+              <div class="col-span-3 grid grid-cols-2 gap-4">
+                <div class="col-span-2">
+                  <base-label>اسم الشركة</base-label>
 
-            <div>
-              <base-label>المدينة</base-label>
+                  <base-input
+                    v-model="company.name"
+                    placeholder="شركة المصممين"
+                  ></base-input>
+                </div>
 
-              <system-city-select v-model="company.city"></system-city-select>
-            </div>
-            
-            <div>
-              <base-label>المنطقة</base-label>
-              
-              <base-input placeholder="الميدان"></base-input>
+                <div>
+                  <base-label>المدينة</base-label>
+
+                  <system-city-select
+                    v-model="company.city"
+                  ></system-city-select>
+                </div>
+
+                <div>
+                  <base-label>المنطقة</base-label>
+
+                  <base-input
+                    v-model="company.region"
+                    placeholder="الميدان"
+                  ></base-input>
+                </div>
+              </div>
             </div>
 
             <div class="col-span-2">
               <base-label>عنوان الشركة</base-label>
 
-              <base-input placeholder="حي الزاهرة"></base-input>
+              <base-input
+                v-model="company.street_address"
+                placeholder="حي الزاهرة"
+              ></base-input>
             </div>
 
             <div class="col-span-2">
               <base-label>تفاصيل الشركة</base-label>
 
               <base-textarea
+                v-model="company.description"
                 placeholder="شركة مهتمة بالتعاقد مع المصممين"
               ></base-textarea>
             </div>
@@ -57,8 +82,9 @@
         <div class="card bg-white p-4 mt-8">
           <base-label class="mb-4">معرض الصور</base-label>
 
-          <company-gallery-slider v-model="company.gallery_images"></company-gallery-slider>
-          
+          <company-gallery-slider
+            v-model="company.gallery_images"
+          ></company-gallery-slider>
         </div>
       </div>
 
@@ -71,8 +97,10 @@
           <div class="grid gap-8">
             <div>
               <base-label>نوع الشركة</base-label>
-              
-              <company-category-select v-model="company.industry_name"></company-category-select>
+
+              <company-category-select
+                v-model="company.industry_name"
+              ></company-category-select>
             </div>
 
             <div>
@@ -91,13 +119,17 @@
             <div>
               <base-label>روابط التواصل</base-label>
 
-              <company-contact-input v-model="company.contact_links"></company-contact-input>
+              <company-contact-input
+                v-model="company.contact_links"
+              ></company-contact-input>
             </div>
 
             <div>
               <base-label>أرقام التواصل</base-label>
 
-              <company-phone-input v-model="company.company_phones"></company-phone-input>
+              <company-phone-input
+                v-model="company.company_phones"
+              ></company-phone-input>
             </div>
           </div>
         </div>
@@ -108,9 +140,19 @@
   <NuxtPage />
 </template>
 <script setup lang="ts">
-const companyStore = useCompanyStore()
+const companyStore = useCompanyStore();
 
-const { company } = storeToRefs(companyStore)
+const { company } = storeToRefs(companyStore);
 
-const test = ref();
+const loading = ref<boolean>(false);
+
+const save = async () => {
+  loading.value = true;
+
+  try {
+    await companyStore.create();
+  } finally {
+    loading.value = false;
+  }
+};
 </script>

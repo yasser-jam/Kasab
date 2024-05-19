@@ -1,5 +1,7 @@
 <template>
   <textarea
+  v-model="model"
+
     class="textarea textarea-primary relative w-full max-w-none text-base bg-slate-200 border-0 ring-0 focus:border-0 focus:ring-0 focus:outline-0"
     rows="5"
     :disabled="fixed"
@@ -10,6 +12,8 @@
 defineProps<{
   fixed?: boolean;
 }>();
+
+const model = defineModel()
 </script>
 
 <style scoped>

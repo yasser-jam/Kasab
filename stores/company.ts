@@ -11,7 +11,10 @@ export const useCompanyStore = defineStore('company', () => {
     const companies = ref<Company[]>([])
 
     const create = async () => {
-        await api('company/store')
+        await api('company/store', {
+            method: 'POST',
+            body: company.value
+        })
     }
 
     return {
