@@ -6,13 +6,14 @@
         <div class="grid grid-cols-1 gap-4 w-full">
           <div>
             <base-label>الإيميل</base-label>
-            <base-input></base-input>
+            <base-input v-model="credentials.email" placeholder="اسم المستخدم"></base-input>
           </div>
       
           <div>
             <base-label>كلمة المرور</base-label>
-            <base-input type="password"></base-input>
-      
+            
+            <base-input type="password" v-model="credentials.password" placeholder="********"></base-input>
+            
             <nuxt-link to="/auth/forget-password">
               <div class="text-slate-900 font-medium mt-2">هل نسيت كلمة المرور؟</div>
             </nuxt-link>
@@ -20,7 +21,7 @@
         </div>
       
         <div class="mt-12">
-          <base-btn class="btn-block mb-4">الدخول</base-btn>
+          <base-btn btn-class="btn-block mb-4" :loading @click="login">الدخول</base-btn>
       
           <div class="flex justify-center items-center gap-2 text-slate-500">
             ليس لديك حساب بعد؟
@@ -31,7 +32,7 @@
       
           <div class="w-[90%] h-[1px] bg-slate-400 mt-12 mb-4 mx-auto"></div>
       
-          <base-btn class="btn-outline btn-block mb-4">تسجيل الدخول عن طريق غوغل</base-btn>
+          <base-btn btn-class="btn-outline btn-block mb-4">تسجيل الدخول عن طريق غوغل</base-btn>
         </div>
 
     </div>
@@ -50,4 +51,27 @@
 definePageMeta({
   layout: "auth",
 });
+
+
+const authStore = useAuthStore()
+
+const { credentials } = storeToRefs(authStore)
+
+const router = useRouter()
+
+const loading = ref<boolean>(false)
+
+const login = async () => {
+
+  loading.value = true
+
+  try {
+    await authStore.login()
+
+    router.push('/accounts')
+  } finally {
+    loading.value = false
+  }
+}
+
 </script>

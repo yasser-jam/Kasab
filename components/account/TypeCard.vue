@@ -25,25 +25,25 @@ const typeInfo = computed(() => {
     case "company":
       return {
         title: "حساب الشركة",
-        link: "/accounts/company",
+        link: "/accounts/company/general-info",
         icon: "heroicons:building-library",
       };
     case "freelancer":
       return {
         title: "حساب مستقل",
-        link: "/accounts/freelancer",
+        link: "/accounts/freelancer/general-info",
         icon: "heroicons:user",
       };
     case "company":
       return {
         title: "حساب صاحب مشروع",
-        link: "/accounts/project-owner",
+        link: "/accounts/project-owner/general-info",
         icon: "heroicons:user-group",
       };
     default:
       return {
         title: "حساب صاحب مشروع",
-        link: "/accounts/project-owner",
+        link: "/accounts/project-owner/general-info",
         icon: "heroicons:user-group",
       };
   }
