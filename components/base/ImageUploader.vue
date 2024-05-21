@@ -2,8 +2,12 @@
   <div class="relative">
     <div
       v-if="!modelValue && !isLoading"
-      class="flex flex-col justify-center items-center w-44 h-44 border-2 border-dashed border-slate-300 hover:bg-slate-50 rounded-lg cursor-pointer"
-      :class="widthFull && `w-full`"
+      class="flex flex-col justify-center items-center w-44 h-44 border-2 border-dashed border-slate-300 hover:bg-slate-50 cursor-pointer"
+      :class="{
+        'w-full': widthFull,
+        'rounded-full': circle,
+        'rouned-lg': !circle
+      }"
       @click="fileInput?.click"
     >
       <Icon name="mdi:upload-circle-outline" color="#2D547C" size="4rem" />
@@ -61,6 +65,7 @@ const fileInput = ref<HTMLElement | null>(null);
 defineProps<{
   modelValue: string;
   widthFull?: boolean
+  circle?: boolean
 }>();
 
 const emit = defineEmits(["update:model-value"]);

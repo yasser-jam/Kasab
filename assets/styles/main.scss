@@ -28,6 +28,10 @@ html {
   animation-iteration-count: infinite;
 }
 
+.card {
+  @apply bg-white p-4
+}
+
 @keyframes move {
   0% {
     scale: 1;
