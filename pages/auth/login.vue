@@ -68,7 +68,7 @@ const login = async () => {
   try {
     await authStore.login()
 
-    router.push('/accounts')
+    router.push('/')
   } finally {
     loading.value = false
   }

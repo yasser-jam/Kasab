@@ -43,61 +43,38 @@
           <base-input type="number" placeholder="45"></base-input>
         </div>
 
-        <div class="flex justify-between">
-          <div>
-            <base-label>التأمينات الصحية</base-label>
+        <div>
+          <base-label>النوع</base-label>
 
-            <base-checkbox></base-checkbox>
-          </div>
-
-          <div>
-            <base-label>المواصلات مؤمنة</base-label>
-
-            <base-checkbox></base-checkbox>
-          </div>
-
-          <div>
-            <base-label>معفى من الخدمة العسكرية</base-label>
-
-            <base-checkbox></base-checkbox>
+          <div class="flex gap-4">
+            <base-radio label="ذكر"></base-radio>
+            <base-radio label="أنثى"></base-radio>
+            <base-radio label="لا يهم"></base-radio>
           </div>
         </div>
 
         <div>
+          <base-label>معلومات إضافية</base-label>
+
+          <div class="flex gap-4">
+            <base-checkbox label="تأمين صحي"></base-checkbox>
+            <base-checkbox label="مواصلات مؤمنة"></base-checkbox>
+          </div>
+        </div>
+
+        <div class="col-span-2">
+          <base-label>المهارات المطلوبة</base-label>
+
+          <base-select></base-select>
+        </div>
+
+        <div class="col-span-2">
           <base-label>تفاصيل العرض</base-label>
 
           <base-textarea
             placeholder="طبيعة العمل، المهام المطلوبة"
           ></base-textarea>
         </div>
-
-        <div class="flex justify-between">
-          <base-label>النوع</base-label>
-          <div>
-            <base-label>ذكر</base-label>
-
-            <base-checkbox></base-checkbox>
-          </div>
-
-          <div>
-            <base-label>أنثى</base-label>
-
-            <base-checkbox></base-checkbox>
-          </div>
-
-          <div>
-            <base-label>لا يهم</base-label>
-
-            <base-checkbox></base-checkbox>
-          </div>
-        </div>
-
-        <div>
-            <base-label>المهارات المطلوبة</base-label>
-        
-            <base-select></base-select>
-        </div>
-
       </div>
     </div>
   </div>
