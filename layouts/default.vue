@@ -6,3 +6,10 @@
   </div>
 
 </template>
+
+
+<script setup lang="ts">
+const authStore = useAuthStore()
+
+useLazyAsyncData<User>(() => authStore.me())
+</script>

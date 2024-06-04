@@ -1,24 +1,34 @@
 export const useAuthStore = defineStore('auth', () => {
-    
-    const token = useCookie('access_token')
+  const token = useCookie('access_token')
 
-    const credentials = ref<{ email: string, password: string }>({
-        email: '',
-        password: ''
+  const user = ref(initUser())
+
+  const credentials = ref<{ email: string; password: string }>({
+    email: '',
+    password: ''
+  })
+
+  const login = async () => {
+    const res = await api('login', {
+      method: 'POST',
+      body: JSON.stringify(credentials.value)
     })
 
-    const login = async () => {
-        const res = await api('login', {
-            method: 'POST',
-            body: JSON.stringify(credentials.value)
-        })
+    token.value = res.access_token
+  }
 
-        token.value = res.access_token
-    }
+  const me = async (): Promise<User> => {
+    const res = await api('request.me')
+  
+    user.value = res.data
 
-    
-    return {
-        credentials,
-        login
-    }
+    return user.value
+}
+
+  return {
+    credentials,
+    login,
+    user,
+    me
+  }
 })
