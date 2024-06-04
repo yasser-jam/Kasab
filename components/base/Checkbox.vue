@@ -5,8 +5,8 @@
       <span class="label-text text-base">{{ label }}</span>
 
       <input
+        v-model="model"
         type="checkbox"
-        checked="checked"
         class="checkbox checkbox-primary"
       />
     </label>
@@ -14,6 +14,9 @@
 </template>
 
 <script setup lang="ts">
+
+const model = defineModel()
+
 defineProps<{
   label: string
 }>()
