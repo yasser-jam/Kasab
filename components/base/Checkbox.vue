@@ -2,7 +2,11 @@
   <div class="form-control">
 
     <label class="label flex items-center gap-2 cursor-pointer">
-      <span class="label-text text-base">{{ label }}</span>
+      <span class="label-text text-base">
+        <slot name="label">
+          {{ label }}
+        </slot>
+      </span>
 
       <input
         v-model="model"
@@ -18,6 +22,6 @@
 const model = defineModel()
 
 defineProps<{
-  label: string
+  label?: string
 }>()
 </script>
