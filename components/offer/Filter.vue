@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white shadow-md p-4 my-4 rounded-lg">
+  <div class="bg-white shadow-md p-4 rounded-lg">
     <div class="text-2xl mb-2">نوع العرض</div>
 
     <base-checkbox v-for="ty in types">

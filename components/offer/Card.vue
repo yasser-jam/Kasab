@@ -1,5 +1,5 @@
 <template>
-  <div class="card border">
+  <div class="card shadow-md">
     <div class="flex justify-between">
         <div>
             <div class="text-3xl font-bold mb-3">اسم العرض</div>
