@@ -28,4 +28,6 @@
       </div>
     </div>
   </div>
+
+  <base-modal></base-modal>
 </template>
