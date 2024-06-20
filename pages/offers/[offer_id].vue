@@ -81,8 +81,8 @@
             </div>
 
             <div class="flex gap-2 items-center">
-                <base-label class="w-32">التأمينات الصحية</base-label>
-                <badge-health class="badge-secondary"></badge-health>
+                <base-label class="w-32">الخدمة العسكرية</base-label>
+                <badge-military class="badge-secondary"></badge-military>
             </div>
 
 
