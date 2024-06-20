@@ -2,8 +2,8 @@
   <div class="card shadow-md">
     <div class="flex justify-between">
         <div>
-            <div class="text-3xl font-bold mb-3">اسم العرض</div>
-            <div class="text-xl font-semibold text-primary">500ل.س - 4000ل.س</div>
+            <div class="text-2xl font-bold mb-3">اسم العرض</div>
+            <div class="text-lg font-semibold text-primary">500ل.س - 4000ل.س</div>
         </div>
 
         <base-chip color="success">مفعل</base-chip>
@@ -34,7 +34,7 @@
           </base-chip>
         </div>
 
-        <base-chip color="gray" class="text-gray-500 font-semibold">تاريخ التقديم: 1 / 4 / 2024</base-chip>
+        <base-chip color="gray" class=" text-gray-500 font-semibold">تاريخ التقديم: 1 / 4 / 2024</base-chip>
 
     </div>
 

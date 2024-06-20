@@ -5,11 +5,11 @@
 
     
     <div class="mt-6 mb-8">
-      <h1 class="text-5xl font-bold mb-6">عروض الشركات</h1>
+      <!-- <h1 class="text-5xl font-bold mb-6">عروض الشركات</h1>
       <div class="text-xl font-semibold text-gray-400">
         تصفح العروض بمختلف أقسامها، يمكنك البحث عن العرض المناسب ومعرفة مزيد من
         التفاصيل عنه
-      </div>
+      </div> -->
     </div>
 
     <div class="grid grid-cols-8 gap-8">
