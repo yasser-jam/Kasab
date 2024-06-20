@@ -11,7 +11,7 @@
 
 
   <div class="bg-white shadow-md p-4 my-4 rounded-lg">
-    <div class="text-2xl mb-2">متوسط الرواتب</div>
+    <div class="text-2xl mb-4">متوسط الرواتب</div>
     <base-range></base-range>    
   </div>
 
