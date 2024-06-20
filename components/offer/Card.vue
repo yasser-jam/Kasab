@@ -1,8 +1,10 @@
 <template>
-  <div class="card shadow-md">
+  <div class="card shadow-md rounded-lg">
     <div class="flex justify-between">
         <div>
+          <nuxt-link to="/offers/1">
             <div class="text-2xl font-bold mb-3">اسم العرض</div>
+          </nuxt-link>
             <div class="text-lg font-semibold text-primary">500ل.س - 4000ل.س</div>
         </div>
 
@@ -18,20 +20,11 @@
 
     <div class="flex justify-between items-center mt-8">
         <div class="flex items-center gap-4">
-          <base-chip class="flex gap-2">
-            <Icon name="mdi:pill" size="1.5rem" />
-            <div>تأمينات صحية</div>
-          </base-chip>
+          <badge-health></badge-health>
     
-          <base-chip color="secondary" class="flex gap-2">
-            <Icon name="mdi:train-car" size="1.5rem" />
-            <div>مواصلات مؤمنة</div>
-          </base-chip>
+          <badge-transportation></badge-transportation>
     
-          <base-chip color="error" class="flex gap-2">
-            <Icon name="mdi:clock" size="1.5rem" />
-            <div>دوام كامل</div>
-          </base-chip>
+          <badge-attendence></badge-attendence>
         </div>
 
         <base-chip color="gray" class=" text-gray-500 font-semibold">تاريخ التقديم: 1 / 4 / 2024</base-chip>

@@ -29,5 +29,5 @@
     </div>
   </div>
 
-  <base-modal></base-modal>
+  <NuxtPage />
 </template>
