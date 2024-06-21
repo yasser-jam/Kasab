@@ -11,7 +11,10 @@ export const useCategoryStore = defineStore('category', () => {
     }
 
     const list = async () : Promise<ListResponse> => {
-        const res : ListResponse = await api('category/industry')
+        const res : ListResponse = await api('category/industry/search', {
+            method: 'POST',
+            body: { name: '' }
+        })
     
         categories.value = res.data
 
