@@ -27,10 +27,10 @@
     <!-- Display the uploaded image -->
     <img
       v-if="modelValue"
-      :src="modelValue"
+      :src="imageUrl"
       alt="Uploaded Image"
       class="h-44"
-      :class="widthFull ? 'w-full' : 'w-44 object-cover'"
+      :class="widthFull ? 'w-full object-contain' : 'w-44 object-cover'"
       />
 
     <input
@@ -63,13 +63,18 @@ const isLoading = ref(false);
 const imageSrc = ref(null);
 const fileInput = ref<HTMLElement | null>(null);
 
-defineProps<{
-  modelValue: string;
+const fileStore = useFileStore()
+
+const props = defineProps<{
+  modelValue: number;
+  url: string
   widthFull?: boolean
   circle?: boolean
 }>();
 
 const emit = defineEmits(["update:model-value"]);
+
+const imageUrl = ref(props.url)
 
 async function handleFileChange(event: any) {
   const file = event.target.files[0];
@@ -77,26 +82,21 @@ async function handleFileChange(event: any) {
     isLoading.value = true;
 
     try {
-      // Simulate an upload process and replace this with actual API call
-      await uploadImage(file);
+      // upload image and get its id and url
+      const image = await fileStore.upload(file);
 
-      const reader = new FileReader();
 
-      reader.onload = (e) => {
-        emit("update:model-value", e.target?.result);
+      // update image id value
+      emit('update:model-value', image?.id)
 
-        isLoading.value = false;
-      };
-      reader.readAsDataURL(file);
+      // udpate url value
+      imageUrl.value = image?.url
+
     } catch (error) {
       console.error("Error uploading image:", error);
-      isLoading.value = false;
+    } finally {
+      isLoading.value = false
     }
   }
-}
-
-// Simulate an image upload
-function uploadImage(file: any) {
-  return new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate a 2-second upload
 }
 </script>

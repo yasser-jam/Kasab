@@ -24,7 +24,8 @@
           <div class="col-span-2 grid grid-cols-4">
             <div class="col-span-1">
               <base-image-uploader
-                v-model="company.background_image_url"
+                v-model="company.background_image_id"
+                :url="company.background_image_url"
                 class="mt-1 w-fit"
               ></base-image-uploader>
             </div>
@@ -68,7 +69,11 @@
           <div class="col-span-2">
             <base-label>صورة غلاف الشركة</base-label>
 
-            <base-image-uploader v-model="company.profile_image_url" width-full></base-image-uploader>
+            <base-image-uploader
+              v-model="company.profile_image_id"
+              :url="company.profile_image_url"
+              width-full
+            ></base-image-uploader>
           </div>
 
           <div class="col-span-2">

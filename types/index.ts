@@ -13,8 +13,10 @@ export interface Category {
 
 export interface Company {
   id?: number
-  profile_image_url: string | null
-  background_image_url: string | null
+  profile_image_url: string
+  profile_image_id?: number
+  background_image_url: string
+  background_image_id?: number
   verified_at: string | null
   username?: string | null
   name: string | null

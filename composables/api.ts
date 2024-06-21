@@ -5,7 +5,6 @@ export default (url: string, options?: any) => {
 
   return $fetch(`${baseUrl}/${url}`, {
     headers: {
-      "Content-Type": "application/json",
       'Authorization': `Bearer ${token.value}`
       // Include other necessary headers
     },
