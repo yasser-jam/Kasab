@@ -3,60 +3,63 @@
     <div class="flex justify-between my-8">
       <layout-breadcrumb></layout-breadcrumb>
 
-      <base-btn icon="mdi:pencil" to="/accounts/company/general-info">تعديل البيانات</base-btn>
+      <base-btn icon="mdi:pencil" to="/accounts/company/general-info"
+        >تعديل البيانات</base-btn
+      >
     </div>
 
     <div class="grid grid-cols-12 gap-8 my-8">
       <div class="col-span-9">
-        <div class="card">
-          <div class="grid grid-cols-12 items-center">
-            <div class="col-span-2">
-              <base-image-uploader circle />
+        <div
+          class="grid grid-cols-12 items-center h-44 p-4 rounded-lg profile-bg"
+          style="
+            background-image: url('https://res.cloudinary.com/dyefbd6jy/image/upload/v1718994040/phpfBOmlL_oyd8vy.png');
+          "
+        >
+          <div class="col-span-2">
+            <img src="https://res.cloudinary.com/dyefbd6jy/image/upload/v1718994040/phpfBOmlL_oyd8vy.png" alt="profile-image" class="w-32 h-32 rounded-full">
+          </div>
+
+          <div class="col-span-10 ms-8">
+            <div class="flex justify-between">
+              <div class="text-3xl font-bold text-white mb-2">اسم الشركة</div>
+
+              <base-chip color="gray">شركة خدمية</base-chip>
             </div>
-
-            <div class="col-span-10 ms-8">
-              <div class="flex justify-between">
-                <div class="text-3xl font-bold text-primary mb-2">
-                  اسم الشركة
-                </div>
-
-                <base-chip>شركة خدمية</base-chip>
+            <div
+              class="flex items-center gap-4 text-base font-bold text-white mt-2"
+            >
+              <div class="flex items-center">
+                <Icon name="mdi:phone" size="1.5rem" class="text-mt me-2" />
+                <div class="tracking-wider">0993544811</div>
               </div>
-
-              <div
-                class="flex items-center gap-4 text-base font-bold text-gray-500 mt-2"
-              >
-                <div class="flex items-center">
-                  <Icon name="mdi:phone" size="1.5rem" class="text-mt me-2" />
-                  <div class="tracking-wider">0993544811</div>
-                </div>
-
-                <span>/</span>
-
-                <div class="flex items-center mt-1">
-                  <Icon
-                    name="mdi:map-marker"
-                    size="1.5rem"
-                    class="text-mt me-2"
-                  />
-                  <div class="tracking-wider">الجبة</div>
-                </div>
+  
+              <span>/</span>
+  
+              <div class="flex items-center mt-1">
+                <Icon name="mdi:map-marker" size="1.5rem" class="text-mt me-2" />
+                <div class="tracking-wider">الجبة</div>
               </div>
             </div>
+          </div>
 
-            <div class="col-span-12 text-xl bg-slate-50 rounded-lg mt-8 p-4">
-              وصف الشركة وهو العديد من الأمور المتعلقة لالشرنمة من جمعي النواحي
-              وصف الشركة وهو العديد من الأمور المتعلقة لالشرنمة من جمعي النواحي
-              وصف الشركة وهو العديد من الأمور المتعلقة لالشرنمة من جمعي النواحي
-              وصف الشركة وهو العديد من الأمور المتعلقة لالشرنمة من جمعي النواحي
-            </div>
+        </div>
+
+        <div class="col-span-12 card rounded-lg mt-8 p-4">
+          <div class="text-xl font-semibold mb-8">وصف الشركة</div>
+
+          <div class="text-lg bg-slate-50 font-semibold p-4">
+            وصف الشركة وهو العديد من الأمور المتعلقة لالشرنمة من جمعي النواحي
+            وصف الشركة وهو العديد من الأمور المتعلقة لالشرنمة من جمعي النواحي
+            وصف الشركة وهو العديد من الأمور المتعلقة لالشرنمة من جمعي النواحي
+            وصف الشركة وهو العديد من الأمور المتعلقة لالشرنمة من جمعي النواحي
           </div>
         </div>
 
         <div class="card mt-8">
           <div class="text-xl font-semibold mb-8">العنوان التفصيلي</div>
 
-          <div class="text-xl bg-slate-50 font-semibold p-4">
+          <div class="text-lg bg-slate-50 font-semibold p-4">
             حي الزهور - شارع 29 أيار - البناء الخامس
           </div>
         </div>
@@ -134,3 +137,11 @@
     </div>
   </div>
 </template>
+
+
+<style scoped>
+.profile-bg {
+  background-color: rgba(0, 0, 0, .6);
+  background-blend-mode: color;
+}
+</style>
