@@ -29,8 +29,9 @@
       v-if="modelValue"
       :src="modelValue"
       alt="Uploaded Image"
-      class="w-44 h-44 object-cover"
-    />
+      class="h-44"
+      :class="widthFull ? 'w-full' : 'w-44 object-cover'"
+      />
 
     <input
       type="file"

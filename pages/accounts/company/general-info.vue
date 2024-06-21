@@ -66,6 +66,12 @@
           </div>
 
           <div class="col-span-2">
+            <base-label>صورة غلاف الشركة</base-label>
+
+            <base-image-uploader v-model="company.profile_image_url" width-full></base-image-uploader>
+          </div>
+
+          <div class="col-span-2">
             <base-label>تفاصيل الشركة</base-label>
 
             <base-textarea
