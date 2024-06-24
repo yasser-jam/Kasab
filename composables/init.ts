@@ -42,3 +42,14 @@ export const initOffer = (): Offer => ({
   gender: null,
   skills: []
 })
+
+export const initEmployee = (): Employee => ({
+  id: undefined,
+  city: '',
+  date_of_birth: '',
+  description: '',
+  gender: '',
+  headline: '',
+  skill_ids: [],
+  job_role_id: undefined
+})

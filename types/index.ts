@@ -47,3 +47,18 @@ export interface Offer {
   gender: 'male' | 'female' | null
   skills: string[]
 }
+
+export interface Employee {
+  id?: number
+  headline: string
+  description: string
+  city: string
+  gender: string
+  date_of_birth: string
+  job_role_id?: number
+  skill_ids: number[]
+  profile_image_id: number
+  profile_image_url: string
+  background_image_id: number
+  background_image_url: string
+}

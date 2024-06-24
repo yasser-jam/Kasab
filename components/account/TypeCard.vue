@@ -31,7 +31,7 @@ const typeInfo = computed(() => {
     case "freelancer":
       return {
         title: "حساب مستقل",
-        link: "/accounts/freelancer/general-info",
+        link: "/accounts/employee/create",
         icon: "heroicons:user",
       };
     case "company":
