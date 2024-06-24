@@ -139,6 +139,20 @@
 </template>
 
 
+<script setup lang="ts">
+
+const companyStore = useCompanyStore()
+
+const { company } = storeToRefs(companyStore)
+
+const route = useRoute()
+
+const companyId = Number(route.params.company_id)
+
+const { pending } = useLazyAsyncData(() => companyStore.get(companyId))
+
+</script>
+
 <style scoped>
 .profile-bg {
   background-color: rgba(0, 0, 0, .6);
