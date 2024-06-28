@@ -111,10 +111,7 @@
           <div>
             <base-label>اختر المهارات المطلوبة (واحدة أو أكثر)</base-label>
 
-            <base-input
-              v-model="employee.description"
-              placeholder="الكتابة الإبداعية، التعليق الصوتي، التصميم، HTML،..."
-            ></base-input>
+            <system-skill-select v-model="employee.skill_ids"></system-skill-select>
           </div>
         </div>
       </div>

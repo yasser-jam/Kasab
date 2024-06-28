@@ -33,13 +33,13 @@
         <li
           v-for="item in computedItems"
           class="list-item"
-          :class="selectedValue == item.value && 'selected'"
+          :class="isSelected(item.value) && 'selected'"
           @click="select(item)"
         >
           <span>{{ item.title }}</span>
 
           <Icon
-            v-if="selectedValue == item.value && 'selected'"
+            v-if="isSelected(item.value)"
             name="mdi:check"
             size="1rem"
           />
@@ -63,6 +63,25 @@ interface Item {
   value: string
 }
 
+const props = withDefaults(
+  defineProps<{
+    items: any[]
+    placeholder?: string
+    modelValue?: any
+    itemTitle?: string
+    itemValue?: string
+    returnObject?: boolean
+    loading?: boolean
+    mapOptions?: boolean
+    multiple?: boolean
+  }>(),
+  {
+    itemTitle: 'title',
+    itemValue: 'value',
+    multiple: false
+  }
+)
+
 const computedItems = computed(() => {
   if (typeof props.items[0] == 'string') {
     return props.items.map((item) => ({
@@ -77,55 +96,62 @@ const computedItems = computed(() => {
   }
 })
 
-const props = withDefaults(
-  defineProps<{
-    items: any[]
-    placeholder?: string
-    modelValue?: any
-    itemTitle?: string
-    itemValue?: string
-    returnObject?: boolean
-    loading?: boolean
-    mapOptions?: boolean
-  }>(),
-  {
-    itemTitle: 'title',
-    itemValue: 'value'
-  }
-)
-
 const selectedTitle = computed(() => {
-  if (props.mapOptions) {
-    return props.items.find(
-      (el) => props.modelValue == el[props.itemValue as any]
-    )?.[props.itemTitle]
+  if (props.multiple) {
+    if (props.mapOptions) {
+      return props.modelValue
+        ?.map(
+          (val: any) =>
+            props.items.find(
+              (el) => val == el[props.itemValue as any]
+            )?.[props.itemTitle]
+        )
+        .join(', ')
+    } else {
+      return props.modelValue.join(', ')
+    }
   } else {
-    return props.modelValue
+    if (props.mapOptions) {
+      return props.items?.find(
+        (el) => props.modelValue == el[props.itemValue as any]
+      )?.[props.itemTitle]
+    } else {
+      return props.modelValue
+    }
   }
 })
 
-const selectedValue = computed(() => {
-  if (props.mapOptions) {
-    return props.items.find(
-      (el) => props.modelValue == el[props.itemValue as any]
-    )?.[props.itemValue]
+const isSelected = (value: string) => {
+  if (props.multiple) {
+    return props.modelValue.includes(value)
   } else {
-    return props.modelValue
+    return props.modelValue == value
   }
-})
+}
 
 const emit = defineEmits(['update:model-value'])
 
 const select = (item: Item) => {
-  emit(
-    'update:model-value',
-    props.returnObject
-      ? props.items.find((i) => i[props.itemValue] == item.value)
-      : item.value
-  )
+  if (props.multiple) {
+    let newValue
+    if (props.modelValue.includes(item.value)) {
+      newValue = props.modelValue.filter((val: any) => val !== item.value)
+    } else {
+      newValue = [...props.modelValue, item.value]
+    }
+    emit('update:model-value', newValue)
+  } else {
+    emit(
+      'update:model-value',
+      props.returnObject
+        ? props.items.find((i) => i[props.itemValue] == item.value)
+        : item.value
+    )
+  }
 
-  // close menu
-  isOpen.value = false
+  if (!props.multiple) {
+    isOpen.value = false
+  }
 }
 </script>
 

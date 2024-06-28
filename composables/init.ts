@@ -59,3 +59,7 @@ export const initEmployee = (): Employee => ({
 export const initJob = (): Job => ({
   name: ''
 })
+
+export const initSkill = (): Skill => ({
+  name: ''
+})
