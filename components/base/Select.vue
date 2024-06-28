@@ -10,7 +10,7 @@
 
       <div class="absolute inset-y-0 left-4 flex items-center">
         <base-loading-dots v-if="loading"></base-loading-dots>
-        
+
         <Icon
           v-else
           :name="`mdi:chevron-${isOpen ? 'up' : 'down'}`"
@@ -47,73 +47,86 @@
       </ul>
     </Transition>
   </div>
-
 </template>
 
 <script setup lang="ts">
-import { onClickOutside } from "@vueuse/core";
+import { onClickOutside } from '@vueuse/core'
 
-const isOpen = ref<boolean>(false);
+const isOpen = ref<boolean>(false)
 
-const menu = ref(null);
+const menu = ref(null)
 
-onClickOutside(menu, () => (isOpen.value = false));
+onClickOutside(menu, () => (isOpen.value = false))
 
 interface Item {
-  title: string;
-  value: string;
+  title: string
+  value: string
 }
 
 const computedItems = computed(() => {
-  if (typeof props.items[0] == "string") {
+  if (typeof props.items[0] == 'string') {
     return props.items.map((item) => ({
       title: item,
-      value: item,
-    }));
+      value: item
+    }))
   } else {
     return props.items.map((item) => ({
       title: item[props.itemTitle],
-      value: item[props.itemValue],
-    }));
+      value: item[props.itemValue]
+    }))
   }
-});
+})
 
 const props = withDefaults(
   defineProps<{
-    items: any[];
-    placeholder?: string;
-    modelValue?: any;
-    itemTitle?: string;
-    itemValue?: string;
+    items: any[]
+    placeholder?: string
+    modelValue?: any
+    itemTitle?: string
+    itemValue?: string
     returnObject?: boolean
     loading?: boolean
+    mapOptions?: boolean
   }>(),
   {
-    itemTitle: "title",
-    itemValue: "value",
+    itemTitle: 'title',
+    itemValue: 'value'
   }
-);
+)
 
-const selectedTitle = computed(() =>
-  typeof props.modelValue == "string"
-    ? props.modelValue
-    : props.modelValue?.[props.itemTitle]
-);
+const selectedTitle = computed(() => {
+  if (props.mapOptions) {
+    return props.items.find(
+      (el) => props.modelValue == el[props.itemValue as any]
+    )?.[props.itemTitle]
+  } else {
+    return props.modelValue
+  }
+})
 
-const selectedValue = computed(() =>
-  typeof props.modelValue == "string"
-    ? props.modelValue
-    : props.modelValue?.[props.itemValue]
-);
+const selectedValue = computed(() => {
+  if (props.mapOptions) {
+    return props.items.find(
+      (el) => props.modelValue == el[props.itemValue as any]
+    )?.[props.itemValue]
+  } else {
+    return props.modelValue
+  }
+})
 
-const emit = defineEmits(["update:model-value"]);
+const emit = defineEmits(['update:model-value'])
 
 const select = (item: Item) => {
-  emit("update:model-value", props.returnObject ? props.items.find(i => i[props.itemValue] == item.value) : item.value);
+  emit(
+    'update:model-value',
+    props.returnObject
+      ? props.items.find((i) => i[props.itemValue] == item.value)
+      : item.value
+  )
 
   // close menu
-  isOpen.value = false;
-};
+  isOpen.value = false
+}
 </script>
 
 <style scoped>

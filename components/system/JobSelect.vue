@@ -3,6 +3,7 @@
     :items="data"
     placeholder="مطور فرونت اند"
     :loading
+    map-options
     item-title="name"
     item-value="id"
   ></base-select>

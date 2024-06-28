@@ -35,7 +35,7 @@
               <div class="mb-4">
                 <base-label>المسمى الوظيفي</base-label>
 
-                <system-job-select return-object v-model="employee.job_role_id"></system-job-select>
+                <system-job-select v-model="employee.job_role_id"></system-job-select>
               </div>
 
               <div class="gap-4">
@@ -99,7 +99,7 @@
           <div>
             <base-label>النوع</base-label>
 
-            <system-city-select v-model="employee.city"></system-city-select>
+            <system-gender-select v-model="employee.gender"></system-gender-select>
           </div>
         </div>
 
