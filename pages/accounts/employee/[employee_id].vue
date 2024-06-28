@@ -1,5 +1,5 @@
 <template>
-  <div class="container mb-96">
+  <div class="container mb-8">
     <div class="flex justify-between my-8">
       <layout-breadcrumb></layout-breadcrumb>
 
@@ -132,6 +132,9 @@ const save = async () => {
 
   try {
     await employeeStore.create()
+
+    // redirect to the employee personal profile page
+    navigateTo('/employee/4')
   } finally {
     loading.value = false
   }
