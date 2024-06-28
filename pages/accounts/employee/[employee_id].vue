@@ -35,10 +35,7 @@
               <div class="mb-4">
                 <base-label>المسمى الوظيفي</base-label>
 
-                <base-input
-                  v-model="employee.headline"
-                  placeholder="مصمم برمجيات محترف!"
-                ></base-input>
+                <system-job-select return-object v-model="employee.job_role_id"></system-job-select>
               </div>
 
               <div class="gap-4">

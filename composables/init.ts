@@ -51,5 +51,11 @@ export const initEmployee = (): Employee => ({
   gender: '',
   headline: '',
   skill_ids: [],
-  job_role_id: undefined
+  job_role_id: undefined,
+  background_image_url: '',
+  profile_image_url: '',
+})
+
+export const initJob = (): Job => ({
+  name: ''
 })

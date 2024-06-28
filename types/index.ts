@@ -1,3 +1,6 @@
+export interface ListResponse<T> {
+  data: T[]
+}
 export interface User {
   id?: number
   first_name: string
@@ -57,8 +60,13 @@ export interface Employee {
   date_of_birth: string
   job_role_id?: number
   skill_ids: number[]
-  profile_image_id: number
+  profile_image_id?: number
   profile_image_url: string
-  background_image_id: number
+  background_image_id?: number
   background_image_url: string
+}
+
+export interface Job {
+  id?: number
+  name: string
 }

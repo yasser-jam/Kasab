@@ -9,7 +9,10 @@
       ></base-input>
 
       <div class="absolute inset-y-0 left-4 flex items-center">
+        <base-loading-dots v-if="loading"></base-loading-dots>
+        
         <Icon
+          v-else
           :name="`mdi:chevron-${isOpen ? 'up' : 'down'}`"
           size="1.5rem"
           color="gray"
@@ -83,6 +86,7 @@ const props = withDefaults(
     itemTitle?: string;
     itemValue?: string;
     returnObject?: boolean
+    loading?: boolean
   }>(),
   {
     itemTitle: "title",
