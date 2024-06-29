@@ -7,7 +7,7 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    color: "primary" | "success" | "secondary" | "error" | "gray";
+    color: "primary" | "success" | "secondary" | "error" | "gray" | "warning";
   }>(),
   {
     color: "primary",
@@ -26,6 +26,8 @@ const color = computed(() => {
       return "badge-error";
     case "gray":
       return "badge-gray";
+      case "warning":
+      return "badge-warning";
   }
 });
 </script>
