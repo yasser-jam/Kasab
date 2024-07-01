@@ -3,8 +3,10 @@
     <div class="flex justify-between my-8">
       <layout-breadcrumb></layout-breadcrumb>
 
-      <base-btn icon="mdi:pencil" to="/accounts/company/general-info"
-        >تعديل البيانات</base-btn
+      <base-btn
+        icon="mdi:account-multiple-plus-outline"
+        to="/accounts/company/general-info"
+        >أرسل دعوة</base-btn
       >
     </div>
 
@@ -41,30 +43,20 @@
       <div class="ms-8"></div>
     </div>
 
-    <div role="tablist" class="tabs tabs-lifted">
-      <!-- <nuxt-link :to="`/employee/${$route.params.employee_id}/general-info`">
-        <a role="tab" class="tab">المعلومات العامة</a>
-      </nuxt-link>
-
-      <nuxt-link :to="`/employee/${$route.params.employee_id}/portfolio`">
-        <a role="tab" class="tab tab-active">معرض الأعمال</a>
-      </nuxt-link> -->
-      <!-- <a role="tab" class="tab tab-active">معرض الأعمال</a>
-      <a role="tab" class="tab tab-active">معرض الأعمال</a> -->
-    </div>
-
     <div role="tablist" class="flex tabs tabs-bordered my-4">
-      <a
+      <nuxt-link
         role="tab"
         :href="`/employee/${$route.params.employee_id}/general-info`"
-        class="tab tab-active font-semibold text-lg"
-        >المعلومات العامة</a
+        class="tab font-semibold text-lg"
+        :class="{ 'tab-active': $route.path.includes('general-info') }"
+        >المعلومات العامة</nuxt-link
       >
-      <a
+      <nuxt-link
         role="tab"
         :href="`/employee/${$route.params.employee_id}/portfolio`"
         class="tab font-semibold text-lg"
-        >معرض الأعمال</a
+        :class="{ 'tab-active': $route.path.includes('portfolio') }"
+        >معرض الأعمال</nuxt-link
       >
     </div>
     <NuxtPage />
