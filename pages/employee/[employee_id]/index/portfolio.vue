@@ -4,4 +4,5 @@
         <job-card></job-card>
         <job-card></job-card>
     </div>
+
 </template>
