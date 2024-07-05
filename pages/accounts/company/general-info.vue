@@ -13,9 +13,6 @@
 
     <div class="flex justify-between items-center mb-8">
       <base-title>معلومات الشركة</base-title>
-      <base-btn color="neutral" icon="mdi:tag" to="/accounts/company/offers"
-        >عروضي</base-btn
-      >
     </div>
 
     <div class="grid grid-cols-3 gap-8">
