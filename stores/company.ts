@@ -11,10 +11,12 @@ export const useCompanyStore = defineStore('company', () => {
     const companies = ref<Company[]>([])
 
     const create = async () => {
-        await api('company/store', {
+        const res = await api('company/store', {
             method: 'POST',
             body: company.value
         })
+
+        return res.data.id
     }
 
     const get = async (id: number) => {

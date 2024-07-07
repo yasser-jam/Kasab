@@ -1,8 +1,9 @@
 <template>
   <base-select
-    :model-value="selectedItem"
+    :model-value="modelValue"
     :items
     placeholder="برمجي، خدمي"
+    map-options
     @update:model-value="$emit('update:model-value', $event)"
   ></base-select>
 </template>

@@ -154,7 +154,9 @@ const save = async () => {
   loading.value = true
 
   try {
-    await companyStore.create()
+    const id = await companyStore.create()
+
+    navigateTo(`/company/${id}`)
   } finally {
     loading.value = false
   }
