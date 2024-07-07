@@ -19,10 +19,12 @@ export const useCompanyStore = defineStore('company', () => {
         return res.data.id
     }
 
-    const get = async (id: number) => {
-        const res = await api(`company/show/${id}`)
+    const get = async (id: number) : Promise<Company> => {
+        const res = await api(`company/${id}`)
 
         company.value = res?.data
+
+        return company.value
     }
 
     return {
