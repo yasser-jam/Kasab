@@ -6,7 +6,7 @@
 definePageMeta({
   middleware: [
     function () {
-      navigateTo("/accounts/company/general-info");
+      navigateTo("/accounts/company/create/general-info");
     },
   ],
 });

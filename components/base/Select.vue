@@ -1,11 +1,12 @@
 <template>
-  <div ref="menu" class="relative">
+<div ref="menu" class="relative">
     <div>
       <base-input
         fixed
         class="disabled:cursor-pointer disabled:bg-slate-200 disabled:pointer-events-auto disabled:text-inherit"
         :placeholder="placeholder"
         :value="selectedTitle"
+        :model-value="selectedTitle"
       ></base-input>
 
       <div class="absolute inset-y-0 left-4 flex items-center">

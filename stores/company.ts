@@ -27,9 +27,19 @@ export const useCompanyStore = defineStore('company', () => {
         return company.value
     }
 
+    const update = async (id: number) : Promise<Company> => {
+        const res = await api(`company`, {
+            method: 'PUT',
+            body: company.value
+        })
+
+        return res.data.id
+    }
+
     return {
         company,
         create,
+        update,
         get
     }
 })
