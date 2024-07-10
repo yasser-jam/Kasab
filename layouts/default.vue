@@ -12,4 +12,5 @@
 const authStore = useAuthStore()
 
 useLazyAsyncData<User>(() => authStore.me())
+
 </script>

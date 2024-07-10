@@ -6,12 +6,16 @@
       <layout-breadcrumb></layout-breadcrumb>
 
       <div class="flex gap-2">
-        <base-btn icon="mdi:pencil" to="/accounts/company/general-info"
+        <base-btn icon="mdi:pencil" :to="`/accounts/company/general-info`"
           >تعديل البيانات</base-btn
         >
 
-        <base-btn icon="mdi:eye" color="secondary" to="/company/1/offers"
+        <base-btn icon="mdi:eye" color="secondary" :to="`/company/${route.params.company_id}/offers`"
           >مشاهدة العروض</base-btn
+        >
+
+        <base-btn v-if="isCompanyOwner" icon="mdi:briefcase" color="success" :to="`/company/${route.params.company_id}/offers/create`"
+          >إضافة عرض</base-btn
         >
       </div>
     </div>
@@ -107,13 +111,18 @@
 </template>
 
 <script setup lang="ts">
+const authStore = useAuthStore()
 const companyStore = useCompanyStore()
 
+const { user } = storeToRefs(authStore)
 const { company } = storeToRefs(companyStore)
 
 const route = useRoute()
 
+const userRoleId = user.value.role_id
 const companyId = Number(route.params.company_id)
+
+const isCompanyOwner = ref(userRoleId == companyId)
 
 const { pending } = useLazyAsyncData(() => companyStore.get(companyId))
 </script>
