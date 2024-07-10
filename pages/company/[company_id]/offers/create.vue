@@ -20,13 +20,13 @@
 
     <div class="grid grid-cols-3 gap-8">
       <div class="col-span-2">
-        <div class="card bg-white p-4">
+
+        <div class="card bg-white p-4 mb-8">
           <div class="text-xl text-slate-800 font-semibold mb-4">
             المعلومات الأساسية
           </div>
 
           <div class="grid grid-cols-2 gap-4">
-            
             <div class="col-span-2">
               <base-label>المسمى الوظيفي</base-label>
 
@@ -44,8 +44,10 @@
             </div>
 
             <div>
-                <base-label>نوع الموظف</base-label>
-                <system-gender-select v-model="offer.gender"></system-gender-select>
+              <base-label>نوع الموظف</base-label>
+              <system-gender-select
+                v-model="offer.gender"
+              ></system-gender-select>
             </div>
 
             <div>
@@ -79,19 +81,35 @@
 
             <div class="col-span-2">
               <base-switch-input
-                v-model="offer.health_insurance"
-                title="التأمين الصحي"
-                subtitle="هل تشمل الوظيفة تأمينات صحية"
+                v-model="offer.military_service"
+                title="الخدمة العسكرية مطلوبة"
+                subtitle="لن يتم استقبال الطلبات التي لا تحقق شرط الخدمة العسكرية"
+                color="warning"
               ></base-switch-input>
             </div>
+          </div>
+        </div>
 
-            <div class="col-span-2">
-              <base-switch-input
-                v-model="offer.transportation"
-                title="تأمين المواصلات"
-                subtitle="هل تشمل الوظيفة بدل عن المواصلات"
-              ></base-switch-input>
-            </div>
+        <div class="card bg-white p-4">
+          <div class="text-xl text-slate-800 font-semibold mb-4">
+            خدمات إضافية
+          </div>
+
+          <div class="col-span-2 mt-4">
+            <base-switch-input
+              v-model="offer.health_insurance"
+              title="التأمين الصحي"
+              subtitle="هل تشمل الوظيفة تأمينات صحية"
+            ></base-switch-input>
+          </div>
+
+          <div class="col-span-2">
+            <base-switch-input
+              v-model="offer.transportation"
+              title="تأمين المواصلات"
+              subtitle="هل تشمل الوظيفة بدل عن المواصلات"
+              color="info"
+            ></base-switch-input>
           </div>
         </div>
       </div>
@@ -108,7 +126,11 @@
             <base-input placeholder="الحد الأعلى"></base-input>
           </div>
 
-          <base-switch-input title="السعر مطلوب" subtitle="لن يتم استقبال الطلبات التي لا تحقق شرط السعر"></base-switch-input>
+          <base-switch-input
+            title="السعر مطلوب"
+            subtitle="لن يتم استقبال الطلبات التي لا تحقق شرط السعر"
+            color="warning"
+          ></base-switch-input>
         </div>
 
         <div class="card bg-white h-fit p-4 mt-8">
@@ -122,7 +144,11 @@
             <base-input placeholder="الحد الأعلى"></base-input>
           </div>
 
-          <base-switch-input title="العمر مطلوب" subtitle="لن يتم استقبال الطلبات التي لا تحقق شرط العمر"></base-switch-input>
+          <base-switch-input
+            title="العمر مطلوب"
+            subtitle="لن يتم استقبال الطلبات التي لا تحقق شرط العمر"
+            color="warning"
+          ></base-switch-input>
         </div>
 
         <div class="card mt-8">
@@ -131,6 +157,13 @@
           </div>
 
           <base-label>المهارات المطلوبة</base-label>
+
+          <base-select :items="[]"></base-select>
+
+          <base-label>المهارات المطلوبة</base-label>
+          <div class="text-gray-300 text-xs">
+            لن يتم استقبال العروض التي لا يمتلك أصحابها هذه المهارات
+          </div>
 
           <base-select :items="[]"></base-select>
         </div>
