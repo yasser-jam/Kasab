@@ -30,7 +30,8 @@ export interface Company {
   city: string
   region: string
   street_address: string
-  gallery_images: string[]
+  gallery_images: {id: number, url: string}[]
+  gallery_images_ids: {id: number, url: string}[]
   contact_links: string[]
   company_phones: string[]
 }

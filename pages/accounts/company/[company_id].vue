@@ -89,7 +89,7 @@
           <base-label class="mb-4">معرض الصور</base-label>
 
           <company-gallery-slider
-            v-model="company.gallery_images"
+            v-model="company.gallery_images_ids"
           ></company-gallery-slider>
         </div>
       </div>

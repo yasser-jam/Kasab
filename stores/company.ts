@@ -10,6 +10,11 @@ export const useCompanyStore = defineStore('company', () => {
 
     const companies = ref<Company[]>([])
 
+    const companyData = computed(() => ({
+        ...company.value,
+        gallery_images_ids: company.value.gallery_images_ids?.map(img => img.id)
+    }))
+
     const create = async () => {
         const res = await api('company/store', {
             method: 'POST',

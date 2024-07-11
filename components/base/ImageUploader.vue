@@ -72,7 +72,7 @@ const props = defineProps<{
   circle?: boolean
 }>();
 
-const emit = defineEmits(["update:model-value"]);
+const emit = defineEmits(["update:model-value", 'update:url']);
 
 const imageUrl = ref(props.url)
 
@@ -88,6 +88,8 @@ async function handleFileChange(event: any) {
 
       // update image id value
       emit('update:model-value', image?.id)
+
+      emit('update:url', image)
 
       // udpate url value
       imageUrl.value = image?.url

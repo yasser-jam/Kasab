@@ -78,7 +78,12 @@
         <div class="card mt-8">
           <div class="text-xl font-semibold mb-8">معرض الصور</div>
 
-          <!-- <company-gallery-slider></company-gallery-slider> -->
+          <div class="grid grid-cols-4 gap-4">
+            <div v-for="img in company.gallery_images" class="flex items-center justify-center bg-slate-50">
+              <img :src="img.url" alt="gallery-image" class="rounded-lg">
+            </div>
+          </div>
+          <!-- <company-gallery-slider v-model="company.gallery_images"></company-gallery-slider> -->
         </div>
       </div>
 
