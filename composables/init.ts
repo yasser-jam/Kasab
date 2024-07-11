@@ -6,7 +6,8 @@ export const initUser = (): User => ({
   first_name: '',
   last_name: '',
   username: '',
-  role: ''
+  role: '',
+  role_id: undefined
 })
 
 export const initCompany = (): Company => ({
@@ -17,6 +18,7 @@ export const initCompany = (): Company => ({
   contact_links: [],
   description: '',
   gallery_images: [],
+  gallery_images_ids: [],
   industry_name: '',
   name: '',
   profile_image_url: '',

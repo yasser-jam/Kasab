@@ -81,7 +81,7 @@
 
             <div class="col-span-2">
               <base-switch-input
-                v-model="offer.military_service"
+                v-model="offer.military_service_required"
                 title="الخدمة العسكرية مطلوبة"
                 subtitle="لن يتم استقبال الطلبات التي لا تحقق شرط الخدمة العسكرية"
                 color="warning"
@@ -119,32 +119,27 @@
           <div class="text-xl text-slate-800 font-semibold mb-4">السعر</div>
 
           <div class="flex items-center gap-4">
-            <base-input placeholder="الحد الأدنى"></base-input>
+            <base-input v-model.number="offer.min_salary" type="number" placeholder="الحد الأدنى"></base-input>
 
             <Icon name="mdi:arrow-left" class="text-primary" size="4rem" />
 
-            <base-input placeholder="الحد الأعلى"></base-input>
+            <base-input v-model.number="offer.max_salary" type="number" placeholder="الحد الأعلى"></base-input>
           </div>
-
-          <base-switch-input
-            title="السعر مطلوب"
-            subtitle="لن يتم استقبال الطلبات التي لا تحقق شرط السعر"
-            color="warning"
-          ></base-switch-input>
         </div>
 
         <div class="card bg-white h-fit p-4 mt-8">
           <div class="text-xl text-slate-800 font-semibold mb-4">العمر</div>
 
           <div class="flex items-center gap-4">
-            <base-input placeholder="الحد الأدنى"></base-input>
+            <base-input v-model.number="offer.min_age" type="number" placeholder="الحد الأدنى"></base-input>
 
             <Icon name="mdi:arrow-left" class="text-primary" size="4rem" />
 
-            <base-input placeholder="الحد الأعلى"></base-input>
+            <base-input v-model.number="offer.max_age" type="number" placeholder="الحد الأعلى"></base-input>
           </div>
 
           <base-switch-input
+            v-model="offer.age_required"
             title="العمر مطلوب"
             subtitle="لن يتم استقبال الطلبات التي لا تحقق شرط العمر"
             color="warning"
@@ -160,8 +155,8 @@
 
           <base-select :items="[]"></base-select>
 
-          <base-label>المهارات المطلوبة</base-label>
-          <div class="text-gray-300 text-xs">
+          <base-label class="mt-3">المهارات المطلوبة</base-label>
+          <div class="text-gray-400 text-sm mb-2">
             لن يتم استقبال العروض التي لا يمتلك أصحابها هذه المهارات
           </div>
 

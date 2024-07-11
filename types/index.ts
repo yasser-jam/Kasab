@@ -8,7 +8,7 @@ export interface User {
   username: string
   email: string
   role: string
-  role_id: number
+  role_id?: number
 }
 
 export interface Category {
@@ -51,6 +51,9 @@ export interface Offer {
   military_service: boolean
   gender: 'male' | 'female' | null
   skills: string[]
+  age_required?: boolean
+  military_service_required?: boolean
+  gender_required?: boolean
 }
 
 export interface Employee {

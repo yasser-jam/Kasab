@@ -16,11 +16,11 @@
     </div>
 
     <input
+      v-model="model"
       type="checkbox"
       class="toggle"
       :class="colorsClasses.toggle"
-      checked="checked"
-      @update:model-value="$emit('update:model-value', $event)"
+      :checked="modelValue"
     />
   </div>
 </template>
@@ -28,6 +28,7 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
+    modelValue: boolean
     title?: string
     subtitle?: string
     mini?: boolean
@@ -37,6 +38,8 @@ const props = withDefaults(
     color: 'primary'
   }
 )
+
+const model = defineModel()
 
 const colorsClasses = computed(() => {
   switch (props.color) {
