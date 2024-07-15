@@ -6,7 +6,7 @@
       <layout-breadcrumb></layout-breadcrumb>
 
       <div class="flex gap-2">
-        <base-btn icon="mdi:pencil" :to="`/accounts/company/general-info`"
+        <base-btn icon="mdi:pencil" :to="`/accounts/company/${route.params.company_id}`"
           >تعديل البيانات</base-btn
         >
 
