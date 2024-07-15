@@ -12,13 +12,13 @@ export const useCompanyStore = defineStore('company', () => {
 
     const companyData = computed(() => ({
         ...company.value,
-        gallery_images_ids: company.value.gallery_images_ids?.map(img => img.id)
+        gallery_images: company.value.gallery_images_ids?.map(img => img.id)
     }))
 
     const create = async () => {
         const res = await api('company/store', {
             method: 'POST',
-            body: company.value
+            body: companyData.value
         })
 
         return res.data.id
@@ -35,7 +35,7 @@ export const useCompanyStore = defineStore('company', () => {
     const update = async (id: number) : Promise<Company> => {
         const res = await api(`company`, {
             method: 'PUT',
-            body: company.value
+            body: companyData.value
         })
 
         return res.data.id

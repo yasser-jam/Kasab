@@ -89,7 +89,7 @@
           <base-label class="mb-4">معرض الصور</base-label>
 
           <company-gallery-slider
-            v-model="company.gallery_images_ids"
+            v-model="company.gallery_images"
           ></company-gallery-slider>
         </div>
       </div>
@@ -151,14 +151,16 @@ const { company } = storeToRefs(companyStore)
 
 const route = useRoute()
 
-const companyId = Number(route.params.company_id)
+const companyId = route.params.company_id
+
+
 
 const editMode = String(companyId) != 'create'
 
 const loading = ref<boolean>(false)
 
 const { pending } = useLazyAsyncData<Company>(() => {
-  if (editMode) return companyStore.get(companyId)
+  if (editMode) return companyStore.get(Number(companyId))
   return Promise.resolve({} as Company)
 })
 
@@ -167,7 +169,7 @@ const save = async () => {
 
   try {
 
-    const id = editMode ? await companyStore.update(companyId) : await companyStore.create()
+    const id = editMode ? await companyStore.update(Number(companyId)) : await companyStore.create()
 
     navigateTo(`/company/${id}`)
   } finally {

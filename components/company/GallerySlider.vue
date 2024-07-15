@@ -61,7 +61,7 @@ const props = defineProps<{
 }>()
 
 const addImage = (img: any) => {
-  company.value.gallery_images_ids.push({
+  company.value.gallery_images.push({
     id: img.id,
     url: img.url
   })
@@ -71,7 +71,7 @@ const addImage = (img: any) => {
 }
 
 const removeImage = (imgId: number) => {
-  company.value.gallery_images_ids = company.value.gallery_images_ids.filter(
+  company.value.gallery_images = company.value.gallery_images.filter(
     (image) => image.id != imgId
   )
 }
