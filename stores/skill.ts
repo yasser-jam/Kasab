@@ -12,7 +12,9 @@ export const useSkillStore = defineStore('skill', () => {
             }
         })
 
-        return res?.data
+        skills.value = res?.data
+
+        return skills.value
     }
 
 

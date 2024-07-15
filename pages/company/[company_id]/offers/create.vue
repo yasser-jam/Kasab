@@ -20,7 +20,6 @@
 
     <div class="grid grid-cols-3 gap-8">
       <div class="col-span-2">
-
         <div class="card bg-white p-4 mb-8">
           <div class="text-xl text-slate-800 font-semibold mb-4">
             المعلومات الأساسية
@@ -119,11 +118,19 @@
           <div class="text-xl text-slate-800 font-semibold mb-4">السعر</div>
 
           <div class="flex items-center gap-4">
-            <base-input v-model.number="offer.min_salary" type="number" placeholder="الحد الأدنى"></base-input>
+            <base-input
+              v-model.number="offer.min_salary"
+              type="number"
+              placeholder="الحد الأدنى"
+            ></base-input>
 
             <Icon name="mdi:arrow-left" class="text-primary" size="4rem" />
 
-            <base-input v-model.number="offer.max_salary" type="number" placeholder="الحد الأعلى"></base-input>
+            <base-input
+              v-model.number="offer.max_salary"
+              type="number"
+              placeholder="الحد الأعلى"
+            ></base-input>
           </div>
         </div>
 
@@ -131,11 +138,19 @@
           <div class="text-xl text-slate-800 font-semibold mb-4">العمر</div>
 
           <div class="flex items-center gap-4">
-            <base-input v-model.number="offer.min_age" type="number" placeholder="الحد الأدنى"></base-input>
+            <base-input
+              v-model.number="offer.min_age"
+              type="number"
+              placeholder="الحد الأدنى"
+            ></base-input>
 
             <Icon name="mdi:arrow-left" class="text-primary" size="4rem" />
 
-            <base-input v-model.number="offer.max_age" type="number" placeholder="الحد الأعلى"></base-input>
+            <base-input
+              v-model.number="offer.max_age"
+              type="number"
+              placeholder="الحد الأعلى"
+            ></base-input>
           </div>
 
           <base-switch-input
@@ -153,14 +168,14 @@
 
           <base-label>المهارات المطلوبة</base-label>
 
-          <base-select :items="[]"></base-select>
+          <system-skill-select v-model="offer.skills" />
 
           <base-label class="mt-3">المهارات المطلوبة</base-label>
           <div class="text-gray-400 text-sm mb-2">
             لن يتم استقبال العروض التي لا يمتلك أصحابها هذه المهارات
           </div>
 
-          <base-select :items="[]"></base-select>
+          <base-select :items="reqSkillsItems"></base-select>
         </div>
       </div>
     </div>
@@ -168,12 +183,26 @@
 </template>
 <script setup lang="ts">
 const offerStore = useOfferStore()
+const skillStore = useSkillStore()
 
 const { offer } = storeToRefs(offerStore)
+const { skills } = storeToRefs(skillStore)
 
 const loading = ref<boolean>(false)
 
 const route = useRoute()
+
+const reqSkillsItems = computed(() => {
+  const items: any[] = []
+
+  skills.value.filter((skill) => {
+    const selected = offer.value.skills.find((el) => el == skill.id as any)
+
+    if (selected) items.push(selected)
+  })
+
+  return items
+})
 
 const save = async () => {
   loading.value = true
