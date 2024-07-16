@@ -41,10 +41,24 @@ export const useCompanyStore = defineStore('company', () => {
         return res.data.id
     }
 
+    const offersFilters = ref(initCompanyOffersFilter())
+
+    const myOffers = async () : Promise<Offer[]> => {
+        const res = await api('company', {
+            method: 'POST',
+            body: offersFilters
+        })
+
+        return res?.data
+    }
+
     return {
         company,
         create,
         update,
-        get
+        get,
+
+        offersFilters,
+        myOffers
     }
 })

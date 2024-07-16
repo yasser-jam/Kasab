@@ -54,6 +54,7 @@ export interface Offer {
   age_required?: boolean
   military_service_required?: boolean
   gender_required?: boolean
+  status: 'pending' | 'active' | 'cloused'
 }
 
 export interface Employee {
@@ -79,4 +80,11 @@ export interface Job {
 export interface Skill {
   id?: number
   name: string
+}
+
+export interface OffersFitlers {
+  location_type?: 'remotly' | 'on-site'
+  attendence_type?: 'part-time' | 'full-time'
+  status?: 'pending' | 'active' | 'cloused' 
+  job_role_id?: number
 }

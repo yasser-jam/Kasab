@@ -16,10 +16,19 @@
           </div>
         </div>
 
-        <base-card-title class="flex items-center gap-2 mt-12 mb-8">
-          <div>العروض المقدمة</div>
-          <span class="text-gray-500 text-sm font-semibold">(65 عرض)</span>
+        <base-card-title class="flex justify-between items-center mt-12 mb-4">
+          <div class="flex items-center gap-2">
+            <div>العروض المقدمة</div>
+              <span class="text-gray-500 text-sm font-semibold">(65 عرض)</span>
+          </div>
+
+          <base-btn icon="mdi:filter-outline" @click="showFilters = !showFilters"></base-btn>
         </base-card-title>
+
+        <Transition>
+          <company-offer-filters v-if="showFilters" class="mb-4" />
+        </Transition>
+        
 
         <div class="flex flex-col gap-4 max-h-[500px] overflow-auto">
           <company-offer-proposal v-for="i of 10"></company-offer-proposal>
@@ -76,3 +85,9 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+
+const showFilters = ref(false)
+
+</script>

@@ -58,6 +58,13 @@ export const initEmployee = (): Employee => ({
   profile_image_url: '',
 })
 
+export const initCompanyOffersFilter = () : OffersFitlers => ({
+  location_type: undefined,
+  attendence_type: undefined,
+  status: undefined,
+  job_role_id: undefined
+})
+
 export const initJob = (): Job => ({
   name: ''
 })
