@@ -166,20 +166,30 @@
             المهارات المطلوبة للعرض
           </div>
 
+
           <base-label>المهارات المطلوبة</base-label>
 
-          <system-skill-select v-model="offer.skills" />
+          <system-skill-select v-model="offer.skills" @update:model-value="optimizeRequired" />
 
           <base-label class="mt-3">المهارات المطلوبة</base-label>
           <div class="text-gray-400 text-sm mb-2">
             لن يتم استقبال العروض التي لا يمتلك أصحابها هذه المهارات
           </div>
 
-          <base-select :items="reqSkillsItems"></base-select>
+          <base-select
+          v-model="requiredSkills"
+            :items="reqSkillsItems"
+            map-options
+            item-title="name"
+            item-value="id"
+            multiple
+          ></base-select>
+
         </div>
       </div>
     </div>
   </div>
+
 </template>
 <script setup lang="ts">
 const offerStore = useOfferStore()
@@ -192,23 +202,44 @@ const loading = ref<boolean>(false)
 
 const route = useRoute()
 
+const requiredSkills = ref([])
+
+// all selected items options
 const reqSkillsItems = computed(() => {
   const items: any[] = []
 
   skills.value.filter((skill) => {
-    const selected = offer.value.skills.find((el) => el == skill.id as any)
+    const selected = offer.value.skills.find((el) => el == (skill.id as any))
 
-    if (selected) items.push(selected)
+    if (selected) items.push(skill)
   })
 
   return items
 })
 
+
+// map over selected skills and decide if this select is required or not
+const computedSkills = computed(() => {
+  return reqSkillsItems.value.map(skill => ({
+    id: skill.id,
+    required: requiredSkills.value.findIndex((selected: any) => selected == skill.id) > -1
+  }))
+})
+
+// remove from required skills when unselect from offer.skills
+const optimizeRequired = () => {
+  requiredSkills.value = requiredSkills.value.filter(s => offer.value.skills.find(skill => skill == s))
+}
+
 const save = async () => {
   loading.value = true
 
   try {
-    const id = await offerStore.create()
+    
+    // update offer skills to computedSkills in offer store
+    offer.value.skills = computedSkills.value as any
+
+    await offerStore.create()
 
     navigateTo(`/company/${route.params.company_id}/offers`)
   } finally {

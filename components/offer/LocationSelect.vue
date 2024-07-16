@@ -10,7 +10,7 @@
       },
       {
         title: 'عن بعد (من البيت)',
-        value: 'on-remote'
+        value: 'remotly'
       }
   ])
   </script>
