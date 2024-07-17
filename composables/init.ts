@@ -1,4 +1,4 @@
-import { type Company } from '~/types'
+import { type Company, type OffersFilters } from '~/types'
 
 export const initUser = (): User => ({
   id: undefined,
@@ -42,7 +42,11 @@ export const initOffer = (): Offer => ({
   health_insurance: false,
   military_service: false,
   gender: null,
-  skills: []
+  skills: [],
+  status: 'pending',
+  age_required: false,
+  military_service_required: false,
+  gender_required: false
 })
 
 export const initEmployee = (): Employee => ({
@@ -58,7 +62,7 @@ export const initEmployee = (): Employee => ({
   profile_image_url: '',
 })
 
-export const initCompanyOffersFilter = () : OffersFitlers => ({
+export const initCompanyOffersFilter = () : OffersFilters => ({
   location_type: undefined,
   attendence_type: undefined,
   status: undefined,

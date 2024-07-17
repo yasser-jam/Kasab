@@ -1,64 +1,67 @@
-import { defineStore } from "pinia";
-import type { Company } from "~/types";
+import { defineStore } from 'pinia'
+import type { Company, Offer, OffersFilters } from '~/types'
 
 import api from '~/composables/api'
-import { initCompany } from "~/composables/init";
+import { initCompany } from '~/composables/init'
 
 export const useCompanyStore = defineStore('company', () => {
-    
-    const company = ref<Company>(initCompany())
+  const company = ref<Company>(initCompany())
 
-    const companies = ref<Company[]>([])
+  const companyOffersFilters = ref<OffersFilters>(initCompanyOffersFilter())
+  const companyOffers = ref<Offer[]>([])
 
-    const companyData = computed(() => ({
-        ...company.value,
-        gallery_images: company.value.gallery_images_ids?.map(img => img.id)
-    }))
+  const companies = ref<Company[]>([])
 
-    const create = async () => {
-        const res = await api('company/store', {
-            method: 'POST',
-            body: companyData.value
-        })
+  const companyData = computed(() => ({
+    ...company.value,
+    gallery_images: company.value.gallery_images_ids?.map((img) => img.id)
+  }))
 
-        return res.data.id
-    }
+  const create = async () => {
+    const res = await api('company/store', {
+      method: 'POST',
+      body: companyData.value
+    })
 
-    const get = async (id: number) : Promise<Company> => {
-        const res = await api(`company/${id}`)
+    return res.data.id
+  }
 
-        company.value = res?.data
+  const get = async (id: number): Promise<Company> => {
+    const res = await api(`company/${id}`)
 
-        return company.value
-    }
+    company.value = res?.data
 
-    const update = async (id: number) : Promise<Company> => {
-        const res = await api(`company`, {
-            method: 'PUT',
-            body: companyData.value
-        })
+    return company.value
+  }
 
-        return res.data.id
-    }
+  const update = async (id: number): Promise<Company> => {
+    const res = await api(`company`, {
+      method: 'PUT',
+      body: companyData.value
+    })
 
-    const offersFilters = ref(initCompanyOffersFilter())
+    return res.data.id
+  }
 
-    const myOffers = async () : Promise<Offer[]> => {
-        const res = await api('company', {
-            method: 'POST',
-            body: offersFilters
-        })
+  const myOffers = async (): Promise<Offer[]> => {
+    const res = await api('company/job_offer/my-job-offers', {
+      method: 'POST',
+      body: companyOffersFilters.value
+    })
 
-        return res?.data
-    }
+    companyOffers.value = res?.data
 
-    return {
-        company,
-        create,
-        update,
-        get,
+    return companyOffers.value
+  }
 
-        offersFilters,
-        myOffers
-    }
+  return {
+    company,
+    create,
+    update,
+    get,
+
+    companyOffersFilters,
+    companyOffers,
+    myOffers
+  }
 })

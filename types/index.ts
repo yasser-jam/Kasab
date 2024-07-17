@@ -38,6 +38,10 @@ export interface Company {
 
 export interface Offer {
   industry_name: string
+  job_role?: {
+    id: number
+    name: string
+  }
   job_role_id: number
   location_type: 'remotly' | 'on-site'
   attendence_type: 'part-time' | 'full-time'
@@ -55,6 +59,7 @@ export interface Offer {
   military_service_required?: boolean
   gender_required?: boolean
   status: 'pending' | 'active' | 'cloused'
+  created_at?: string
 }
 
 export interface Employee {
@@ -82,7 +87,7 @@ export interface Skill {
   name: string
 }
 
-export interface OffersFitlers {
+export interface OffersFilters {
   location_type?: 'remotly' | 'on-site'
   attendence_type?: 'part-time' | 'full-time'
   status?: 'pending' | 'active' | 'cloused' 
