@@ -30,8 +30,8 @@ export interface Company {
   city: string
   region: string
   street_address: string
-  gallery_images: {id: number, url: string}[]
-  gallery_images_ids: {id: number, url: string}[]
+  gallery_images: { id: number; url: string }[]
+  gallery_images_ids: { id: number; url: string }[]
   contact_links: string[]
   company_phones: string[]
 }
@@ -94,6 +94,19 @@ export interface Skill {
 export interface OffersFilters {
   location_type?: 'remotly' | 'on-site'
   attendence_type?: 'part-time' | 'full-time'
-  status?: 'pending' | 'active' | 'cloused' 
+  status?: 'pending' | 'active' | 'cloused'
   job_role_id?: number
+}
+
+export interface Client {
+  id?: number
+  username: string
+  gender: 'male' | 'female'
+  city: string
+  date_of_birth: string
+  profile_image_id: number
+  background_image_id: number
+  profile_image_url: null | string
+  background_image_url: null | string
+  created_at: string
 }

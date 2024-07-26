@@ -59,10 +59,10 @@ export const initEmployee = (): Employee => ({
   skill_ids: [],
   job_role_id: undefined,
   background_image_url: '',
-  profile_image_url: '',
+  profile_image_url: ''
 })
 
-export const initCompanyOffersFilter = () : OffersFilters => ({
+export const initCompanyOffersFilter = (): OffersFilters => ({
   location_type: undefined,
   attendence_type: undefined,
   status: undefined,
@@ -75,4 +75,16 @@ export const initJob = (): Job => ({
 
 export const initSkill = (): Skill => ({
   name: ''
+})
+
+export const initClient = (): Client => ({
+  username: '',
+  background_image_id: 0,
+  background_image_url: '',
+  city: '',
+  created_at: '',
+  date_of_birth: '',
+  gender: 'male',
+  profile_image_id: 0,
+  profile_image_url: ''
 })
