@@ -26,7 +26,7 @@
             <div class="col-span-1">
               <base-image-uploader
                 v-model="employee.profile_image_id"
-                :url="employee.profile_image_url"
+                v-model:url="employee.profile_image_url"
                 class="mt-1 w-fit"
               ></base-image-uploader>
             </div>

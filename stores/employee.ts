@@ -17,9 +17,16 @@ export const useEmployeeStore = defineStore('employee', () => {
     }
 
     const get = async (id: number) => {
+        
+console.log('here is test');
+        console.log(id);
         const res = await api(`freelancer/show/${id}`)
+        console.log('after ujpdate');
+        console.log(res);
 
         employee.value = res?.data
+
+        return employee.value
     }
 
     return {

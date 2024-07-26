@@ -4,15 +4,16 @@
       <div class="card rounded-lg p-4">
         <div class="text-xl font-semibold mb-8">المسمى الوظيفي</div>
 
-        <div class="text-lg bg-slate-50 font-semibold p-4">مطور فرونت اند</div>
+        <div class="text-lg bg-slate-50 font-semibold p-4">
+          {{ employee.job_role?.name }}
+        </div>
       </div>
 
       <div class="card rounded-lg p-4">
         <div class="text-xl font-semibold mb-8">النبذة المختصرة</div>
 
         <div class="text-lg bg-slate-50 font-semibold p-4">
-          وصف الشركة وهو العديد من الأمور المتعلقة لالشرنمة من جمعي النواحي وصف
-          الشركة وهو العديد من الأمور المتعلقة لالشرنمة من جمعي النواحي
+          {{ employee.headline }}
         </div>
       </div>
 
@@ -20,10 +21,7 @@
         <div class="text-xl font-semibold mb-8">الوصف العام</div>
 
         <div class="text-lg bg-slate-50 font-semibold p-4">
-          حي الزهور - شارع 29 أيار - البناء الخامس حي الزهور - شارع 29 أيار -
-          البناء الخامس حي الزهور - شارع 29 أيار - البناء الخامس حي الزهور -
-          شارع 29 أيار - البناء الخامس حي الزهور - شارع 29 أيار - البناء الخامس
-          وصف الشركة وهو العديد من الأمور المتعلقة لالشرنمة من جمعي النواحي
+          {{ employee.description }}
         </div>
       </div>
     </div>
@@ -34,12 +32,14 @@
 
         <div class="flex items-center justify-between">
           <base-label>المدينة</base-label>
-          <base-chip color="success">دمشق</base-chip>
+          <base-chip color="success">{{ employee.city }}</base-chip>
         </div>
 
         <div class="flex items-center justify-between mt-8">
           <base-label>تاريخ الميلاد</base-label>
-          <base-chip color="warning">1/1/2002</base-chip>
+          <base-chip color="warning">{{
+            dayjs(employee.date_of_birth).format('DD-MM-YYYY')
+          }}</base-chip>
         </div>
 
         <div class="flex items-center justify-between mt-8">
@@ -66,13 +66,9 @@
 </template>
 
 <script setup lang="ts">
-const companyStore = useCompanyStore()
+import dayjs from 'dayjs'
 
-const { company } = storeToRefs(companyStore)
+const employeeStore = useEmployeeStore()
 
-const route = useRoute()
-
-const companyId = Number(route.params.company_id)
-
-const { pending } = useLazyAsyncData(() => companyStore.get(companyId))
+const { employee } = storeToRefs(employeeStore)
 </script>

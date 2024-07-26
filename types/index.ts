@@ -70,6 +70,10 @@ export interface Employee {
   gender: string
   date_of_birth: string
   job_role_id?: number
+  job_role?: {
+    id: number
+    name: string
+  }
   skill_ids: number[]
   profile_image_id?: number
   profile_image_url: string
