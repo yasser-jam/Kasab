@@ -1,10 +1,10 @@
 import { defineStore } from "pinia"
 import api from "~/composables/api"
-import { type Category } from "~/types"
+import { type Industry } from "~/types"
 
-export const useCategoryStore = defineStore('category', () => {
+export const useIndustryStore = defineStore('industry', () => {
     
-    const categories = ref<Category[]>([])
+    const industries = ref<Industry[]>([])
 
     interface ListResponse {
         data: { name: string }[]
@@ -16,13 +16,13 @@ export const useCategoryStore = defineStore('category', () => {
             body: { name: '' }
         })
     
-        categories.value = res.data
+        industries.value = res.data
 
         return res
     }
 
     return {
-        categories,
+        industries,
         list
     }
 })

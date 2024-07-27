@@ -10,12 +10,10 @@ export interface User {
   role: string
   role_id?: number
 }
-
-export interface Category {
+export interface Industry {
   id?: number
   name: string
 }
-
 export interface SubCategory {
   id?: number
   name: string

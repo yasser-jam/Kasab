@@ -10,11 +10,11 @@
   </template>
   
   <script setup lang="ts">
-  const categoryStore = useCategoryStore();
+  const industryStore = useIndustryStore();
   
-  const { categories } = storeToRefs(categoryStore);
+  const { categories } = storeToRefs(industryStore);
   
-  const { pending: loading } = useLazyAsyncData(() => categoryStore.list());
+  const { pending: loading } = useLazyAsyncData(() => industryStore.list());
   
   const props = defineProps<{
     modelValue: number;

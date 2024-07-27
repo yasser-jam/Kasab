@@ -9,11 +9,11 @@
 </template>
 
 <script setup lang="ts">
-const categoryStore = useCategoryStore();
+const industryStore = useIndustryStore();
 
-const { categories } = storeToRefs(categoryStore);
+const { industries } = storeToRefs(industryStore);
 
-const { pending } = useLazyAsyncData(() => categoryStore.list());
+const { pending } = useLazyAsyncData(() => industryStore.list());
 
 const props = defineProps<{
   modelValue: string;
@@ -25,7 +25,7 @@ const selectedItem = computed(() => ({
 }));
 
 const items = computed(() =>
-  categories.value.map((el) => ({
+  industries.value.map((el: any) => ({
     title: el.name,
     value: el.name,
   }))
