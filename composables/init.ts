@@ -1,4 +1,4 @@
-import { type Company, type OffersFilters } from '~/types'
+import { type ClientOffer, type Company, type OffersFilters } from '~/types'
 
 export const initUser = (): User => ({
   id: undefined,
@@ -87,4 +87,16 @@ export const initClient = (): Client => ({
   gender: 'male',
   profile_image_id: 0,
   profile_image_url: ''
+})
+
+export const initClientOffer = (): ClientOffer => ({
+  category_id: null,
+  sub_category_id: null,
+  title: '',
+  description: '',
+  min_price: '',
+  max_price: '',
+  days: '',
+  skill_ids: [],
+  file_ids: []
 })

@@ -12,9 +12,14 @@ export interface User {
 }
 
 export interface Category {
+  id?: number
   name: string
 }
 
+export interface SubCategory {
+  id?: number
+  name: string
+}
 export interface Company {
   id?: number
   profile_image_url: string
@@ -109,4 +114,17 @@ export interface Client {
   profile_image_url: null | string
   background_image_url: null | string
   created_at: string
+}
+
+export interface ClientOffer {
+  id?: number
+  category_id: number
+  sub_category_id: number
+  title: string
+  description: string
+  min_price: string
+  max_price: string
+  days: string
+  skill_ids: number[]
+  file_ids: number[]
 }

@@ -27,38 +27,25 @@
 
           <div class="grid grid-cols-2 gap-4">
             <div class="col-span-2">
-              <base-label>المسمى الوظيفي</base-label>
+              <base-label>اسم العرض</base-label>
 
-              <system-job-select
-                v-model="offer.job_role_id"
-              ></system-job-select>
+              <base-input placeholder="مصمم مواقع ووردبريس"></base-input>
             </div>
 
             <div>
-              <base-label>نوع العرض</base-label>
+              <base-label>نوع العرض (العام)</base-label>
 
-              <company-category-select
-                v-model="offer.industry_name"
-              ></company-category-select>
+              <system-category-select v-model="offer.category_id" />
             </div>
 
             <div>
-              <base-label>نوع الموظف</base-label>
-              <system-gender-select
-                v-model="offer.gender"
-              ></system-gender-select>
-            </div>
+              <base-label>نوع العرض (التفصيلي)</base-label>
 
-            <div>
-              <base-label>مكان الدوام</base-label>
-
-              <offer-location-select v-model="offer.location_type" />
-            </div>
-
-            <div>
-              <base-label>نوع الدوام</base-label>
-
-              <offer-attendence-select v-model="offer.attendence_type" />
+              <system-sub-category-select
+                v-model="offer.sub_category_id"
+                :category-id="1"
+                :disabled="true"
+              ></system-sub-category-select>
             </div>
 
             <div class="col-span-2">
@@ -69,57 +56,21 @@
                 placeholder="مسؤوليات الوظيفة، مزايا الوظيفة، بيئة العمل..."
               ></base-textarea>
             </div>
-
-            <div class="col-span-2">
-              <base-switch-input
-                v-model="offer.military_service"
-                title="الخدمة العسكرية"
-                subtitle="هل يوجد خدمة عسكرية خلال العامين القادمين"
-              ></base-switch-input>
-            </div>
-
-            <div class="col-span-2">
-              <base-switch-input
-                v-model="offer.military_service_required"
-                title="الخدمة العسكرية مطلوبة"
-                subtitle="لن يتم استقبال الطلبات التي لا تحقق شرط الخدمة العسكرية"
-                color="warning"
-              ></base-switch-input>
-            </div>
-          </div>
-        </div>
-
-        <div class="card bg-white p-4">
-          <div class="text-xl text-slate-800 font-semibold mb-4">
-            خدمات إضافية
-          </div>
-
-          <div class="col-span-2 mt-4">
-            <base-switch-input
-              v-model="offer.health_insurance"
-              title="التأمين الصحي"
-              subtitle="هل تشمل الوظيفة تأمينات صحية"
-            ></base-switch-input>
-          </div>
-
-          <div class="col-span-2">
-            <base-switch-input
-              v-model="offer.transportation"
-              title="تأمين المواصلات"
-              subtitle="هل تشمل الوظيفة بدل عن المواصلات"
-              color="info"
-            ></base-switch-input>
           </div>
         </div>
       </div>
 
       <div>
         <div class="card bg-white h-fit p-4">
-          <div class="text-xl text-slate-800 font-semibold mb-4">السعر</div>
+          <div class="text-xl text-slate-800 font-semibold mb-4">
+            معلومات العرض
+          </div>
+
+          <base-label>السعر</base-label>
 
           <div class="flex items-center gap-4">
             <base-input
-              v-model.number="offer.min_salary"
+              v-model.number="offer.min_price"
               type="number"
               placeholder="الحد الأدنى"
             ></base-input>
@@ -127,38 +78,19 @@
             <Icon name="mdi:arrow-left" class="text-primary" size="4rem" />
 
             <base-input
-              v-model.number="offer.max_salary"
-              type="number"
-              placeholder="الحد الأعلى"
-            ></base-input>
-          </div>
-        </div>
-
-        <div class="card bg-white h-fit p-4 mt-8">
-          <div class="text-xl text-slate-800 font-semibold mb-4">العمر</div>
-
-          <div class="flex items-center gap-4">
-            <base-input
-              v-model.number="offer.min_age"
-              type="number"
-              placeholder="الحد الأدنى"
-            ></base-input>
-
-            <Icon name="mdi:arrow-left" class="text-primary" size="4rem" />
-
-            <base-input
-              v-model.number="offer.max_age"
+              v-model.number="offer.max_price"
               type="number"
               placeholder="الحد الأعلى"
             ></base-input>
           </div>
 
-          <base-switch-input
-            v-model="offer.age_required"
-            title="العمر مطلوب"
-            subtitle="لن يتم استقبال الطلبات التي لا تحقق شرط العمر"
-            color="warning"
-          ></base-switch-input>
+          <base-label> الأيام </base-label>
+
+          <base-input
+            v-model="offer.days"
+            type="number"
+            placeholder="20 يوم"
+          ></base-input>
         </div>
 
         <div class="card mt-8">
@@ -166,82 +98,31 @@
             المهارات المطلوبة للعرض
           </div>
 
-
           <base-label>المهارات المطلوبة</base-label>
 
-          <system-skill-select v-model="offer.skills" @update:model-value="optimizeRequired" />
-
-          <base-label class="mt-3">المهارات المطلوبة</base-label>
-          <div class="text-gray-400 text-sm mb-2">
-            لن يتم استقبال العروض التي لا يمتلك أصحابها هذه المهارات
-          </div>
-
-          <base-select
-          v-model="requiredSkills"
-            :items="reqSkillsItems"
-            map-options
-            item-title="name"
-            item-value="id"
-            multiple
-          ></base-select>
-
+          <system-skill-select v-model="offer.skill_ids" />
         </div>
       </div>
     </div>
   </div>
-
 </template>
 <script setup lang="ts">
-const offerStore = useOfferStore()
+const offerStore = useClientOfferStore()
 const skillStore = useSkillStore()
 
 const { offer } = storeToRefs(offerStore)
-const { skills } = storeToRefs(skillStore)
 
 const loading = ref<boolean>(false)
 
 const route = useRoute()
 
-const requiredSkills = ref([])
-
-// all selected items options
-const reqSkillsItems = computed(() => {
-  const items: any[] = []
-
-  skills.value.filter((skill) => {
-    const selected = offer.value.skills.find((el) => el == (skill.id as any))
-
-    if (selected) items.push(skill)
-  })
-
-  return items
-})
-
-
-// map over selected skills and decide if this select is required or not
-const computedSkills = computed(() => {
-  return reqSkillsItems.value.map(skill => ({
-    id: skill.id,
-    required: requiredSkills.value.findIndex((selected: any) => selected == skill.id) > -1
-  }))
-})
-
-// remove from required skills when unselect from offer.skills
-const optimizeRequired = () => {
-  requiredSkills.value = requiredSkills.value.filter(s => offer.value.skills.find(skill => skill == s))
-}
-
 const save = async () => {
   loading.value = true
 
   try {
-    
-    // update offer skills to computedSkills in offer store
-    offer.value.skills = computedSkills.value as any
-
     await offerStore.create()
 
-    navigateTo(`/company/${route.params.company_id}/offers`)
+    navigateTo(`/client/${route.params.client_id}/offers`)
   } finally {
     loading.value = false
   }

@@ -7,6 +7,7 @@
         :placeholder="placeholder"
         :value="selectedTitle"
         :model-value="selectedTitle"
+        :disabled
       ></base-input>
 
       <div class="absolute inset-y-0 left-4 flex items-center">
@@ -22,6 +23,7 @@
     </div>
 
     <span
+      v-if="!disabled"
       class="overlay cursor-pointer"
       @click="() => (isOpen = !isOpen)"
     ></span>
@@ -75,6 +77,7 @@ const props = withDefaults(
     loading?: boolean
     mapOptions?: boolean
     multiple?: boolean
+    disabled?: boolean
   }>(),
   {
     itemTitle: 'title',
