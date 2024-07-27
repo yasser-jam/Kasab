@@ -7,13 +7,22 @@
         <Icon name="mdi:file" size="1.5rem" class="text-primary" />
       </div>
 
-      <div class="text-primary text-lg font-semibold">اسم الفايل</div>
+      <div class="text-primary text-lg font-semibold">الملف #{{ file.id }}</div>
     </div>
 
     <base-btn
+      v-if="downloadable"
       icon="mdi:download"
       color="primary"
       btn-class="btn btn-link"
+      :to="file.url"
     ></base-btn>
   </div>
 </template>
+
+<script setup lang="ts">
+defineProps<{
+  file: any
+  downloadable?: boolean
+}>()
+</script>

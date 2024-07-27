@@ -14,6 +14,11 @@ export interface Industry {
   id?: number
   name: string
 }
+export interface Category {
+  id?: number
+  name: string
+  sub_categories: SubCategory[]
+}
 export interface SubCategory {
   id?: number
   name: string
@@ -117,6 +122,7 @@ export interface Client {
 export interface ClientOffer {
   id?: number
   category_id: number
+  category?: Category
   sub_category_id: number
   title: string
   description: string

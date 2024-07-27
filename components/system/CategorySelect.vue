@@ -1,31 +1,26 @@
 <template>
     <base-select
       :model-value="modelValue"
-      :items
-      placeholder="برمجي، خدمي"
+      :items="categories"
+      placeholder="تصميم، برمجة،..."
       map-options
+      item-title="name"
+      item-value="id"
       :loading
       @update:model-value="$emit('update:model-value', $event)"
     ></base-select>
   </template>
   
   <script setup lang="ts">
-  const industryStore = useIndustryStore();
+  const categoryStore = useCategoryStore();
   
-  const { categories } = storeToRefs(industryStore);
+  const { categories } = storeToRefs(categoryStore);
   
-  const { pending: loading } = useLazyAsyncData(() => industryStore.list());
+  const { pending: loading } = useLazyAsyncData(() => categoryStore.list());
   
   const props = defineProps<{
     modelValue: number;
   }>();
   
-  
-  const items = computed(() =>
-    categories.value.map((el) => ({
-      title: el.name,
-      value: el.name,
-    }))
-  );
   </script>
   

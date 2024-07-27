@@ -23,7 +23,23 @@ export const useFileStore = defineStore('file', () => {
     return res?.data
   }
 
+  const uploadFile = async (file: any) => {
+    
+    const formData = new FormData()
+
+    formData.append('title', 'File')
+    formData.append('file', file)
+
+    const res = await api('storage/file/store', {
+        method: 'POST',
+        body: formData
+    })
+
+    return res?.data
+  }
+
   return {
-    upload
+    upload,
+    uploadFile
   }
 })

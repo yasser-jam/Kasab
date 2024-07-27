@@ -20,7 +20,7 @@
 
     <div class="grid grid-cols-3 gap-8">
       <div class="col-span-2">
-        <div class="card bg-white p-4 mb-8">
+        <div class="card mb-8">
           <div class="text-xl text-slate-800 font-semibold mb-4">
             المعلومات الأساسية
           </div>
@@ -35,7 +35,10 @@
             <div>
               <base-label>نوع العرض (العام)</base-label>
 
-              <system-category-select v-model="offer.category_id" />
+              <system-category-select
+                v-model="offer.category_id"
+                @update:model-value="offer.sub_category_id = 0"
+              />
             </div>
 
             <div>
@@ -43,8 +46,9 @@
 
               <system-sub-category-select
                 v-model="offer.sub_category_id"
-                :category-id="1"
-                :disabled="true"
+                :category-id="offer.category_id"
+                :disabled="!Boolean(offer.category_id)"
+                :items="categories.find(cat => cat.id == offer.category_id)?.sub_categories"
               ></system-sub-category-select>
             </div>
 
@@ -58,10 +62,22 @@
             </div>
           </div>
         </div>
+
+        <div class="card mb-8">
+          <div class="text-xl text-slate-800 font-semibold mb-4">
+            ملفات المشروع
+          </div>
+
+          <base-file-uploader width-full @update:model-value="addFile($event)"></base-file-uploader>
+
+          <div class="flex flex-col gap-1">
+            <base-file-item v-for="file in files" :file downloadable />
+          </div>
+        </div>
       </div>
 
       <div>
-        <div class="card bg-white h-fit p-4">
+        <div class="card h-fit p-4">
           <div class="text-xl text-slate-800 font-semibold mb-4">
             معلومات العرض
           </div>
@@ -108,13 +124,22 @@
 </template>
 <script setup lang="ts">
 const offerStore = useClientOfferStore()
-const skillStore = useSkillStore()
+const categoryStore = useCategoryStore()
 
 const { offer } = storeToRefs(offerStore)
+const { categories } = storeToRefs(categoryStore)
 
 const loading = ref<boolean>(false)
 
 const route = useRoute()
+
+const files = ref<any[]>([])
+
+const addFile = (file: any) => {
+  files.value.push(file)
+
+  offer.value.file_ids.push(file.id)
+}
 
 const save = async () => {
   loading.value = true
