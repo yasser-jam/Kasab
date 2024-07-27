@@ -7,7 +7,7 @@
         <base-btn
           type="cancel"
           color="gray"
-          @click="$router.push(`/company/${route.params.company_id}/offers`)"
+          @click="$router.push(`/client/${route.params.client_id}/offers`)"
           >إلغاء</base-btn
         >
         <base-btn @click="save" :loading>حفظ</base-btn>
@@ -29,7 +29,7 @@
             <div class="col-span-2">
               <base-label>اسم العرض</base-label>
 
-              <base-input placeholder="مصمم مواقع ووردبريس"></base-input>
+              <base-input v-model="offer.title" placeholder="مصمم مواقع ووردبريس"></base-input>
             </div>
 
             <div>

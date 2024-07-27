@@ -6,7 +6,7 @@ export const useClientOfferStore = defineStore('client_offer', () => {
     const offers = ref<ClientOffer[]>([])
 
     const create = async () => {
-        await api('company/job_offer/store', {
+        await api('client-offer/client/store', {
             method: 'POST',
             body: offer.value
         })
