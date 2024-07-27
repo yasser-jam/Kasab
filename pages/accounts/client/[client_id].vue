@@ -108,7 +108,7 @@ const save = async () => {
       ? await clientStore.update(Number(clientId))
       : await clientStore.create()
 
-    navigateTo(`/company/${id}`)
+    navigateTo(`/client/${id}`)
   } finally {
     loading.value = false
   }

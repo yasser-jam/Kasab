@@ -6,21 +6,23 @@ export const useClientStore = defineStore('client', () => {
   const clients = ref<Client[]>([])
 
   const create = async () => {
-    await api('freelancer/store', {
+    const res = await api('client/store', {
       method: 'POST',
       body: client.value
     })
+
+    return res?.data.id
   }
 
   const update = async (id: number) => {
-    await api('freelancer/store', {
+    await api('client/store', {
       method: 'PUT',
       body: client.value
     })
   }
 
   const get = async (id: number) : Promise<Client> => {
-    const res = await api(`freelancer/show/${id}`)
+    const res = await api(`client/show/${id}`)
 
     client.value = res?.data
 

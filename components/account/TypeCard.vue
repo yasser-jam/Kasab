@@ -37,13 +37,13 @@ const typeInfo = computed(() => {
     case "company":
       return {
         title: "حساب صاحب مشروع",
-        link: "/accounts/project-owner/create",
+        link: "/accounts/client/create",
         icon: "heroicons:user-group",
       };
     default:
       return {
         title: "حساب صاحب مشروع",
-        link: "/accounts/project-owner/create",
+        link: "/accounts/client/create",
         icon: "heroicons:user-group",
       };
   }
