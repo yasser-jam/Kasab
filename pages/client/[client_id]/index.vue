@@ -8,14 +8,14 @@
       <div class="flex gap-2">
         <base-btn
           icon="mdi:pencil"
-          :to="`/accounts/company/${route.params.company_id}`"
+          :to="`/accounts/client/${route.params.client_id}`"
           >تعديل البيانات</base-btn
         >
 
         <base-btn
           icon="mdi:eye"
           color="secondary"
-          :to="`/company/${route.params.company_id}/offers`"
+          :to="`/client/${route.params.client_id}/offers`"
           >مشاهدة العروض</base-btn
         >
 
@@ -23,7 +23,7 @@
           v-if="isClient"
           icon="mdi:briefcase"
           color="success"
-          :to="`/company/${route.params.company_id}/offers/create`"
+          :to="`/client/${route.params.client_id}/offers/create`"
           >إضافة عرض</base-btn
         >
       </div>
@@ -65,8 +65,8 @@
             </div>
 
             <div class="flex items-center justify-between gap-4">
-              <base-label>عدد العروض المكتملة</base-label>
-              <base-chip>غير محدد</base-chip>
+              <base-label>تاريخ الميلاد</base-label>
+              <base-chip>20/2/2002</base-chip>
             </div>
           </div>
         </div>

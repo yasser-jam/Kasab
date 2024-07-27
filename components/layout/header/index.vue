@@ -4,7 +4,6 @@
   >
 
   <!-- <base-btn>click</base-btn> -->
-  <div></div>
   <layout-header-menu></layout-header-menu>
   
   <layout-header-account-menu></layout-header-account-menu>

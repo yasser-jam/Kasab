@@ -14,15 +14,15 @@ export const useClientStore = defineStore('client', () => {
     return res?.data.id
   }
 
-  const update = async (id: number) => {
-    await api('client/store', {
+  const update = async () => {
+    await api('client', {
       method: 'PUT',
       body: client.value
     })
   }
 
   const get = async (id: number) : Promise<Client> => {
-    const res = await api(`client/show/${id}`)
+    const res = await api(`client/${id}`)
 
     client.value = res?.data
 

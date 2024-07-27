@@ -44,6 +44,7 @@ onClickOutside(menu, () => (show.value = false));
 // go to user account (according to his role)
 const goToMyAccount = () => {
   if (user.value.role == 'company') navigateTo(`/company/${user.value.role_id}`)
+  if (user.value.role == 'client') navigateTo(`/client/${user.value.role_id}`)
 }
 
 </script>
