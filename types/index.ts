@@ -123,6 +123,7 @@ export interface ClientOffer {
   id?: number
   category_id: number
   category?: Category
+  sub_category?: SubCategory
   sub_category_id: number
   title: string
   description: string
@@ -130,5 +131,9 @@ export interface ClientOffer {
   max_price: string
   days: string
   skill_ids: number[]
+  skills?: Skill[]
   file_ids: number[]
+  files?: File[]
+  created_at?: string
+  status?: 'pending' | 'active' | 'cloused'
 }

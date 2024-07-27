@@ -7,25 +7,31 @@
       <base-btn
         color="neutral"
         icon="mdi:domain"
-        :to="`/company/${$route.params.company_id}`"
-        >معلومات الشركة</base-btn
+        :to="`/client/${$route.params.client_id}`"
+        >معلومات العميل</base-btn
       >
     </div>
 
     <div v-if="pending">loading...</div>
 
     <template v-else>
-      <nuxt-link v-for="offer in companyOffers" to="/company/1/offers/1">
-        <offer-card :offer="offer" class="mb-4"></offer-card>
+      <nuxt-link v-for="offer in clientOffers" to="/company/1/offers/1">
+        <client-offer-card :offer="offer" class="mb-4"></client-offer-card>
       </nuxt-link>
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
-const companyStore = useCompanyStore()
+const clientStore = useClientStore()
 
-const { companyOffers } = storeToRefs(companyStore)
+const { clientOffers } = storeToRefs(clientStore)
 
-const { pending } = useLazyAsyncData<Offer[]>(() => companyStore.myOffers())
+const route = useRoute()
+
+const clientId = route.params.client_id
+
+const { pending } = useLazyAsyncData<ClientOffer[]>(() =>
+  clientStore.myOffers()
+)
 </script>
