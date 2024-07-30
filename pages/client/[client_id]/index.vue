@@ -45,7 +45,7 @@
 
           <div class="col-span-10 ms-8">
             <div class="text-3xl font-bold text-white mb-2">
-              {{ client.username }}
+              {{ `${user.first_name} ${user.last_name}` }}
             </div>
 
             <div class="flex items-center mt-1">

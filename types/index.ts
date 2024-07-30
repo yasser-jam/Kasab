@@ -121,6 +121,7 @@ export interface Client {
 
 export interface ClientOffer {
   id?: number
+  client_id?: number
   category_id: number
   category?: Category
   sub_category?: SubCategory
@@ -136,4 +137,12 @@ export interface ClientOffer {
   files?: File[]
   created_at?: string
   status?: 'pending' | 'active' | 'cloused'
+}
+
+export interface Proposal {
+  id?: number
+  client_offer_id: number
+  message: string
+  days: number
+  price: number
 }

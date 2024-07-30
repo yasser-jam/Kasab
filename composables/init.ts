@@ -90,8 +90,8 @@ export const initClient = (): Client => ({
 })
 
 export const initClientOffer = (): ClientOffer => ({
-  category_id: null,
-  sub_category_id: null,
+  category_id: 0,
+  sub_category_id: 0,
   title: '',
   description: '',
   min_price: '',
@@ -99,4 +99,11 @@ export const initClientOffer = (): ClientOffer => ({
   days: '',
   skill_ids: [],
   file_ids: []
+})
+
+export const initProposal = (): Proposal => ({
+  client_offer_id: 0,
+  days: 0,
+  message: '',
+  price: 0
 })

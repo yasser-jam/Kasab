@@ -15,7 +15,7 @@
     <div v-if="pending">loading...</div>
 
     <template v-else>
-      <nuxt-link v-for="offer in clientOffers" to="/company/1/offers/1">
+      <nuxt-link v-for="offer in clientOffers" :to="`/projects/${offer.id}`">
         <client-offer-card :offer="offer" class="mb-4"></client-offer-card>
       </nuxt-link>
     </template>

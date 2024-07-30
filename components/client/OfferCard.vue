@@ -2,9 +2,7 @@
   <div class="card shadow-md rounded-lg">
     <div class="flex justify-between">
       <div>
-        <nuxt-link to="/offers/1">
-          <div class="text-2xl font-bold mb-3">{{ offer.title }}</div>
-        </nuxt-link>
+        <div class="text-2xl font-bold mb-3">{{ offer.title }}</div>
 
         <div class="flex items-center gap-6">
           <div class="text-lg font-semibold text-primary">
