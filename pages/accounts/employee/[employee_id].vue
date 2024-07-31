@@ -134,7 +134,7 @@ const save = async () => {
     await employeeStore.create()
 
     // redirect to the employee personal profile page
-    navigateTo('/employee/4')
+    navigateTo(`/employee/${employee.value.id}/general-info`)
   } finally {
     loading.value = false
   }

@@ -45,7 +45,7 @@
         <div class="flex items-center justify-between mt-8">
           <base-label>النوع</base-label>
 
-          <badge-gender></badge-gender>
+          <badge-gender :gender="employee.gender"></badge-gender>
         </div>
       </div>
 
@@ -53,12 +53,9 @@
         <div class="text-xl font-semibold mb-8">المهارات</div>
 
         <div class="flex flex-wrap items-center gap-4">
-          <base-chip color="secondary">دمشق</base-chip>
-          <base-chip color="secondary">دمشق</base-chip>
-          <base-chip color="secondary">دمشق</base-chip>
-          <base-chip color="secondary">دمشق</base-chip>
-          <base-chip color="secondary">دمشق</base-chip>
-          <base-chip color="secondary">دمشق</base-chip>
+          <base-chip v-for="skill in employee.skills" color="secondary">{{
+            skill.name
+          }}</base-chip>
         </div>
       </div>
     </div>

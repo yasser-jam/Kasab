@@ -9,20 +9,20 @@ export const useEmployeeStore = defineStore('employee', () => {
 
     const employees = ref<Employee[]>([])
 
-    const create = async () => {
-        await api('freelancer/store', {
+    const create = async () : Promise<Employee> => {
+        const res = await api('freelancer/store', {
             method: 'POST',
             body: employee.value
         })
+
+        employee.value = res?.data
+
+        return employee.value
     }
 
     const get = async (id: number) => {
         
-console.log('here is test');
-        console.log(id);
-        const res = await api(`freelancer/show/${id}`)
-        console.log('after ujpdate');
-        console.log(res);
+        const res = await api(`freelancer/${id}`)
 
         employee.value = res?.data
 

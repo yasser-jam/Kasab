@@ -75,7 +75,7 @@ export interface Employee {
   headline: string
   description: string
   city: string
-  gender: string
+  gender: 'male' | 'female' | 'unknown'
   date_of_birth: string
   job_role_id?: number
   job_role?: {
@@ -83,9 +83,10 @@ export interface Employee {
     name: string
   }
   skill_ids: number[]
-  profile_image_id?: number
+  skills?: Skill[]
+  profile_image_id: number
   profile_image_url: string
-  background_image_id?: number
+  background_image_id: number
   background_image_url: string
 }
 
