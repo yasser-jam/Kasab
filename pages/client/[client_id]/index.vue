@@ -37,7 +37,7 @@
         >
           <div class="col-span-2">
             <img
-              :src="client.profile_image_url"
+              :src="String(client.profile_image_url)"
               alt="profile-image"
               class="w-32 h-32 rounded-full"
             />
@@ -61,7 +61,7 @@
           <div class="flex justify-between">
             <div class="flex items-center justify-between gap-4">
               <base-label>نوع المستخدم</base-label>
-              <badge-gender />
+              <badge-gender :gender="client.gender" />
             </div>
 
             <div class="flex items-center justify-between gap-4">
