@@ -123,6 +123,7 @@ export interface Client {
 export interface ClientOffer {
   id?: number
   client_id?: number
+  client?: Client
   category_id: number
   category?: Category
   sub_category?: SubCategory

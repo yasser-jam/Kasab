@@ -28,6 +28,10 @@ export const useClientOfferStore = defineStore('client_offer', () => {
             body: proposal.value
         })
     }
+
+    const listClientOffers = async (id: number) => {
+        await api('')
+    }
     
     return {
         offer,

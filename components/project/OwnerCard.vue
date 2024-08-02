@@ -1,9 +1,18 @@
 <template>
-    <div class="flex items-center">
-       <div class="w-10 h-10 rounded-full bg-slate-200"></div>
-       
-       <div class="ms-2">
-           <div class="font-semibold text-md text-gray-700">فؤاد المصري</div>
-       </div>
+  <div class="flex flex-col justfiy-center items-center gap-2">
+    <div class="w-16 h-16 rounded-full bg-slate-200" :class="`bg-[url(${client.background_image_url})]`"></div>
+
+    <div class="text-center">
+      <div class="font-semibold text-xl text-primary">{{ `${user.first_name} ${user.last_name}` }}</div>
+
+      <div class="text-gray-500">{{ user.email }}</div>
     </div>
+  </div>
 </template>
+
+<script setup lang="ts">
+defineProps<{
+  client: Client
+  user: User
+}>()
+</script>
