@@ -34,6 +34,14 @@ export const useCompanyStore = defineStore('company', () => {
     return company.value
   }
 
+  const list = async () : Promise<Company[]> => {
+    const res = await api('company')
+
+    companies.value = res?.data
+
+    return companies.value
+  }
+
   const update = async (id: number): Promise<Company> => {
     const res = await api(`company`, {
       method: 'PUT',
@@ -59,9 +67,11 @@ export const useCompanyStore = defineStore('company', () => {
     create,
     update,
     get,
+    list,
 
     companyOffersFilters,
     companyOffers,
-    myOffers
+    myOffers,
+    companies
   }
 })

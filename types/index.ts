@@ -70,6 +70,24 @@ export interface Offer {
   created_at?: string
 }
 
+export interface OfferFilters {
+  status?: 'active' | 'cloused'
+  location_type?: 'on-site' | 'remotly'
+  attendence_type?: 'full-time' | 'part-time' | 'intern'
+  gender?: 'male' | 'female'
+  industry_name?: string
+  company_id?: number
+  job_role_id?: number
+  transportation?: boolean
+  health_insurance?: boolean
+  military_service?: boolean
+  max_salary?: number
+  min_salary?: number
+  max_age?: number
+  min_age?: number
+  i_can_apply_for_it?: boolean
+}
+
 export interface Employee {
   id?: number
   headline: string
