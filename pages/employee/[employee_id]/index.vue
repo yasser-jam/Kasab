@@ -1,5 +1,6 @@
 <template>
-  <div v-if="pending">loading...</div>
+  <base-loader v-if="pending" />
+
   <div v-else class="container mx-auto">
     <div class="flex justify-between my-8">
       <layout-breadcrumb></layout-breadcrumb>

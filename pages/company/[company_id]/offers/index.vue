@@ -12,7 +12,7 @@
       >
     </div>
 
-    <div v-if="pending">loading...</div>
+    <base-loader v-if="pending" />
 
     <template v-else>
       <nuxt-link v-for="offer in companyOffers" to="/company/1/offers/1">

@@ -1,20 +1,29 @@
 <template>
-  <div v-if="pending">loading...</div>
+  <base-loader v-if="pending" />
 
   <div v-else class="container">
     <div class="flex justify-between my-8">
       <layout-breadcrumb></layout-breadcrumb>
 
       <div class="flex gap-2">
-        <base-btn icon="mdi:pencil" :to="`/accounts/company/${route.params.company_id}`"
+        <base-btn
+          icon="mdi:pencil"
+          :to="`/accounts/company/${route.params.company_id}`"
           >تعديل البيانات</base-btn
         >
 
-        <base-btn icon="mdi:eye" color="secondary" :to="`/company/${route.params.company_id}/offers`"
+        <base-btn
+          icon="mdi:eye"
+          color="secondary"
+          :to="`/company/${route.params.company_id}/offers`"
           >مشاهدة العروض</base-btn
         >
 
-        <base-btn v-if="isCompanyOwner" icon="mdi:briefcase" color="success" :to="`/company/${route.params.company_id}/offers/create`"
+        <base-btn
+          v-if="isCompanyOwner"
+          icon="mdi:briefcase"
+          color="success"
+          :to="`/company/${route.params.company_id}/offers/create`"
           >إضافة عرض</base-btn
         >
       </div>
@@ -79,8 +88,11 @@
           <div class="text-xl font-semibold mb-8">معرض الصور</div>
 
           <div class="grid grid-cols-4 gap-4">
-            <div v-for="img in company.gallery_images" class="flex items-center justify-center bg-slate-50">
-              <img :src="img.url" alt="gallery-image" class="rounded-lg">
+            <div
+              v-for="img in company.gallery_images"
+              class="flex items-center justify-center bg-slate-50"
+            >
+              <img :src="img.url" alt="gallery-image" class="rounded-lg" />
             </div>
           </div>
           <!-- <company-gallery-slider v-model="company.gallery_images"></company-gallery-slider> -->
