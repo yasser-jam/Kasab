@@ -68,6 +68,7 @@ export interface Offer {
   gender_required?: boolean
   status: 'pending' | 'active' | 'cloused'
   created_at?: string
+  company?: Company
 }
 
 export interface OfferFilters {

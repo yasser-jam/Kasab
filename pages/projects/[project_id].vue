@@ -34,7 +34,10 @@
 
           <div class="flex flex-col max-h-[500px] overflow-auto">
             <div v-for="i of 10">
-              <project-offer-card class="border-solid"></project-offer-card>
+              <div class="grid grid-cols-1">
+                <project-offer-card class="border-solid"></project-offer-card>
+
+              </div>
 
               <div class="divider !my-1"></div>
             </div>
@@ -119,7 +122,7 @@ const { offer } = storeToRefs(offerStore)
 const { client } = storeToRefs(clientStore)
 const { user } = storeToRefs(userStore)
 
-const isProjectOwner = ref(offer.value.client?.id == user.value.id)
+const isProjectOwner = computed(() => offer.value.client?.id == user.value.id)
 
 const route = useRoute()
 

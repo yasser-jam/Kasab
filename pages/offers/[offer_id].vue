@@ -10,7 +10,7 @@
       </div>
     </template>
 
-    <template>
+    <template #default>
       <div class="grid grid-cols-1 gap-4">
         <div>
           <div class="text-lg text-gray-500">
@@ -63,7 +63,10 @@
 
           <div class="flex gap-2 items-center">
             <base-label class="w-32">طبيعة الدوام</base-label>
-            <badge-attendence :attendence="offer.attendence_type" class="!badge-success"></badge-attendence>
+            <badge-attendence
+              :attendence="offer.attendence_type"
+              class="!badge-success"
+            ></badge-attendence>
           </div>
 
           <div class="flex gap-2 items-center">
@@ -87,7 +90,7 @@
           </div>
         </div>
 
-        <company-info-card></company-info-card>
+        <company-info-card v-if="offer.company" :company="offer.company"></company-info-card>
       </div>
     </template>
 
@@ -99,17 +102,12 @@
 
     <!-- company card -->
 
-    <base-page-dialog>
-    <template #title>
-      title test
-    </template>
-    <template>
-      <div>
-        this is body test
-      </div>
-    </template>
-  </base-page-dialog>
-
+    <!-- <base-page-dialog>
+      <template #title> title test </template>
+      <template>
+        <div>this is body test</div>
+      </template>
+    </base-page-dialog> -->
   </base-page-dialog>
 </template>
 
