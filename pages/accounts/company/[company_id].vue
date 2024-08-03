@@ -103,9 +103,9 @@
           <div class="grid gap-8">
             <div>
               <base-label>نوع الشركة</base-label>
-              <company-category-select
+              <company-industry-select
                 v-model="company.industry_name"
-              ></company-category-select>
+              ></company-industry-select>
             </div>
 
             <div>

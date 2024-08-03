@@ -98,6 +98,18 @@
     </template>
 
     <!-- company card -->
+
+    <base-page-dialog>
+    <template #title>
+      title test
+    </template>
+    <template>
+      <div>
+        this is body test
+      </div>
+    </template>
+  </base-page-dialog>
+
   </base-page-dialog>
 </template>
 
