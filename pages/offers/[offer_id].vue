@@ -90,35 +90,61 @@
           </div>
         </div>
 
-        <company-info-card v-if="offer.company" :company="offer.company"></company-info-card>
+        <company-info-card
+          v-if="offer.company"
+          :company="offer.company"
+        ></company-info-card>
       </div>
     </template>
 
     <template #actions>
-      <div class="flex justify-end gap-2">
-        <base-btn icon="mdi:check">التقدم للوظيفة</base-btn>
+      <div class="flex justify-end relative gap-2">
+        <transition>
+          <offer-propose-card
+            v-if="showProposalCard"
+            v-model="proposalMsg"
+            class="absolute -top-44 left-44"
+            :loading
+            @save="propose"
+            @close="showProposalCard = false"
+          ></offer-propose-card>
+        </transition>
+
+        <base-btn v-if="isEmployee" icon="mdi:check" @click="showProposalCard = !showProposalCard"
+          >التقدم للوظيفة</base-btn
+        >
       </div>
     </template>
 
     <!-- company card -->
-
-    <!-- <base-page-dialog>
-      <template #title> title test </template>
-      <template>
-        <div>this is body test</div>
-      </template>
-    </base-page-dialog> -->
   </base-page-dialog>
 </template>
 
 <script setup lang="ts">
 const offerStore = useOfferStore()
+const authStore = useAuthStore()
 
 const route = useRoute()
 
 const offerId = route.params.offer_id
 
+const isEmployee = computed(() => authStore.user.role == 'freelancer')
+
+const loading = ref<boolean>(false)
+const showProposalCard = ref<boolean>(false)
+const proposalMsg = ref<string>(false)
+
 const { pending } = useLazyAsyncData(() => offerStore.get(Number(offerId)))
 
 const { offer } = storeToRefs(offerStore)
+
+const propose = async () => {
+  loading.value = true
+
+  try {
+    await offerStore.propose(Number(offerId), proposalMsg.value)
+  } finally {
+    loading.value = false
+  }
+}
 </script>
