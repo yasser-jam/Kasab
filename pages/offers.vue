@@ -21,19 +21,17 @@
 
     <div class="grid grid-cols-8 gap-8">
       <div class="col-span-2">
-        <offer-stat class="mt-4"></offer-stat>
+        <offer-stat></offer-stat>
       </div>
 
       <div class="col-span-6 flex flex-col gap-8">
         <Transition>
           <company-offer-filters v-if="showFilters" />
         </Transition>
+        
         <base-loader v-if="pending" />
-        <!-- <offer-card></offer-card>
-        <offer-card></offer-card>
-        <offer-card></offer-card>
-        <offer-card></offer-card>
-        <offer-card></offer-card> -->
+        
+        <offer-card v-for="offer in offers" :offer />
       </div>
     </div>
   </div>
@@ -45,6 +43,8 @@
 const offerStore = useOfferStore()
 
 const { pending, refresh } = useLazyAsyncData(() => offerStore.list())
+
+const { offers } = storeToRefs(offerStore)
 
 const showFilters = ref<boolean>(false)
 </script>

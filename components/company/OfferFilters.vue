@@ -29,7 +29,7 @@
 </template> -->
 
 <template>
-  <div class="card grid grid-cols-4 gap-4">
+  <div class="card grid grid-cols-4 gap-4 shadow-md">
 
     <div class="col-span-2">
       <base-label>نوع الوظيفة</base-label>

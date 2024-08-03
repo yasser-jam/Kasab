@@ -7,10 +7,14 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  gender: 'male' | 'female' | 'unknown'
+  gender: 'male' | 'female' | 'unknown' | null
 }>()
 
-const data = computed<{ icon: string, title: string, color: 'primary' | 'error' | 'secondary' }>(() => {
+const data = computed<{
+  icon: string
+  title: string
+  color: 'primary' | 'error' | 'secondary'
+}>(() => {
   switch (props.gender) {
     case 'male':
       return {
@@ -25,6 +29,13 @@ const data = computed<{ icon: string, title: string, color: 'primary' | 'error' 
         color: 'error'
       }
     case 'unknown':
+      return {
+        icon: 'mdi:help',
+        title: 'غير محدد',
+        color: 'secondary'
+      }
+
+    default:
       return {
         icon: 'mdi:help',
         title: 'غير محدد',

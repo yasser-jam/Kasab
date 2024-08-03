@@ -6,6 +6,8 @@ export const useOfferStore = defineStore('offer', () => {
 
     const offers = ref<Offer[]>([])
 
+    const filters = ref<OfferFilters>({} as OfferFilters)
+
     const create = async () => {
         await api('company/job_offer/store', {
             method: 'POST',
@@ -13,7 +15,13 @@ export const useOfferStore = defineStore('offer', () => {
         })
     }
 
-    const filters = ref<OfferFilters>({} as OfferFilters)
+    const get = async (id: number) : Promise<Offer> => {
+        const res = await api(`company/job_offer/${id}`)
+
+        offer.value = res?.data
+
+        return offer.value
+    }
 
     const list = async () : Promise<Offer[]> => {
         const res = await api('company/job_offer/list-job-offer', {
@@ -31,6 +39,7 @@ export const useOfferStore = defineStore('offer', () => {
         offers,
         filters,
 
+        get,
         list,
         create,
     }
