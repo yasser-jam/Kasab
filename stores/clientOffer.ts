@@ -6,6 +6,7 @@ export const useClientOfferStore = defineStore('client_offer', () => {
     const offers = ref<ClientOffer[]>([])
 
     const proposal = ref<Proposal>(initProposal())
+    const proposals = ref<Proposal[]>([])
 
     const create = async () => {
         await api('client-offer/client/store', {
@@ -29,17 +30,23 @@ export const useClientOfferStore = defineStore('client_offer', () => {
         })
     }
 
-    const listClientOffers = async (id: number) => {
-        await api('')
+    const listProposals = async (projectId: number) : Promise<Proposal[]> => {
+        const res = await api('/client-offer/clients/proposals')
+
+        proposals.value = res?.data
+
+        return proposals.value
     }
     
     return {
         offer,
         offers,
         proposal,
+        proposals,
         
         create,
         get,
         propose,
+        listProposals
     }
 })

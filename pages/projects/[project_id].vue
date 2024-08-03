@@ -35,8 +35,9 @@
           <div class="flex flex-col max-h-[500px] overflow-auto">
             <div v-for="i of 10">
               <div class="grid grid-cols-1">
-                <project-offer-card class="border-solid"></project-offer-card>
-
+                <project-proposal-card
+                  class="border-solid"
+                ></project-proposal-card>
               </div>
 
               <div class="divider !my-1"></div>
@@ -131,7 +132,9 @@ const projectId = route.params.project_id
 const { pending: loading } = await useLazyAsyncData(() =>
   offerStore.get(Number(projectId))
 )
+
 useLazyAsyncData(() => clientStore.get(Number(offer.value.client_id)))
 
-
+if (isProjectOwner.value)
+  useLazyAsyncData(() => offerStore.listProposals(Number(projectId)))
 </script>

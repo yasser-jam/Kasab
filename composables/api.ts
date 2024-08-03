@@ -1,5 +1,5 @@
 export default (url: string, options?: any) => {
-  const baseUrl = "http://192.168.0.134:8000/api";
+  const baseUrl = "http://192.168.1.14:8000/api";
 
   const token = useCookie('access_token')
 

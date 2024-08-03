@@ -24,7 +24,7 @@ export const useOfferStore = defineStore('offer', () => {
     }
 
     const list = async () : Promise<Offer[]> => {
-        const res = await api('company/job_offer/list-job-offer', {
+        const res = await api('company/job_offers/list-job-offer', {
             method: 'POST',
             body: filters.value
         })
