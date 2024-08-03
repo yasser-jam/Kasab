@@ -4,9 +4,11 @@
 
     <!-- <home-testmonials></home-testmonials> -->
 
+    <!-- <home-features /> -->
+
     <home-qa />
 
 
     <div class="divider"></div>
     <home-footer></home-footer>
-</template>
+</template> 
