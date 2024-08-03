@@ -12,7 +12,7 @@
           <div class="text-sm text-gray-500">{{ company.industry_name }}</div>
       </div>
 
-      <base-btn icon="mdi:info" class="ms-auto" btn-class="btn-ghost" :to="`/company/${company.id}`"></base-btn>
+      <base-btn icon="mdi:info" class="ms-auto" btn-class="btn-ghost" color="primary" :to="`/company/${company.id}`"></base-btn>
     </div>
   </div>
 </template>

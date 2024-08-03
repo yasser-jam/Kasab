@@ -37,7 +37,10 @@ export const useOfferStore = defineStore('offer', () => {
     const propose = async (offerId: number, msg: string) : Promise<any> => {
         await api('job-offer-proposal/store', {
             method: 'POST',
-            message: msg
+            body: {
+                job_offer_id: offerId,
+                message: msg
+            }
         })
     }
     

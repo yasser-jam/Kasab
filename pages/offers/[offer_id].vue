@@ -110,7 +110,7 @@
           ></offer-propose-card>
         </transition>
 
-        <base-btn v-if="isEmployee" icon="mdi:check" @click="showProposalCard = !showProposalCard"
+        <base-btn v-if="isEmployee && isOfferAvailable" icon="mdi:check" @click="showProposalCard = !showProposalCard"
           >التقدم للوظيفة</base-btn
         >
       </div>
@@ -129,10 +129,11 @@ const route = useRoute()
 const offerId = route.params.offer_id
 
 const isEmployee = computed(() => authStore.user.role == 'freelancer')
+const isOfferAvailable = computed(() => offer.value.status == 'active')
 
 const loading = ref<boolean>(false)
 const showProposalCard = ref<boolean>(false)
-const proposalMsg = ref<string>(false)
+const proposalMsg = ref<string>('')
 
 const { pending } = useLazyAsyncData(() => offerStore.get(Number(offerId)))
 
