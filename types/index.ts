@@ -167,3 +167,10 @@ export interface Proposal {
   days: number
   price: number
 }
+
+export interface Chat {
+  id?: number
+  owner: User
+  msg: string
+  date: string
+}
