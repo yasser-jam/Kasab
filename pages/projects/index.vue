@@ -31,7 +31,7 @@
           
           <base-loader v-if="pending" />
 
-          <project-card v-else-if="!pending && !offers.length" v-for="offer in offers" :offer />
+          <project-card v-else-if="!pending && offers.length" v-for="offer in offers" :offer />
         
           <base-not-found v-else name="عرض" />
         </div>

@@ -21,10 +21,15 @@ export const useClientOfferStore = defineStore('client_offer', () => {
         const res = await api('client-offer/freelancer/freelancer-filter', {
             method: 'POST',
             body: {
-                status: filters.value
+                ...filters.value,
+                min_days: filters.value.min_days || undefined,
+                max_days: filters.value.max_days || undefined,
+                min_price: filters.value.min_price || undefined,
+                max_price: filters.value.max_price || undefined,
             }
         })
 
+        console.log(res?.data);
         offers.value = res?.data
     
         return offers.value
