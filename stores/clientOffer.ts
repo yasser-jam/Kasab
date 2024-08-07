@@ -15,6 +15,19 @@ export const useClientOfferStore = defineStore('client_offer', () => {
         })
     }
 
+    const list = async () : Promise<ClientOffer[]> => {
+        const res = await api('client-offer/client/client-filter', {
+            method: 'POST',
+            body: {
+                status: 'pending'
+            }
+        })
+
+        offers.value = res?.data
+    
+        return offers.value
+    }
+
     const get = async (id: number) : Promise<ClientOffer> => {
         const res = await api(`client-offer/client/${id}`)
         
@@ -30,8 +43,15 @@ export const useClientOfferStore = defineStore('client_offer', () => {
         })
     }
 
-    const listProposals = async (projectId: number) : Promise<Proposal[]> => {
-        const res = await api('/client-offer/clients/proposals')
+    const listProposals = async (projectId: number, orderByDate?: boolean = true, orderByPrice?: boolean = true) : Promise<Proposal[]> => {
+        const res = await api('/client-offer/clients/proposals', {
+            method: 'POST',
+            body: {
+                client_offer_id: 1,
+                orderByPrice: true,
+                orderByDays: true
+            }
+        })
 
         proposals.value = res?.data
 
@@ -46,6 +66,7 @@ export const useClientOfferStore = defineStore('client_offer', () => {
         
         create,
         get,
+        list,
         propose,
         listProposals
     }

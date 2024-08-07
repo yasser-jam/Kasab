@@ -157,7 +157,7 @@ export interface ClientOffer {
   file_ids: number[]
   files?: File[]
   created_at?: string
-  status?: 'pending' | 'active' | 'cloused'
+  status?: 'pending' | 'active' | 'cloused' | 'in_progress' | 'done'
 }
 
 export interface Proposal {

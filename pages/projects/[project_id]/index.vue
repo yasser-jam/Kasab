@@ -14,7 +14,7 @@
             </div>
           </div>
   
-          <div class="card mt-8">
+          <div v-if="offer.files?.length" class="card mt-8">
             <base-card-title class="mb-4">ملفات المشروع</base-card-title>
   
             <div class="max-h-[400px] overflow-auto">
@@ -32,7 +32,7 @@
               <span class="text-gray-500 text-sm font-semibold">(65 عرض)</span>
             </base-card-title>
   
-            <div class="flex flex-col max-h-[500px] overflow-auto">
+            <div v-if="proposals.length" class="flex flex-col max-h-[500px] overflow-auto">
               <div v-for="i of 10">
                 <div class="grid grid-cols-1">
                   <project-proposal-card
@@ -43,6 +43,8 @@
                 <div class="divider !my-1"></div>
               </div>
             </div>
+
+            <base-not-found name="عرض مقدم" v-else />
           </div>
   
           <div v-else class="card mt-8">
@@ -64,7 +66,7 @@
   const clientStore = useClientStore()
   const userStore = useAuthStore()
   
-  const { offer } = storeToRefs(offerStore)
+  const { offer, proposals } = storeToRefs(offerStore)
   const { client } = storeToRefs(clientStore)
   const { user } = storeToRefs(userStore)
   

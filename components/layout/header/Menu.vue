@@ -26,6 +26,10 @@ const links = ref<Link[]>([
     link: "/offers",
   },
   {
+    title: "عروض العملاء",
+    link: "/projects",
+  },
+  {
     title: "متجر الخدمات",
     link: "/offers",
   },

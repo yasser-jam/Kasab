@@ -9,7 +9,7 @@
     <div class="card mt-8">
       <base-card-title class="mb-8">مراحل المشروع</base-card-title>
 
-      <project-steps-card></project-steps-card>
+      <project-steps-card :status="offer.status"></project-steps-card>
     </div>
 
     <div class="card mt-8">
