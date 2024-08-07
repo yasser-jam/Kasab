@@ -1,4 +1,4 @@
-import type { ClientOffer, Proposal } from "~/types"
+import type { ClientOffer, ClientOfferFilters, Proposal } from "~/types"
 
 export const useClientOfferStore = defineStore('client_offer', () => {
     const offer = ref<ClientOffer>(initClientOffer())
@@ -15,11 +15,13 @@ export const useClientOfferStore = defineStore('client_offer', () => {
         })
     }
 
+    const filters = ref<ClientOfferFilters>(initClientOfferFilter())
+
     const list = async () : Promise<ClientOffer[]> => {
-        const res = await api('client-offer/client/client-filter', {
+        const res = await api('client-offer/freelancer/freelancer-filter', {
             method: 'POST',
             body: {
-                status: 'pending'
+                status: filters.value
             }
         })
 
@@ -43,13 +45,13 @@ export const useClientOfferStore = defineStore('client_offer', () => {
         })
     }
 
-    const listProposals = async (projectId: number, orderByDate?: boolean = true, orderByPrice?: boolean = true) : Promise<Proposal[]> => {
+    const listProposals = async (projectId: number, orderByDate: boolean = true, orderByPrice: boolean = true) : Promise<Proposal[]> => {
         const res = await api('/client-offer/clients/proposals', {
             method: 'POST',
             body: {
                 client_offer_id: 1,
-                orderByPrice: true,
-                orderByDays: true
+                orderByPrice,
+                orderByDate: orderByDate,
             }
         })
 
@@ -63,10 +65,10 @@ export const useClientOfferStore = defineStore('client_offer', () => {
         offers,
         proposal,
         proposals,
-        
+        filters,
+        list,
         create,
         get,
-        list,
         propose,
         listProposals
     }

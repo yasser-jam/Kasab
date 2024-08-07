@@ -33,7 +33,7 @@
             </base-card-title>
   
             <div v-if="proposals.length" class="flex flex-col max-h-[500px] overflow-auto">
-              <div v-for="i of 10">
+              <div v-for="proposal in proposals">
                 <div class="grid grid-cols-1">
                   <project-proposal-card
                     class="border-solid"
@@ -63,11 +63,9 @@
   import dayjs from 'dayjs'
   
   const offerStore = useClientOfferStore()
-  const clientStore = useClientStore()
   const userStore = useAuthStore()
   
   const { offer, proposals } = storeToRefs(offerStore)
-  const { client } = storeToRefs(clientStore)
   const { user } = storeToRefs(userStore)
   
   const isProjectOwner = computed(() => offer.value.client?.id == user.value.id)
@@ -79,8 +77,6 @@
   const { pending: loading } = await useLazyAsyncData(() =>
     offerStore.get(Number(projectId))
   )
-  
-  useLazyAsyncData(() => clientStore.get(Number(offer.value.client_id)))
   
   if (isProjectOwner.value)
     useLazyAsyncData(() => offerStore.listProposals(Number(projectId)))

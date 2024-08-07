@@ -160,6 +160,16 @@ export interface ClientOffer {
   status?: 'pending' | 'active' | 'cloused' | 'in_progress' | 'done'
 }
 
+export interface ClientOfferFilters {
+  status: 'active' | 'cloused' | 'done'
+  sub_category_id?: number
+  skill_ids?: number[]
+  min_days?: number
+  max_days?: number
+  min_price?: number
+  max_price?: number
+}
+
 export interface Proposal {
   id?: number
   client_offer_id: number

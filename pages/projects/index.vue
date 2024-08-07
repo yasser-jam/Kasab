@@ -9,29 +9,31 @@
           التفاصيل عنه
         </div> -->
   
-        <!-- <div class="flex gap-2">
+        <div class="flex gap-2">
           <base-btn
             icon="mdi:filter-outline"
             @click="showFilters = !showFilters"
           ></base-btn>
   
           <base-btn v-if="showFilters" @click="refresh">تطبيق الفلاتر</base-btn>
-        </div> -->
+        </div>
       </div>
   
       <div class="grid grid-cols-8 gap-8">
         <div class="col-span-2">
-          <offer-stat></offer-stat>
+          <project-stat />
         </div>
   
         <div class="col-span-6 flex flex-col gap-8">
           <Transition>
-            <company-offer-filters v-if="showFilters" />
+            <project-filters v-if="showFilters" />
           </Transition>
           
           <base-loader v-if="pending" />
 
-          <project-card v-for="offer in offers" :offer />
+          <project-card v-else-if="!pending && !offers.length" v-for="offer in offers" :offer />
+        
+          <base-not-found v-else name="عرض" />
         </div>
       </div>
     </div>
