@@ -4,7 +4,9 @@
   
       <base-title class="mb-12"> {{ offer.title }} </base-title>
   
-      <div class="grid grid-cols-4 gap-8">
+      <base-loading v-if="pending" />
+
+      <div v-else class="grid grid-cols-4 gap-8">
         <div class="col-span-3">
           <div class="card">
             <base-card-title>وصف المشرووع</base-card-title>
@@ -50,7 +52,7 @@
           <div v-else class="card mt-8">
             <base-card-title class="mb-4">أضف عرضك الآن</base-card-title>
   
-            <client-proposal-card />
+            <client-proposal-card :offer-id="Number($route.params.project_id)" />
           </div>
         </div>
   
@@ -74,7 +76,7 @@
   
   const projectId = route.params.project_id
   
-  const { pending: loading } = await useLazyAsyncData(() =>
+  const { pending } = await useLazyAsyncData(() =>
     offerStore.get(Number(projectId))
   )
   

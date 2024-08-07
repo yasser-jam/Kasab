@@ -3,7 +3,7 @@
     <div class="card">
       <base-card-title class="mb-8">صاحب المشروع</base-card-title>
 
-      <project-owner-card :client :user></project-owner-card>
+      <project-owner-card :client="offer.client"></project-owner-card>
     </div>
 
     <div class="card mt-8">

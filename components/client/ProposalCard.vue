@@ -1,10 +1,10 @@
 <template>
   <div class="grid grid-cols-2 gap-4">
     <div>
-      <base-label>العرض المقدم</base-label>
+      <base-label>السعر المقدم</base-label>
       <base-input
         v-model="proposal.price"
-        placeholder="العرض المقدم (ل.س)"
+        placeholder="السعر المقدم (ل.س)"
       ></base-input>
     </div>
 
@@ -32,15 +32,26 @@
 <script setup lang="ts">
 const projectStore = useClientOfferStore()
 
+const props = defineProps<{
+  offerId: number
+}>()
+
 const { proposal } = storeToRefs(projectStore)
 
 const loading = ref<boolean>(false)
+
+const router = useRouter()
 
 const submit = async () => {
   loading.value = true
 
   try {
-    await projectStore.propose()
+    await projectStore.propose(props.offerId)
+
+    router.push('/projects')
+
+    // init proposal
+    proposal.value = initProposal()
   } finally {
     loading.value = false
   }

@@ -42,9 +42,9 @@ const stepsColors = computed(() => {
       }
     default:
       return {
-        receive: true,
-        progress: true,
-        done: false
+        receive: 'mdi:arrow-left-circle',
+        progress: 'mdi:circle-double',
+        done: 'mdi:circle-double'
       }
   }
 })

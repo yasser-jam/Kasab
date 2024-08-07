@@ -43,10 +43,13 @@ export const useClientOfferStore = defineStore('client_offer', () => {
         return offer.value
     }
 
-    const propose = async () => {
+    const propose = async (offerId: number) => {
         await api('client-offer/freelancer/proposal/store', {
             method: 'POST',
-            body: proposal.value
+            body: {
+                ...proposal.value,
+                client_offer_id: offerId,
+            }
         })
     }
 

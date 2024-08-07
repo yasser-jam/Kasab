@@ -136,6 +136,7 @@ export interface Client {
   background_image_id: number
   profile_image_url: null | string
   background_image_url: null | string
+  user?: User
   created_at: string
 }
 
