@@ -72,6 +72,24 @@ export const useClientOfferStore = defineStore('client_offer', () => {
     return proposals.value
   }
 
+  const acceptProposal = async (id: number) => {
+    await api('client-offer/client/proposals/accept', {
+      method: 'POST',
+      body: {
+        proposal_id: id
+      }
+    })
+  }
+
+  const rejectProposal = async (id: number) => {
+    await api('client-offer/client/proposals/reject', {
+      method: 'POST',
+      body: {
+        proposal_id: id
+      }
+    })
+  }
+
   const seedOffers = async () => {
     const offers = [
       {
@@ -139,6 +157,10 @@ export const useClientOfferStore = defineStore('client_offer', () => {
     get,
     propose,
     listProposals,
+    acceptProposal,
+    rejectProposal,
+
+
     seedOffers
   }
 })
