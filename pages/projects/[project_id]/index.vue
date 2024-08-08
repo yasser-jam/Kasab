@@ -80,7 +80,9 @@
     offerStore.get(Number(projectId))
   )
   
-  if (isProjectOwner.value)
+  if (isProjectOwner.value) {
+    console.log('admin');
     useLazyAsyncData(() => offerStore.listProposals(Number(projectId)))
+  }
   </script>
   

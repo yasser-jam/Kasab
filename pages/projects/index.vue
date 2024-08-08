@@ -37,6 +37,8 @@
         </div>
       </div>
     </div>
+
+    <base-btn v-if="false" @click="seed">Seed</base-btn>
   
     <NuxtPage />
   </template>
@@ -49,5 +51,12 @@
   const { offers } = storeToRefs(offerStore)
   
   const showFilters = ref<boolean>(false)
+
+  const lodaing = ref<boolean>(false)
+  const seed = async () => {
+    lodaing.value = true
+    await offerStore.seedOffers()
+    lodaing.value = false
+  }
   </script>
   
