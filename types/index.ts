@@ -91,6 +91,7 @@ export interface OfferFilters {
 
 export interface Employee {
   id?: number
+  user?: User
   headline: string
   description: string
   city: string
@@ -172,6 +173,7 @@ export interface ClientOfferFilters {
 }
 
 export interface Proposal {
+  freelancer?: Employee
   id?: number
   client_offer_id: number
   message: string

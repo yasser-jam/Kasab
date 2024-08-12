@@ -41,8 +41,10 @@
             <div v-for="proposal in proposals">
               <div class="grid grid-cols-1">
                 <project-proposal-card
+                  :proposal
                   class="border-solid"
-                ></project-proposal-card>
+                  @click="proposalToggler = true"
+                  ></project-proposal-card>
               </div>
 
               <div class="divider !my-1"></div>

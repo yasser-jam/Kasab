@@ -6,7 +6,8 @@
             <div class="">
                 <div class="flex gap-2 items-center mb-2">
                     <nuxt-link class="text-lg font-semibold" to="/employee/2">
-                        اسم المستقل
+                        <!-- {{ proposal.freelancer?.user?.first_name + '' + proposal.freelancer?.user?.first_name }} -->
+                        ياسر جمال الدين
                     </nuxt-link>
     
                     <base-rating></base-rating>
@@ -15,7 +16,8 @@
                 <div class="flex gap-2 items-center text-gray-500 font-semibold text-sm">
                     <div class="flex items-center">
                         <Icon class="me-2" name="mdi:briefcase-outline" />
-                        <div>مطور واجهات أمامية</div>
+                        مطور واجهات
+                        <!-- <div>{{ proposal }}</div> -->
                     </div>
     
                     <div class="flex items-center">
@@ -29,12 +31,16 @@
         </div>
 
         <div class="text-slate-700 text-base leading-relaxed">
-            هذا العرض الذي أود تقديمة لديه العديد من المعلومات المهمة
-            هذا العرض الذي أود تقديمة لديه العديد من المعلومات المهمة
-            هذا العرض الذي أود تقديمة لديه العديد من المعلومات المهمة
-            هذا العرض الذي أود تقديمة لديه العديد من المعلومات المهمة
-
+            {{ proposal.message }}
         </div>
 
     </div>
 </template>
+
+<script setup lang="ts">
+const props = defineProps<{
+    proposal: Proposal
+}>()
+
+console.log(props.proposal);
+</script>
