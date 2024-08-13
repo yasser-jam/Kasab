@@ -27,7 +27,10 @@
                 </div>
             </div>
     
-            
+            <div class="ms-auto flex items-center gap-2">
+                <base-btn icon="mdi:close" color="error" :loading class="ms-auto" @click="$emit('reject')">رفض</base-btn>
+                <base-btn icon="mdi:check" class="ms-auto" @click="$emit('accept')">قبول</base-btn>
+            </div>
         </div>
 
         <div class="text-slate-700 text-base leading-relaxed">
@@ -39,8 +42,8 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-    proposal: Proposal
+    proposal: Proposal,
+    loading?: boolean
 }>()
 
-console.log(props.proposal);
 </script>

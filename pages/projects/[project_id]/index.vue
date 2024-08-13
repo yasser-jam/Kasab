@@ -2,7 +2,13 @@
   <div class="container">
     <layout-breadcrumb class="my-8"></layout-breadcrumb>
 
-    <base-title class="mb-12"> {{ offer.title }} </base-title>
+    <div class="flex justify-between items-center">
+      <base-title class="mb-12"> {{ offer.title }} </base-title>
+
+      <nuxt-link :to="`/projects/${projectId}/process`">
+        <base-btn icon="mdi:info" v-if="true">معلومات العمل</base-btn>
+      </nuxt-link>
+    </div>
 
     <base-loading v-if="pending" />
 
@@ -38,16 +44,17 @@
             v-if="proposals.length"
             class="flex flex-col max-h-[500px] overflow-auto"
           >
-            <div v-for="proposal in proposals">
-              <div class="grid grid-cols-1">
+            <div v-for="(proposal, index) in proposals">
+              <div class="grid grid-cols-1 mb-4">
                 <project-proposal-card
                   :proposal
                   class="border-solid"
-                  @click="proposalToggler = true"
+                  @accept="proposalToggler = true"
+                  @reject="reject(Number(proposal.id))"
                   ></project-proposal-card>
               </div>
 
-              <div class="divider !my-1"></div>
+              <div v-if="index != proposals.length - 1" class="divider !my-1"></div>
             </div>
           </div>
 
@@ -59,17 +66,19 @@
 
           <client-proposal-card
             :offer-id="Number($route.params.project_id)"
+            :loading="rejectLoading"
             @accept="accept"
             @reject="reject"
           />
 
         </div>
 
-        <proposal-dialog v-model="proposalToggler" />
+        <project-proposal-dialog v-model="proposalToggler" :loading="acceptLoading" @save="acceptOffer" />
 
       </div>
 
       <project-info-sidebar></project-info-sidebar>
+
     </div>
   </div>
 </template>
@@ -85,14 +94,41 @@ const { user } = storeToRefs(userStore)
 
 const isProjectOwner = computed(() => offer.value.client?.id == user.value.id)
 
-const proposalToggler = ref<boolean>(true)
+const proposalToggler = ref<boolean>(false)
 const loading = ref<boolean>(false)
+
+const acceptLoading = ref(false)
+const rejectLoading = ref(false)
 
 const route = useRoute()
 
 const projectId = route.params.project_id
 
-useLazyAsyncData(() => userStore.me())
+await useLazyAsyncData(() => userStore.me())
+
+const acceptOffer = async () => {
+  acceptLoading.value = true
+  
+  try {
+    await offerStore.acceptProposal(Number(projectId))
+  
+    navigateTo(`/projects/${projectId}/process`)
+  } finally {
+    acceptLoading.value = false
+
+  }
+}
+
+const rejectOffer = async () => {
+  rejectLoading.value = true
+  
+  try {
+    await offerStore.rejectProposal(Number(projectId))
+  } finally {
+    rejectLoading.value = false
+
+  }
+}
 
 const { pending } = await useLazyAsyncData(() =>
   offerStore.get(Number(projectId))

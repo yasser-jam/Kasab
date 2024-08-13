@@ -79,15 +79,18 @@ export const useClientOfferStore = defineStore('client_offer', () => {
         proposal_id: id
       }
     })
+
   }
 
   const rejectProposal = async (id: number) => {
     await api('client-offer/client/proposals/reject', {
       method: 'POST',
       body: {
-        proposal_id: id
+        proposal_ids: [id]
       }
     })
+
+    await listProposals(id)
   }
 
   const seedOffers = async () => {

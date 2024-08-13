@@ -1,5 +1,7 @@
 <template>
-  <button class="btn" onclick="my_modal_1.showModal()">open modal</button>
+  <button class="btn hidden" id="handler" onclick="my_modal.showModal()">
+    open modal
+  </button>
   <dialog id="my_modal" class="modal">
     <div class="modal-box">
       <h3 class="text-lg font-bold"><slot name="title" /></h3>
@@ -9,8 +11,8 @@
       </div>
 
       <div class="modal-action flex gap-2">
-        <base-btn color="gray" @click="$emit('close')">Close</base-btn>
-        <base-btn @click="$emit('save')">Save</base-btn>
+        <base-btn color="gray" @click="$emit('close')">إغلاق</base-btn>
+        <base-btn :loading @click="$emit('save')">حفظ</base-btn>
       </div>
     </div>
   </dialog>
@@ -19,7 +21,15 @@
 <script setup lang="ts">
 const props = defineProps<{
   open: boolean
+  loading?: boolean
 }>()
+
+onMounted(() => {
+  const button = document?.querySelector('#handler')
+
+  // @ts-ignore
+  // button.click()
+})
 
 watch(
   () => props.open,
@@ -27,7 +37,7 @@ watch(
     const modal = document?.querySelector('#my_modal')
 
     // @ts-ignore
-    props.open ? modal.showModal() : modal.hideModal()
+    props.open ? modal.showModal() : modal.close()
   }
 )
 </script>

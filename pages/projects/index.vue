@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <base-btn v-if="false" @click="seed">Seed</base-btn>
+    <base-btn v-if="true" @click="seed">Seed</base-btn>
   
     <NuxtPage />
   </template>

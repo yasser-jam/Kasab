@@ -23,12 +23,12 @@
       <div class="flex gap-4 items-center mb-6">
         <div>الميزانية</div>
 
-        <div class="flex items-center font-semibold gap-2">
-          <base-chip color="success">{{ offer.min_price }} ل.س</base-chip>
+        <div class="flex items-center font-semibold gap-2 no-wrap">
+          <base-chip color="success">{{ offer.min_price }}ل.س</base-chip>
 
           <Icon name="mdi:arrow-left" />
 
-          <base-chip color="success">{{ offer.max_price }} ل.س</base-chip>
+          <base-chip color="success">{{ offer.max_price }}ل.س</base-chip>
         </div>
       </div>
 
