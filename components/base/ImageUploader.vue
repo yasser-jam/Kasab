@@ -2,7 +2,7 @@
   <div class="relative">
     <div
       v-if="!modelValue && !isLoading"
-      class="flex flex-col justify-center items-center w-44 h-44 border-2 border-dashed border-slate-300 hover:bg-slate-50 cursor-pointer"
+      class="flex flex-col justify-center items-center w-44 h-44 border-2 border-dashed rounded-lg border-slate-300 hover:bg-slate-50 cursor-pointer"
       :class="{
         'w-full': widthFull,
         'rounded-full': circle,
@@ -18,7 +18,11 @@
     </div>
 
     <!-- Loading indicator -->
-    <div v-if="isLoading" class="w-44 h-44 flex justify-center items-center">
+    <div
+      v-if="isLoading"
+      class="w-44 h-44 flex justify-center items-center rounded-lg border-2 border-dashed border-slate-300"
+      :class="{ 'w-full': widthFull }"
+    >
       <span class="animate-spin">
         <Icon name="mdi:loading" color="#2D547C" size="2rem" />
       </span>
@@ -26,12 +30,12 @@
 
     <!-- Display the uploaded image -->
     <img
-      v-if="modelValue"
+      v-if="modelValue && !isLoading"
       :src="imageUrl"
       alt="Uploaded Image"
       class="h-44"
       :class="widthFull ? 'w-full object-contain' : 'w-44 object-cover'"
-      />
+    />
 
     <input
       type="file"
@@ -55,36 +59,40 @@
         @click="emit('update:model-value', '')"
       ></base-btn>
     </template>
+
+    <transition>
+      <div v-if="errors" class="text-sm text-error">{{ errors }}</div>
+    </transition>
   </div>
 </template>
 
 <script setup lang="ts">
-const isLoading = ref(false);
-const imageSrc = ref(null);
-const fileInput = ref<HTMLElement | null>(null);
+const isLoading = ref(false)
+const imageSrc = ref(null)
+const fileInput = ref<HTMLElement | null>(null)
 
 const fileStore = useFileStore()
 
 const props = defineProps<{
-  modelValue: number;
+  modelValue: number
   url: string
   widthFull?: boolean
   circle?: boolean
-}>();
+  errors?: string
+}>()
 
-const emit = defineEmits(["update:model-value", 'update:url']);
+const emit = defineEmits(['update:model-value', 'update:url'])
 
 const imageUrl = ref(props.url)
 
 async function handleFileChange(event: any) {
-  const file = event.target.files[0];
+  const file = event.target.files[0]
   if (file) {
-    isLoading.value = true;
+    isLoading.value = true
 
     try {
       // upload image and get its id and url
-      const image = await fileStore.upload(file);
-
+      const image = await fileStore.upload(file)
 
       // update image id value
       emit('update:model-value', image?.id)
@@ -93,9 +101,8 @@ async function handleFileChange(event: any) {
 
       // udpate url value
       imageUrl.value = image?.url
-
     } catch (error) {
-      console.error("Error uploading image:", error);
+      console.error('Error uploading image:', error)
     } finally {
       isLoading.value = false
     }

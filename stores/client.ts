@@ -7,6 +7,8 @@ export const useClientStore = defineStore('client', () => {
 
   const clientOffers = ref<ClientOffer[]>([])
 
+  const reset = () => client.value = initClient()
+
   const create = async () => {
     const res = await api('client/store', {
       method: 'POST',
@@ -17,10 +19,16 @@ export const useClientStore = defineStore('client', () => {
   }
 
   const update = async () => {
-    await api('client', {
+    const res = await api('client', {
       method: 'PUT',
-      body: client.value
+      body: {
+        ...client.value,
+        background_image_url: client.value.background_image_url || undefined,
+        profile_image_url: client.value.profile_image_url || undefined,
+      }
     })
+
+    return res?.data?.id
   }
 
   const get = async (id: number): Promise<Client> => {
@@ -46,6 +54,7 @@ export const useClientStore = defineStore('client', () => {
     client,
     clientOffers,
 
+    reset,
     create,
     update,
     get,

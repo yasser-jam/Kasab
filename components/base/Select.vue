@@ -8,6 +8,7 @@
         :value="selectedTitle"
         :model-value="selectedTitle"
         :disabled
+        :errors
       ></base-input>
 
       <div class="absolute inset-y-0 left-4 flex items-center">
@@ -78,6 +79,7 @@ const props = withDefaults(
     mapOptions?: boolean
     multiple?: boolean
     disabled?: boolean
+    errors?: string
   }>(),
   {
     itemTitle: 'title',

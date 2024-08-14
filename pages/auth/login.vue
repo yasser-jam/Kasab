@@ -3,37 +3,45 @@
     <div class="">
         <div class="text-4xl font-bold text-neutral-content mb-8">تسجيل الدخول</div>
 
-        <div class="grid grid-cols-1 gap-4 w-full">
-          <div>
-            <base-label>الإيميل</base-label>
-            <base-input v-model="credentials.email" placeholder="اسم المستخدم"></base-input>
+        <Form @submit="login" v-slot="{ errors }">
+          <div class="grid grid-cols-1 gap-4 w-full">
+            <div>
+              <base-label>الإيميل</base-label>
+
+              <Field v-model="credentials.email" rules="required|email" name="email" v-slot="{ field }">
+                <base-input v-bind="field" :errors="errors.email" placeholder="test@gmail.com" class="text-left"></base-input>
+              </Field>
+            </div>
+        
+            <div>
+              <base-label>كلمة المرور</base-label>
+              
+              <Field v-model="credentials.password" rules="required" name="password"  v-slot="{ field }">
+                <base-input v-bind="field" type="password" :errors="errors.password" placeholder="********"></base-input>
+              </Field>
+              
+              <nuxt-link to="/auth/forget-password">
+                <div class="text-slate-900 font-medium mt-2">هل نسيت كلمة المرور؟</div>
+              </nuxt-link>
+            </div>
           </div>
-      
-          <div>
-            <base-label>كلمة المرور</base-label>
-            
-            <base-input type="password" v-model="credentials.password" placeholder="********"></base-input>
-            
-            <nuxt-link to="/auth/forget-password">
-              <div class="text-slate-900 font-medium mt-2">هل نسيت كلمة المرور؟</div>
-            </nuxt-link>
+        
+          <div class="mt-12">
+            <base-btn btn-class="btn-block mb-4" :loading type="submit">الدخول</base-btn>
+        
+            <div class="flex justify-center items-center gap-2 text-slate-500">
+              ليس لديك حساب بعد؟
+              <nuxt-link to="/auth/signup">
+                <div class="text-slate-900 font-medium">أنشئ حسابك الآن!</div>
+              </nuxt-link>
+            </div>
+        
+            <div class="w-[90%] h-[1px] bg-slate-400 mt-12 mb-4 mx-auto"></div>
+        
+            <base-btn btn-class="btn-outline btn-block mb-4">تسجيل الدخول عن طريق غوغل</base-btn>
           </div>
-        </div>
-      
-        <div class="mt-12">
-          <base-btn btn-class="btn-block mb-4" :loading @click="login">الدخول</base-btn>
-      
-          <div class="flex justify-center items-center gap-2 text-slate-500">
-            ليس لديك حساب بعد؟
-            <nuxt-link to="/auth/signup">
-              <div class="text-slate-900 font-medium">أنشئ حسابك الآن!</div>
-            </nuxt-link>
-          </div>
-      
-          <div class="w-[90%] h-[1px] bg-slate-400 mt-12 mb-4 mx-auto"></div>
-      
-          <base-btn btn-class="btn-outline btn-block mb-4">تسجيل الدخول عن طريق غوغل</base-btn>
-        </div>
+        </Form>
+
 
     </div>
 

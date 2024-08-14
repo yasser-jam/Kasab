@@ -1,5 +1,5 @@
 <template>
-  <base-select :items="options" map-options placeholder="ذكر"></base-select>
+  <base-select :items="options" map-options placeholder="ذكر" v-bind="$attrs"></base-select>
 </template>
 
 <script setup lang="ts">
