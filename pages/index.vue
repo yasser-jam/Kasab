@@ -4,9 +4,12 @@
     
         <div class="container">
             <home-about class="my-12"></home-about>
+
+            <home-sections></home-sections>
     
             <home-company-section></home-company-section>
 
+            <home-company-special></home-company-special>
         </div>
     
     
