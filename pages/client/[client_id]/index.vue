@@ -34,7 +34,7 @@
     <div class="grid grid-cols-12 gap-8 my-8">
       <div class="col-span-9">
         <div
-          class="grid grid-cols-12 items-center h-44 p-4 rounded-lg profile-bg bg-no-repeat bg-center bg-cover"
+          class="grid grid-cols-12 items-center h-44 p-4 rounded-lg profile-bg"
           :style="`background-image: url(${
             client.background_image_url?.length
               ? client.background_image_url
@@ -129,9 +129,3 @@ const isClient = ref(userRoleId == clientId)
 const { pending } = useLazyAsyncData(() => clientStore.get(clientId))
 </script>
 
-<style scoped>
-.profile-bg {
-  background-color: rgba(0, 0, 0, 0.6);
-  background-blend-mode: color;
-}
-</style>

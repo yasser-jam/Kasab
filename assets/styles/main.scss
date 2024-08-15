@@ -86,3 +86,10 @@ html {
 .v-leave-to {
   opacity: 0;
 }
+
+// Profile images
+.profile-bg {
+  background-color: rgba(0, 0, 0, 0.6);
+  background-blend-mode: color;
+  @apply bg-no-repeat bg-center bg-cover;
+}

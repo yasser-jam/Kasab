@@ -18,6 +18,7 @@
 
         <div
           class="border py-3 px-4 cursor-pointer rounded-b-lg hover:bg-gray-50"
+          @click="logout"
         >
           <Icon name="mdi:logout" />
           تسجيل الخروج
@@ -34,6 +35,8 @@ const authStore = useAuthStore()
 
 const { user } = storeToRefs(authStore)
 
+const accessToken = useCookie('access_token')
+
 const show = ref<boolean>(false);
 
 const menu = ref(null);
@@ -41,8 +44,17 @@ const menu = ref(null);
 onClickOutside(menu, () => (show.value = false));
 
 
+const logout = async () => {
+  // delete cookie
+  accessToken.value = null
+
+  // redirect to login page
+  navigateTo('/auth/login')
+}
+
 // go to user account (according to his role)
 const goToMyAccount = () => {
+  if (user.value.role == 'freelancer') navigateTo(`/employee/${user.value.role_id}/general-info`)
   if (user.value.role == 'company') navigateTo(`/company/${user.value.role_id}`)
   if (user.value.role == 'client') navigateTo(`/client/${user.value.role_id}`)
 }

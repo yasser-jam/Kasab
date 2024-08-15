@@ -69,6 +69,10 @@ const router = useRouter()
 
 const loading = ref<boolean>(false)
 
+// reset
+credentials.value.email = ''
+credentials.value.password = ''
+
 const login = async () => {
 
   loading.value = true

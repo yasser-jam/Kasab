@@ -3,18 +3,19 @@
 
   <div v-else class="container mx-auto">
     <div class="flex justify-between my-8">
-      <layout-breadcrumb></layout-breadcrumb>
+      <layout-breadcrumb :meta></layout-breadcrumb>
 
       <base-btn
+        v-if="getRole() == 'company'"
         icon="mdi:account-multiple-plus-outline"
         >أرسل دعوة</base-btn
       >
     </div>
 
-    <div class="flex items-center py-12 px-4 rounded-lg profile-bg" :class="`bg-[url(${employee.background_image_url})]`">
+    <div class="flex items-center py-12 px-4 rounded-lg profile-bg" :class="`${employee.background_image_url?.length ? `bg-[url(${employee.background_image_url})]` : 'bg-[url(https://placehold.co/1100x200)]'}`">
       <div class="flex items-center gap-8">
         <img
-          :src="employee.profile_image_url"
+          :src="employee.profile_image_url?.length ? employee.profile_image_url : '/imges/placeholders/client.jpg'"
           alt="profile-image"
           class="w-32 h-32 rounded-full"
         />
@@ -57,11 +58,13 @@ const employeeId = Number(route.params.employee_id)
 const { employee } = storeToRefs(employeeStore)
 
 const { pending } = await useLazyAsyncData(() => employeeStore.get(employeeId))
-</script>
 
-<style scoped>
-.profile-bg {
-  background-color: rgba(0, 0, 0, 0.6);
-  background-blend-mode: color;
-}
-</style>
+const meta = [
+  {
+    title: 'معلومات الموظف',
+    link: `/employee/${route.params.employee_id}/general-info`,
+    active: true
+  }
+]
+
+</script>
