@@ -42,11 +42,26 @@
           <project-message-notes />
 
         </div>
+
+        <div v-if="true" class="mt-8">
+          <div class="flex items-center justify-between">
+            <base-card-title class="mb-4">مراحل المشروع</base-card-title>
+
+            <base-btn icon="mdi:plus" :to="`/projects/${projectId}/process/create`">إضافة مرحلة</base-btn>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4 max-h-[400px] overflow-auto">
+            <project-milestone-card active />
+            <project-milestone-card :active="false" />
+          </div>
+        </div>
       </div>
 
       <project-info-sidebar></project-info-sidebar>
     </div>
   </div>
+
+  <NuxtPage />
 </template>
 
 <script setup lang="ts">

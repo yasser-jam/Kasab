@@ -1,4 +1,4 @@
-import { type ClientOffer, type ClientOfferFilters, type Company, type OffersFilters } from '~/types'
+import { type ClientOffer, type ClientOfferFilters, type Company, type Milestone, type OffersFilters } from '~/types'
 
 export const initUser = (): User => ({
   id: undefined,
@@ -126,4 +126,11 @@ export const initPortfolio = (): Portfolio => ({
   section: '',
   updated_at: '',
   created_at: '',
+})
+
+export const initMilestone = () : Milestone => ({
+  title: '',
+  description: '',
+  money: 0,
+  deadline: ''
 })

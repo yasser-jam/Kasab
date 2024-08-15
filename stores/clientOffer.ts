@@ -1,4 +1,4 @@
-import type { ClientOffer, ClientOfferFilters, Proposal } from '~/types'
+import type { ClientOffer, ClientOfferFilters, Milestone, Proposal } from '~/types'
 
 export const useClientOfferStore = defineStore('client_offer', () => {
   const offer = ref<ClientOffer>(initClientOffer())
@@ -149,6 +149,16 @@ export const useClientOfferStore = defineStore('client_offer', () => {
     }
   }
 
+
+
+  const milestone = ref<Milestone>(initMilestone())
+
+  const resetMilestone = () => milestone.value = initMilestone()
+
+  const createMilestone = async () => {
+    await api('')
+  }
+
   return {
     offer,
     offers,
@@ -164,6 +174,9 @@ export const useClientOfferStore = defineStore('client_offer', () => {
     rejectProposal,
 
 
+    milestone,
+    resetMilestone,
+    createMilestone,
     seedOffers
   }
 })

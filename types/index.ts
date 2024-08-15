@@ -205,3 +205,11 @@ export interface Portfolio {
   updated_at: string | null
   created_at: string | null
 }
+
+export interface Milestone {
+  id?: number
+  title: string
+  description: string
+  money: number
+  deadline: string
+}
