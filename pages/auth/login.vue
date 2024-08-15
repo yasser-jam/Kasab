@@ -17,7 +17,7 @@
               <base-label>كلمة المرور</base-label>
               
               <Field v-model="credentials.password" rules="required" name="password"  v-slot="{ field }">
-                <base-input v-bind="field" type="password" :errors="errors.password" placeholder="********"></base-input>
+                <base-input v-bind="field" type="password" :errors="errors.password" class="text-left" placeholder="********"></base-input>
               </Field>
               
               <nuxt-link to="/auth/forget-password">
