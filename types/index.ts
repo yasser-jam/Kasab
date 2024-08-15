@@ -187,3 +187,18 @@ export interface Chat {
   msg: string
   date: string
 }
+
+export interface Portfolio {
+  id?: number
+  title: string | null
+  descreption: string | null
+  views_count: string | null
+  likes_count: string | null
+  url: string | null
+  date: string | null
+  file_ids?: number[]
+  image_ids?: number[]
+  section: string | null
+  updated_at: string | null
+  created_at: string | null
+}

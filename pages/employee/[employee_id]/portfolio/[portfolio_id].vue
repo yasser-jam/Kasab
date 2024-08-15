@@ -164,10 +164,10 @@
           <base-card-title class="mb-4">ملفات المشروع</base-card-title>
 
           <div class="max-h-[400px] overflow-auto">
+              <!-- <base-file-item></base-file-item>
               <base-file-item></base-file-item>
               <base-file-item></base-file-item>
-              <base-file-item></base-file-item>
-              <base-file-item></base-file-item>
+              <base-file-item></base-file-item> -->
           </div>
         </div>
       </div>

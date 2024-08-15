@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex justify-between items-center bg-slate-50 rounded-lg p-3 my-4"
+    class="flex justify-between items-center bg-slate-50 rounded-lg p-3"
   >
     <div class="flex items-center gap-4">
       <div class="bg-slate-200 rounded-full p-3">

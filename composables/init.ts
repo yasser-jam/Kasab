@@ -112,3 +112,17 @@ export const initProposal = (): Proposal => ({
   message: '',
   price: 0
 })
+
+export const initPortfolio = (): Portfolio => ({
+  title: '',
+  descreption: '',
+  views_count: '',
+  likes_count: '',
+  url: '',
+  date: '',
+  file_ids: [],
+  image_ids: [],
+  section: '',
+  updated_at: '',
+  created_at: '',
+})

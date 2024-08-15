@@ -39,7 +39,10 @@ export default defineNuxtPlugin(nuxtApp => {
         profile_image: 'الصورة الشخصية',
         gender: 'النوع',
         city: 'المدينة',
-        dob: 'تاريخ الميلاد'
+        dob: 'تاريخ الميلاد',
+        url: 'الرابط',
+        date: 'التاريخ',
+        description: 'الوصف'
       },
       messages: {
         length: 'ينبغي أن يكون {field}: 0:{length}',

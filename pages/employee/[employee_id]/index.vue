@@ -28,21 +28,26 @@
 
     </div>
 
-    <div role="tablist" class="flex tabs tabs-bordered my-4">
-      <nuxt-link
-        role="tab"
-        :href="`/employee/${$route.params.employee_id}/general-info`"
-        class="tab font-semibold text-lg"
-        :class="{ 'tab-active': $route.path.includes('general-info') }"
-        >المعلومات العامة</nuxt-link
-      >
-      <nuxt-link
-        role="tab"
-        :href="`/employee/${$route.params.employee_id}/portfolio`"
-        class="tab font-semibold text-lg"
-        :class="{ 'tab-active': $route.path.includes('portfolio') }"
-        >معرض الأعمال</nuxt-link
-      >
+    <div class="flex justify-between items-center mt-8 mb-2">
+      <div role="tablist" class="flex tabs tabs-bordered my-4">
+        <nuxt-link
+          role="tab"
+          :href="`/employee/${$route.params.employee_id}/general-info`"
+          class="tab font-semibold text-lg"
+          :class="{ 'tab-active': $route.path.includes('general-info') }"
+          >المعلومات العامة</nuxt-link
+        >
+        <nuxt-link
+          role="tab"
+          :href="`/employee/${$route.params.employee_id}/portfolio`"
+          class="tab font-semibold text-lg"
+          :class="{ 'tab-active': $route.path.includes('portfolio') }"
+          >معرض الأعمال</nuxt-link
+        >
+  
+      </div>
+
+      <div id="actions"></div>
     </div>
     <NuxtPage />
   </div>
@@ -57,7 +62,10 @@ const employeeId = Number(route.params.employee_id)
 
 const { employee } = storeToRefs(employeeStore)
 
-const { pending } = await useLazyAsyncData(() => employeeStore.get(employeeId))
+const { pending, error } = await useLazyAsyncData(() => employeeStore.get(employeeId))
+
+// @ts-ignore
+if (error.value?.statusCode) navigateTo('/404')
 
 const meta = [
   {
