@@ -108,6 +108,7 @@ export interface Employee {
   profile_image_url: string
   background_image_id: number
   background_image_url: string
+  portfolios: Portfolio[]
 }
 
 export interface Job {
@@ -191,13 +192,15 @@ export interface Chat {
 export interface Portfolio {
   id?: number
   title: string | null
-  descreption: string | null
+  description: string | null
   views_count: string | null
   likes_count: string | null
   url: string | null
   date: string | null
   file_ids?: number[]
   image_ids?: number[]
+  skill_ids?: number[]
+  skills?: Skill[]
   section: string | null
   updated_at: string | null
   created_at: string | null

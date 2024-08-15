@@ -18,12 +18,8 @@
           <slot name="title" />
         </h3>
 
-        <div class="mt-6 max-h-[500px] overflow-auto">
+        <div class="mt-6">
           <slot />
-        </div>
-
-        <div class="mt-4">
-          <slot name="actions" />
         </div>
       </div>
     </div>

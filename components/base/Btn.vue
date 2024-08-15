@@ -1,6 +1,6 @@
 <template>
   <nuxt-link :to="to ?? undefined">
-    <button class="btn" :class="`${color} ${btnClass}`" :type="type">
+    <button class="btn" :class="`${color} ${btnClass}`" :type v-bind="$attrs">
 
       <Icon v-if="loading" name="mdi:loading" class="animate-spin" size="2rem" />
       
@@ -25,7 +25,7 @@ const props = withDefaults(
     to?: string;
     btnClass?: string
     loading?: boolean
-    type?: string
+    type?: 'submit' | 'button' | 'reset'
   }>(),
   {
     color: "primary",

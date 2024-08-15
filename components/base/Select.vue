@@ -1,5 +1,5 @@
 <template>
-<div ref="menu" class="relative">
+  <div ref="menu" class="relative">
     <div>
       <base-input
         fixed
@@ -42,11 +42,7 @@
         >
           <span>{{ item.title }}</span>
 
-          <Icon
-            v-if="isSelected(item.value)"
-            name="mdi:check"
-            size="1rem"
-          />
+          <Icon v-if="isSelected(item.value)" name="mdi:check" size="1rem" />
         </li>
       </ul>
     </Transition>
@@ -108,9 +104,9 @@ const selectedTitle = computed(() => {
       return props.modelValue
         ?.map(
           (val: any) =>
-            props.items.find(
-              (el) => val == el[props.itemValue as any]
-            )?.[props.itemTitle]
+            props.items.find((el) => val == el[props.itemValue as any])?.[
+              props.itemTitle
+            ]
         )
         .join(', ')
     } else {
@@ -129,7 +125,7 @@ const selectedTitle = computed(() => {
 
 const isSelected = (value: string) => {
   if (props.multiple) {
-    return props.modelValue.includes(value)
+    return props.modelValue?.includes(value)
   } else {
     return props.modelValue == value
   }

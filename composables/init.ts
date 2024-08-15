@@ -115,13 +115,14 @@ export const initProposal = (): Proposal => ({
 
 export const initPortfolio = (): Portfolio => ({
   title: '',
-  descreption: '',
+  description: '',
   views_count: '',
   likes_count: '',
   url: '',
   date: '',
   file_ids: [],
   image_ids: [],
+  skill_ids: [],
   section: '',
   updated_at: '',
   created_at: '',

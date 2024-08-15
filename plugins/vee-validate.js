@@ -5,6 +5,7 @@ import {
   min_value,
   url,
   length,
+  min,
   max_value
 } from '@vee-validate/rules'
 import { localize } from '@vee-validate/i18n'
@@ -15,6 +16,7 @@ localize({ ar })
 export default defineNuxtPlugin(nuxtApp => {
   defineRule('required', required)
   defineRule('email', email)
+  defineRule('min', min)
   defineRule('min_value', min_value)
   defineRule('max_value', max_value)
   defineRule('url', url)
@@ -36,13 +38,15 @@ export default defineNuxtPlugin(nuxtApp => {
         password: 'كلمة المرور',
         email: 'البريد الإلكتروني',
         name: 'الاسم',
+        title: 'العنوان',
         profile_image: 'الصورة الشخصية',
         gender: 'النوع',
         city: 'المدينة',
         dob: 'تاريخ الميلاد',
         url: 'الرابط',
         date: 'التاريخ',
-        description: 'الوصف'
+        description: 'الوصف',
+        section: 'معلومات إضافية',
       },
       messages: {
         length: 'ينبغي أن يكون {field}: 0:{length}',
