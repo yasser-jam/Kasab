@@ -9,7 +9,7 @@
               <base-label>الإيميل</base-label>
 
               <Field v-model="credentials.email" rules="required|email" name="email" v-slot="{ field }">
-                <base-input v-bind="field" :errors="errors.email" placeholder="test@gmail.com" class="text-left"></base-input>
+                <base-input v-bind="field" :errors="errors.email" placeholder="test@gmail.com" class="text-left" dir="ltr"></base-input>
               </Field>
             </div>
         
@@ -17,7 +17,7 @@
               <base-label>كلمة المرور</base-label>
               
               <Field v-model="credentials.password" rules="required" name="password"  v-slot="{ field }">
-                <base-input v-bind="field" type="password" :errors="errors.password" class="text-left" placeholder="********"></base-input>
+                <base-input v-bind="field" type="password" :errors="errors.password" class="text-left" placeholder="********" dir="ltr"></base-input>
               </Field>
               
               <nuxt-link to="/auth/forget-password">
