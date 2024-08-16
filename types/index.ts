@@ -213,3 +213,15 @@ export interface Milestone {
   money: number
   deadline: string
 }
+
+export interface Product {
+  id?: number
+  name: string
+  description: string
+  price: number
+  image_id: number
+  image_ids: number[]
+  images?: any[]
+  file_ids: number[]
+  files?: any[]
+}

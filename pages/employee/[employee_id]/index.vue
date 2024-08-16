@@ -10,6 +10,13 @@
         icon="mdi:account-multiple-plus-outline"
         >أرسل دعوة</base-btn
       >
+
+      <base-btn
+        v-if="isOwner(employeeId)"
+        icon="mdi:file"
+        :to="`/employee/${employeeId}/general-info/add-product`"
+        >إضافة منتج</base-btn
+      >
     </div>
 
     <div class="flex items-center py-12 px-4 rounded-lg profile-bg" :class="`${employee.background_image_url?.length ? `bg-[url(${employee.background_image_url})]` : 'bg-[url(https://placehold.co/1100x200)]'}`">

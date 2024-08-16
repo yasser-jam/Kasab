@@ -47,7 +47,7 @@ export default defineNuxtPlugin(nuxtApp => {
         date: 'التاريخ',
         description: 'الوصف',
         section: 'معلومات إضافية',
-        money: 'السعر'
+        money: 'السعر',
       },
       messages: {
         length: 'ينبغي أن يكون {field}: 0:{length}',

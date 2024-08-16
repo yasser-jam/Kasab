@@ -18,10 +18,6 @@ interface Link {
 
 const links = ref<Link[]>([
   {
-    title: "الصفحة الرئيسية",
-    link: "/",
-  },
-  {
     title: "عروض التوظيف",
     link: "/offers",
   },
@@ -30,11 +26,11 @@ const links = ref<Link[]>([
     link: "/projects",
   },
   {
-    title: "متجر الخدمات",
-    link: "/offers",
+    title: "المنتجات الجاهزة",
+    link: "/products",
   },
   {
-    title: "حسابي",
+    title: "الحسابات",
     link: "/accounts",
   },
 ]);
