@@ -48,6 +48,10 @@ export default defineNuxtPlugin(nuxtApp => {
         description: 'الوصف',
         section: 'معلومات إضافية',
         money: 'السعر',
+        first_name: 'الاسم الأول',
+        last_name: 'الاسم الأخير',
+        password: 'كلمة المرور',
+        confirm_password: 'تأكيد كلمة المرور',
       },
       messages: {
         length: 'ينبغي أن يكون {field}: 0:{length}',

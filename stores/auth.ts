@@ -17,6 +17,13 @@ export const useAuthStore = defineStore('auth', () => {
     token.value = res.access_token
   }
 
+  const signup = async (body: any) => {
+    await api('otp/register', {
+      method: 'POST',
+      body
+    })
+  }
+
   const me = async (): Promise<User> => {
     const res = await api('request.me')
   
@@ -28,6 +35,7 @@ export const useAuthStore = defineStore('auth', () => {
   return {
     credentials,
     login,
+    signup,
     user,
     me
   }
