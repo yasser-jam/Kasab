@@ -64,7 +64,7 @@
           <div class="flex gap-2 items-center">
             <base-label class="w-32">طبيعة الدوام</base-label>
             <badge-attendence
-              :attendence="offer.attendence_type"
+              :attendence="offer.attendance_type"
               class="!badge-success"
             ></badge-attendence>
           </div>

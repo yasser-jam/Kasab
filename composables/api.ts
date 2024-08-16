@@ -1,6 +1,6 @@
 export default (url: string, options?: any) => {
   // const baseUrl = "https://freelancer-l1w8.onrender.com/api";
-  const baseUrl = "http://192.168.43.237:8000/api";
+  const baseUrl = "http://192.168.84.45:8000/api";
 
   const token = useCookie('access_token')
 

@@ -38,7 +38,7 @@
         ></badge-transportation>
 
         <badge-attendence
-          :attendence="offer.attendence_type"
+          :attendence="offer.attendance_type"
         ></badge-attendence>
       </div>
 

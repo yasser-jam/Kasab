@@ -1,16 +1,16 @@
 <template>
   <div class="container mb-96">
     <div class="flex justify-between my-8">
-      <layout-breadcrumb></layout-breadcrumb>
+      <layout-breadcrumb :meta></layout-breadcrumb>
 
       <div class="flex gap-2">
         <base-btn
-          type="cancel"
           color="gray"
           @click="$router.push(`/company/${route.params.company_id}/offers`)"
           >إلغاء</base-btn
         >
-        <base-btn @click="save" :loading>حفظ</base-btn>
+        <button class="btn btn-primary" as="base-btn" @click="save">حفظ</button>
+        <!-- <base-btn @click="save">حفظ</base-btn> -->
       </div>
     </div>
 
@@ -37,9 +37,9 @@
             <div>
               <base-label>نوع العرض</base-label>
 
-              <company-category-select
-                v-model="offer.industry_name"
-              ></company-category-select>
+              <company-industry-select
+              v-model="offer.industry_name"
+              ></company-industry-select>
             </div>
 
             <div>
@@ -48,6 +48,14 @@
                 v-model="offer.gender"
               ></system-gender-select>
             </div>
+
+            <base-switch-input
+            v-model="offer.gender_required"
+            title="النوع مطلوب"
+            subtitle="لن يتم استقبال الطلبات التي لا تحقق شرط النوع"
+            color="warning"
+            class="col-span-2"
+          ></base-switch-input>
 
             <div>
               <base-label>مكان الدوام</base-label>
@@ -58,7 +66,7 @@
             <div>
               <base-label>نوع الدوام</base-label>
 
-              <offer-attendence-select v-model="offer.attendence_type" />
+              <offer-attendence-select v-model="offer.attendance_type" />
             </div>
 
             <div class="col-span-2">
@@ -166,7 +174,6 @@
             المهارات المطلوبة للعرض
           </div>
 
-
           <base-label>المهارات المطلوبة</base-label>
 
           <system-skill-select v-model="offer.skills" @update:model-value="optimizeRequired" />
@@ -239,11 +246,18 @@ const save = async () => {
     // update offer skills to computedSkills in offer store
     offer.value.skills = computedSkills.value as any
 
-    await offerStore.create()
-
+    await offerStore.createO()
     navigateTo(`/company/${route.params.company_id}/offers`)
   } finally {
     loading.value = false
   }
 }
+const meta = ref([
+  {
+    title: 'إنشاء عرض جديد',
+    link: `/company/${route.params.company_id}/offers/create`,
+    active: true
+  }
+])
+
 </script>

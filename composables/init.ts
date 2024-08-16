@@ -32,7 +32,7 @@ export const initOffer = (): Offer => ({
   industry_name: '',
   job_role_id: 0,
   location_type: 'remotly',
-  attendence_type: 'part-time',
+  attendance_type: 'part-time',
   max_salary: 0,
   min_salary: 0,
   max_age: 0,
@@ -64,7 +64,7 @@ export const initEmployee = (): Employee => ({
 
 export const initCompanyOffersFilter = (): OffersFilters => ({
   location_type: undefined,
-  attendence_type: undefined,
+  attendance_type: undefined,
   status: undefined,
   job_role_id: undefined
 })

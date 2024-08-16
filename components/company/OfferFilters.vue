@@ -58,7 +58,7 @@
     <div>
       <base-label>نوع الدوام</base-label>
 
-      <offer-attendence-select v-model="filters.attendence_type" />
+      <offer-attendence-select v-model="filters.attendance_type" />
     </div>
 
     <div>

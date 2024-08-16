@@ -52,7 +52,7 @@ export interface Offer {
   }
   job_role_id: number
   location_type: 'remotly' | 'on-site'
-  attendence_type: 'part-time' | 'full-time'
+  attendance_type: 'part-time' | 'full-time'
   max_salary: number
   min_salary: number
   max_age: number
@@ -74,7 +74,7 @@ export interface Offer {
 export interface OfferFilters {
   status?: 'active' | 'cloused'
   location_type?: 'on-site' | 'remotly'
-  attendence_type?: 'full-time' | 'part-time' | 'intern'
+  attendance_type?: 'full-time' | 'part-time' | 'intern'
   gender?: 'male' | 'female'
   industry_name?: string
   company_id?: number
@@ -123,7 +123,7 @@ export interface Skill {
 
 export interface OffersFilters {
   location_type?: 'remotly' | 'on-site'
-  attendence_type?: 'part-time' | 'full-time'
+  attendance_type?: 'part-time' | 'full-time'
   status?: 'pending' | 'active' | 'cloused'
   job_role_id?: number
 }
