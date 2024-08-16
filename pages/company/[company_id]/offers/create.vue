@@ -1,5 +1,5 @@
 <template>
-  <div class="container mb-96">
+  <div class="container">
     <div class="flex justify-between my-8">
       <layout-breadcrumb :meta></layout-breadcrumb>
 
@@ -210,6 +210,8 @@ const loading = ref<boolean>(false)
 const route = useRoute()
 
 const requiredSkills = ref([])
+
+offerStore.reset()
 
 // all selected items options
 const reqSkillsItems = computed(() => {

@@ -8,6 +8,8 @@ export const useOfferStore = defineStore('company-offer', () => {
 
     const filters = ref<OfferFilters>({} as OfferFilters)
 
+    const reset = () => offer.value = initOffer()
+
     const createO = async () => {
         await api('company/job_offer/store', {
             method: 'POST',
@@ -90,6 +92,7 @@ export const useOfferStore = defineStore('company-offer', () => {
         proposals,
 
         get,
+        reset,
         list,
         listProposals,
         createO,

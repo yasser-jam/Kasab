@@ -21,22 +21,22 @@ const links = ref<Link[]>([
   {
     title: "عروض التوظيف",
     link: "/offers",
-    keys: ['/offers']
+    keys: ['offers']
   },
   {
     title: "عروض العملاء",
     link: "/projects",
-    keys: ['/projects']
+    keys: ['projects']
   },
   {
     title: "المنتجات الجاهزة",
     link: "/products",
-    keys: ['/products']
+    keys: ['products']
   },
   {
     title: "الحسابات",
     link: "/accounts",
-    keys: ['/accounts']
+    keys: ['accounts']
   },
 ]);
 
