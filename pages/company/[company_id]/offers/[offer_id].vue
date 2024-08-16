@@ -34,11 +34,27 @@
 
         <base-loader v-if="loading"></base-loader>
 
-        <div v-if="proposals.length" class="flex flex-col gap-4 max-h-[500px] overflow-auto">
-          <company-offer-proposal v-for="proposal in proposals" :proposal @accept="accept" @reject="reject" ></company-offer-proposal>
-        </div>
+        <template v-if="offer.status != 'done'">
+          <div
+            v-if="proposals.length"
+            class="flex flex-col gap-4 max-h-[500px] overflow-auto"
+          >
+            <company-offer-proposal
+              v-for="proposal in proposals"
+              :proposal
+              @accept="selectId(proposal.id)"
+              @reject="reject"
+            ></company-offer-proposal>
+          </div>
+  
+          <base-not-found v-else name="عرض مقدم"></base-not-found>
+        </template>
 
-        <base-not-found v-else name="عرض مقدم"></base-not-found>
+        <template v-else>
+          <div>
+            عرض منته
+          </div>
+        </template>
       </div>
 
       <div>
@@ -93,12 +109,25 @@
           <base-card-title class="mb-8">المهارات المطلوبة</base-card-title>
 
           <div class="flex gap-4 flex-wrap">
-            <base-chip v-for="skill in offer.skills" color="secondary">{{ skill.name }}</base-chip>
+            <base-chip v-for="skill in offer.skills" color="secondary">{{
+              skill.name
+            }}</base-chip>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <base-dialog
+    :open="acceptDialogToggler"
+    :loading="acceptLoading"
+    @close="acceptDialogToggler = false"
+    @save="accept"
+  >
+    <template #title>قبول الطلب</template>
+
+    <template #body>بعد قبول الطلب سيتم إرسال رسالة تعيين للموظف</template>
+  </base-dialog>
 </template>
 
 <script setup lang="ts">
@@ -116,6 +145,15 @@ const route = useRoute()
 const companyId = route.params.companyId
 const offerId = route.params.offer_id
 
+const acceptDialogToggler = ref(false)
+const selectedId = ref(0)
+
+const selectId = (id: number) => {
+  selectedId.value = id;
+
+  acceptDialogToggler.value = true
+}
+
 const { pending } = useLazyAsyncData(() => offerStore.get(Number(offerId)))
 
 const { proposals } = storeToRefs(offerStore)
@@ -124,7 +162,7 @@ const loading = ref(false)
 
 onMounted(async () => {
   loading.value = true
-  
+
   try {
     await offerStore.listProposals(Number(offerId))
   } finally {
@@ -135,14 +173,18 @@ onMounted(async () => {
 const acceptLoading = ref(false)
 const rejectLoading = ref(false)
 
-
-const accept = async (id: number) => {
+const accept = async () => {
   acceptLoading.value = true
   try {
-    await offerStore.accept(id)
+    await offerStore.accept(selectedId.value)
+    
+    await offerStore.get(Number(offerId))
+  
   } finally {
     acceptLoading.value = false
 
+    acceptDialogToggler.value = false
+  
   }
 }
 
@@ -150,9 +192,10 @@ const reject = async (id: number) => {
   rejectLoading.value = true
   try {
     await offerStore.reject(id)
+
+    await offerStore.listProposals(Number(offerId))
   } finally {
     rejectLoading.value = false
-
   }
 }
 

@@ -66,7 +66,7 @@ export interface Offer {
   age_required?: boolean
   military_service_required?: boolean
   gender_required?: boolean
-  status: 'pending' | 'active' | 'cloused'
+  status: 'pending' | 'active' | 'cloused' | 'done'
   created_at?: string
   company?: Company
 }
