@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <layout-breadcrumb class="mt-12"></layout-breadcrumb>
+    <layout-breadcrumb :meta class="mt-12"></layout-breadcrumb>
 
     <div class="flex justify-between mt-6 mb-8">
       <h1 class="text-3xl font-bold mb-6">عروض الشركات</h1>
@@ -50,4 +50,12 @@ const { pending, refresh } = useLazyAsyncData(() => offerStore.list())
 const { offers } = storeToRefs(offerStore)
 
 const showFilters = ref<boolean>(false)
+
+const meta = ref([
+  {
+    title: 'عروض الشركات',
+    link: 'offers',
+    active: true
+  }
+])
 </script>
