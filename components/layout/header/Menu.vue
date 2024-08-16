@@ -3,7 +3,7 @@
     <nuxt-link
       v-for="item in links"
       :to="item.link"
-      :class="$route.path == item.link ? 'text-primary link-item' : 'text-gray-500'"
+      :class="isActive(item) ? 'text-primary link-item' : 'text-gray-500'"
       class="relative text-lg font-semibold hover:text-primary transition-all"
       >{{ item.title }}</nuxt-link
     >
@@ -14,26 +14,37 @@
 interface Link {
   title: string;
   link: string;
+  keys: string[]
 }
 
 const links = ref<Link[]>([
   {
     title: "عروض التوظيف",
     link: "/offers",
+    keys: ['/offers']
   },
   {
     title: "عروض العملاء",
     link: "/projects",
+    keys: ['/projects']
   },
   {
     title: "المنتجات الجاهزة",
     link: "/products",
+    keys: ['/products']
   },
   {
     title: "الحسابات",
     link: "/accounts",
+    keys: ['/accounts']
   },
 ]);
+
+const route = useRoute()
+
+const isActive = (item: any) => {
+  return item.keys.includes(route.fullPath)
+} 
 </script>
 
 <style scoped>

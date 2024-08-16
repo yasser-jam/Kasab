@@ -1,5 +1,5 @@
 <template>
-  <div class="container mb-96">
+  <div class="container">
     <div class="flex justify-between my-8">
       <layout-breadcrumb></layout-breadcrumb>
 
