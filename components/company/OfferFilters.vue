@@ -81,25 +81,25 @@
     <div>
       <base-label>الحد الأدنى للسعر</base-label>
 
-      <base-input type="number" v-model="filters.min_salary" placeholder="الحد الأدنى للسعر" />
+      <base-input type="number" v-model.number="filters.min_salary" placeholder="الحد الأدنى للسعر" />
     </div>
 
     <div>
       <base-label>الحد الأعلى للسعر</base-label>
 
-      <base-input type="number" v-model="filters.max_salary" placeholder="الحد الأعلى للسعر" />
+      <base-input type="number" v-model.number="filters.max_salary" placeholder="الحد الأعلى للسعر" />
     </div>
 
     <div>
       <base-label>الحد الأدنى للعمر</base-label>
 
-      <base-input type="number" v-model="filters.min_age" placeholder="الحد الأدنى للعمر" />
+      <base-input type="number" v-model.number="filters.min_age" placeholder="الحد الأدنى للعمر" />
     </div>
 
     <div>
       <base-label>الحد الأعلى للعمر</base-label>
 
-      <base-input type="number" v-model="filters.max_age" placeholder="الحد الأعلى للعمر" />
+      <base-input type="number" v-model.number="filters.max_age" placeholder="الحد الأعلى للعمر" />
     </div>
 
     <base-switch-input

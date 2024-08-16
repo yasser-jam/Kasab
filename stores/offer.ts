@@ -28,7 +28,13 @@ export const useOfferStore = defineStore('company-offer', () => {
     const list = async () : Promise<Offer[]> => {
         const res = await api('company/job_offers/list-job-offer', {
             method: 'POST',
-            body: filters.value
+            body: {
+                ...filters.value,
+                min_age: filters.value.min_age || undefined,
+                max_age: filters.value.max_age || undefined,
+                min_salary: filters.value.min_salary || undefined,
+                max_salary: filters.value.max_salary || undefined,
+            }
         })
 
         offers.value = res?.data

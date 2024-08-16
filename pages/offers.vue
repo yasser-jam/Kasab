@@ -12,7 +12,7 @@
       <div class="flex gap-2">
         <base-btn
           icon="mdi:filter-outline"
-          @click="showFilters = !showFilters"
+          @click="showFilters = true"
         ></base-btn>
 
         <base-btn v-if="showFilters" @click="refresh">تطبيق الفلاتر</base-btn>
@@ -25,13 +25,15 @@
       </div>
 
       <div class="col-span-6 flex flex-col gap-8">
-        <Transition>
           <company-offer-filters v-if="showFilters" />
-        </Transition>
         
         <base-loader v-if="pending" />
         
-        <offer-card v-for="offer in offers" :offer />
+        <template v-if="offers.length">
+          <offer-card v-for="offer in offers" :offer />
+        </template>
+
+        <base-not-found v-else></base-not-found>
       </div>
     </div>
   </div>
@@ -43,6 +45,7 @@
 const offerStore = useOfferStore()
 
 const { pending, refresh } = useLazyAsyncData(() => offerStore.list())
+
 
 const { offers } = storeToRefs(offerStore)
 
