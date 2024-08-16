@@ -10,6 +10,12 @@
             <home-company-section></home-company-section>
 
             <home-company-special></home-company-special>
+
+            <home-quote></home-quote>
+
+            <home-client-section></home-client-section>
+
+            <home-client-special></home-client-special>
         </div>
     
     
@@ -20,8 +26,7 @@
         <!-- <home-qa /> -->
     
     
-        <div class="divider"></div>
-        <home-footer></home-footer>
     </div>
-
+    
+    <home-footer></home-footer>
 </template> 

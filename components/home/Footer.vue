@@ -3,8 +3,8 @@
         <div class="grid grid-cols-3 bg-slate-50 gap-12 py-8">
             <div class="flex flex-col gap-4 justify-center items-center">
                 <!-- logo -->
-                 <div class="bg-gray-400 w-32 h-32 rounded-lg"></div>
-    
+                <img src="/logo.png" width="200" />
+                
                  <div class="text-2xl font-semibold text-primary">منصة سُبُل</div>
             </div>
     
