@@ -1,12 +1,15 @@
 <template>
-  <div class="container">
+
+  <base-loader v-if="pending"></base-loader>
+
+  <div v-else class="container">
     <layout-breadcrumb class="my-8"></layout-breadcrumb>
 
     <div class="flex justify-between items-center">
       <base-title class="mb-12"> {{ offer.title }} </base-title>
 
       <nuxt-link :to="`/projects/${projectId}/process`">
-        <base-btn icon="mdi:info" v-if="true">معلومات العمل</base-btn>
+        <base-btn v-if="isContributor" icon="mdi:info">معلومات العمل</base-btn>
       </nuxt-link>
     </div>
 
@@ -89,10 +92,10 @@ import dayjs from 'dayjs'
 const offerStore = useClientOfferStore()
 const userStore = useAuthStore()
 
-const { offer, proposals } = storeToRefs(offerStore)
+const { offer, proposals, isContributor } = storeToRefs(offerStore)
 const { user } = storeToRefs(userStore)
 
-const isProjectOwner = computed(() => offer.value.client?.id == user.value.id)
+const isProjectOwner = computed(() => offer.value.client?.id == user.value.role_id)
 
 const proposalToggler = ref<boolean>(false)
 const loading = ref<boolean>(false)
@@ -101,6 +104,7 @@ const acceptLoading = ref(false)
 const rejectLoading = ref(false)
 
 const route = useRoute()
+
 
 const projectId = route.params.project_id
 

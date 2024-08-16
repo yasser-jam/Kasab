@@ -1,8 +1,12 @@
 import type { ClientOffer, ClientOfferFilters, Milestone, Proposal } from '~/types'
 
 export const useClientOfferStore = defineStore('client_offer', () => {
+  
+  const authStore = useAuthStore()
+  
   const offer = ref<ClientOffer>(initClientOffer())
 
+  
   const offers = ref<ClientOffer[]>([])
 
   const proposal = ref<Proposal>(initProposal())
@@ -15,7 +19,11 @@ export const useClientOfferStore = defineStore('client_offer', () => {
     })
   }
 
+  const { user } = storeToRefs(authStore)
+
   const filters = ref<ClientOfferFilters>(initClientOfferFilter())
+
+  const isContributor = computed(() => user.value.role_id == offer.value.client?.id || user.value.role_id == 1) // Todo add freelancer id
 
   const list = async (): Promise<ClientOffer[]> => {
     const res = await api('client-offer/freelancer/freelancer-filter', {
@@ -155,8 +163,8 @@ export const useClientOfferStore = defineStore('client_offer', () => {
 
   const resetMilestone = () => milestone.value = initMilestone()
 
-  const createMilestone = async () => {
-    await api('')
+  const createMilestone = async (id: number) => {
+    await api(`projects/${id}/milestones`)
   }
 
   return {
@@ -165,6 +173,7 @@ export const useClientOfferStore = defineStore('client_offer', () => {
     proposal,
     proposals,
     filters,
+    isContributor,
     list,
     create,
     get,

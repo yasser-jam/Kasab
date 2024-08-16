@@ -2,8 +2,23 @@
   <div class="container">
     <layout-breadcrumb class="my-8"></layout-breadcrumb>
 
-    <base-title class="mb-12"> {{ offer.title }} </base-title>
+    <div class="flex justify-between items-center">
+      <base-title class="mb-12"> {{ offer.title }} </base-title>
 
+      <div class="flex gap-4">
+        <base-btn icon="mdi:info" :to="`/projects/${projectId}`"
+          >معلومات المشروع</base-btn
+        >
+
+        <base-btn
+          v-if="isContributor"
+          icon="mdi:plus"
+          color="secondary"
+          :to="`/projects/${projectId}/process/create`"
+          >إضافة مرحلة</base-btn
+        >
+      </div>
+    </div>
     <div class="grid grid-cols-4 gap-8">
       <div class="col-span-3">
         <div class="card">
@@ -34,25 +49,27 @@
               v-for="(chat, i) in chats"
               :chat
               :mode="i % 2 == 0 ? 'sender' : 'receiver'"
-            ></base-message>  
+            ></base-message>
           </div>
 
           <project-message-card class="mt-4" />
 
           <project-message-notes />
-
         </div>
 
         <div v-if="true" class="mt-8">
           <div class="flex items-center justify-between">
             <base-card-title class="mb-4">مراحل المشروع</base-card-title>
 
-            <base-btn icon="mdi:plus" :to="`/projects/${projectId}/process/create`">إضافة مرحلة</base-btn>
+            <base-btn
+              icon="mdi:plus"
+              :to="`/projects/${projectId}/process/create`"
+              >إضافة مرحلة</base-btn
+            >
           </div>
 
           <div class="grid grid-cols-3 gap-4 max-h-[400px] overflow-auto">
-            <project-milestone-card active />
-            <project-milestone-card :active="false" />
+            <project-milestone-card v-for="milestone in offer.project.milestones" :milestone active @finish="finishMilestone" />
           </div>
         </div>
       </div>
@@ -71,7 +88,7 @@ const offerStore = useClientOfferStore()
 const clientStore = useClientStore()
 const userStore = useAuthStore()
 
-const { offer } = storeToRefs(offerStore)
+const { offer, isContributor } = storeToRefs(offerStore)
 const { client } = storeToRefs(clientStore)
 const { user } = storeToRefs(userStore)
 
@@ -82,31 +99,30 @@ const route = useRoute()
 const projectId = route.params.project_id
 
 const chats = ref<Chat[]>([
-    {
-        id: 1,
-        owner: {} as User,
-        date: '21-3-2003:20:20:29',
-        msg: 'السلام عليكم'
-    },
-    {
-        id: 1,
-        owner: {} as User,
-        date: '21-3-2003:20:25:32',
-        msg: 'وعليكم السلام يا هلا'
-    },
-    {
-        id: 1,
-        owner: {} as User,
-        date: '21-3-2003:20:36:19',
-        msg: 'ممكن نشتغل مع بعض؟'
-    },
-    {
-        id: 1,
-        owner: {} as User,
-        date: '21-3-2003:21:00:00',
-        msg: 'اكيد'
-    },
-
+  {
+    id: 1,
+    owner: {} as User,
+    date: '21-3-2003:20:20:29',
+    msg: 'السلام عليكم'
+  },
+  {
+    id: 1,
+    owner: {} as User,
+    date: '21-3-2003:20:25:32',
+    msg: 'وعليكم السلام يا هلا'
+  },
+  {
+    id: 1,
+    owner: {} as User,
+    date: '21-3-2003:20:36:19',
+    msg: 'ممكن نشتغل مع بعض؟'
+  },
+  {
+    id: 1,
+    owner: {} as User,
+    date: '21-3-2003:21:00:00',
+    msg: 'اكيد'
+  }
 ])
 
 const { pending: loading } = await useLazyAsyncData(() =>
@@ -117,4 +133,12 @@ useLazyAsyncData(() => clientStore.get(Number(offer.value.client_id)))
 
 if (isProjectOwner.value)
   useLazyAsyncData(() => offerStore.listProposals(Number(projectId)))
+
+const finishMilestone = async () => {
+  try {
+    
+  } finally {
+
+  }
+}
 </script>

@@ -16,6 +16,11 @@
       <base-card-title class="mb-8">بطاقة المشروع</base-card-title>
 
       <div class="flex gap-4 items-center mb-6">
+        <div>الحالة</div>
+        <base-chip color="gray">{{ offer.status }}</base-chip>
+      </div>
+
+      <div class="flex gap-4 items-center mb-6">
         <div>مدة التنفيذ</div>
         <base-chip color="secondary">{{ offer.days }} يوم</base-chip>
       </div>

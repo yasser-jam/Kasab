@@ -5,25 +5,10 @@
     <template #default>
       <Form @submit="submit" v-slot="{ errors }">
         <div class="grid grid-cols-2 gap-2 max-h-[500px] overflow-auto">
-          <div class="col-span-2">
-            <Field
-              v-model="milestone.title"
-              name="name"
-              rules="required"
-              v-slot="{ field }"
-            >
-              <base-label>اسم المرحلة</base-label>
-              <base-input
-                v-bind="field"
-                :errors="errors.name"
-                placeholder="أدخل الاسم"
-              />
-            </Field>
-          </div>
 
           <div>
             <Field
-              v-model="milestone.money"
+              v-model="milestone.price"
               name="money"
               rules="required"
               v-slot="{ field }"
@@ -81,7 +66,7 @@
 <script setup lang="ts">
 const offerStore = useClientOfferStore()
 
-const { milestone } = storeToRefs(offerStore)
+const { offer, milestone } = storeToRefs(offerStore)
 
 const route = useRoute()
 const router = useRouter()
@@ -97,7 +82,7 @@ const submit = async () => {
   loading.value = true
 
   try {
-    await offerStore.createMilestone()
+    await offerStore.createMilestone(Number(offer.value.project.id))
 
     router.back()
   } finally {

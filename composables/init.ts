@@ -147,9 +147,8 @@ export const initPortfolio = (): Portfolio => ({
 })
 
 export const initMilestone = () : Milestone => ({
-  title: '',
   description: '',
-  money: 0,
+  price: 0,
   deadline: ''
 })
 

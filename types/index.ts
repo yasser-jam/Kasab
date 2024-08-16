@@ -161,6 +161,8 @@ export interface ClientOffer {
   files?: File[]
   created_at?: string
   status?: 'pending' | 'active' | 'cloused' | 'in_progress' | 'done'
+
+  project?: any
 }
 
 export interface ClientOfferFilters {
@@ -208,10 +210,9 @@ export interface Portfolio {
 
 export interface Milestone {
   id?: number
-  title: string
   description: string
-  money: number
-  deadline: string
+  price: number
+  deadline: string  
 }
 
 export interface Product {
