@@ -3,16 +3,18 @@
 
   <div v-else class="container">
     <div class="flex justify-between my-8">
-      <layout-breadcrumb></layout-breadcrumb>
+      <layout-breadcrumb :meta></layout-breadcrumb>
 
       <div class="flex gap-2">
         <base-btn
+          v-if="isOwner(companyId)"
           icon="mdi:pencil"
           :to="`/accounts/company/${route.params.company_id}`"
           >تعديل البيانات</base-btn
         >
 
         <base-btn
+          v-if="isOwner(companyId)"
           icon="mdi:eye"
           color="secondary"
           :to="`/company/${route.params.company_id}/offers`"
@@ -20,7 +22,7 @@
         >
 
         <base-btn
-          v-if="isCompanyOwner"
+          v-if="isOwner(companyId)"
           icon="mdi:briefcase"
           color="success"
           :to="`/company/${route.params.company_id}/offers/create`"
@@ -33,11 +35,19 @@
       <div class="col-span-9">
         <div
           class="grid grid-cols-12 items-center h-44 p-4 rounded-lg profile-bg bg-no-repeat bg-center"
-          :style="`background-image: url(${company.background_image_url})`"
+          :style="`background-image: url(${
+            company.background_image_url?.length
+              ? company.background_image_url
+              : 'https://placehold.co/1100x200'
+          })`"
         >
           <div class="col-span-2">
             <img
-              :src="company.profile_image_url"
+              :src="
+                company.profile_image_url?.length
+                  ? company.profile_image_url
+                  : '/imges/placeholders/client.jpg'
+              "
               alt="profile-image"
               class="w-32 h-32 rounded-full"
             />
@@ -87,7 +97,10 @@
         <div class="card mt-8">
           <div class="text-xl font-semibold mb-8">معرض الصور</div>
 
-          <div class="grid grid-cols-4 gap-4">
+          <div
+            v-if="company.gallery_images.length"
+            class="grid grid-cols-4 gap-4"
+          >
             <div
               v-for="img in company.gallery_images"
               class="flex items-center justify-center bg-slate-50"
@@ -95,6 +108,8 @@
               <img :src="img.url" alt="gallery-image" class="rounded-lg" />
             </div>
           </div>
+
+          <base-not-found v-else name="صور"></base-not-found>
           <!-- <company-gallery-slider v-model="company.gallery_images"></company-gallery-slider> -->
         </div>
       </div>
@@ -142,6 +157,14 @@ const companyId = Number(route.params.company_id)
 const isCompanyOwner = ref(userRoleId == companyId)
 
 const { pending } = useLazyAsyncData(() => companyStore.get(companyId))
+
+const meta = ref([
+  {
+    title: 'حساب الشركة',
+    link: `/company/${companyId}`,
+    active: true
+  }
+])
 </script>
 
 <style scoped>
