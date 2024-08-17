@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-2 items-center min-h-screen gap-6">
+  <div class="grid md:grid-cols-2 grid-cols-1 items-center min-h-screen gap-6">
     <div class="">
         <div class="text-4xl font-bold text-neutral-content mb-8">تسجيل الدخول</div>
 
