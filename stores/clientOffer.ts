@@ -59,6 +59,8 @@ export const useClientOfferStore = defineStore('client_offer', () => {
         client_offer_id: offerId
       }
     })
+
+    useToasterStore().showSuccessToaster('تم التقدم للعرض بنجاح')
   }
 
   const listProposals = async (
@@ -88,6 +90,9 @@ export const useClientOfferStore = defineStore('client_offer', () => {
       }
     })
 
+    useToasterStore().showSuccessToaster('تم قبول العرض بنجاح')
+
+
   }
 
   const rejectProposal = async (id: number) => {
@@ -101,71 +106,23 @@ export const useClientOfferStore = defineStore('client_offer', () => {
     await listProposals(id)
   }
 
-  const seedOffers = async () => {
-    const offers = [
-      {
-        category_id: 2,
-        sub_category_id: 1,
-        title: 'تصميم ui/ux',
-        description: 'مطلوب مصمم ui/ux للقيام بالعديد من التصاميم المختلفة',
-        min_price: 2000,
-        max_price: 10000,
-        days: 15,
-        skill_ids: [1, 2, 3, 4, 5, 6],
-        file_ids: []
-      },
-      {
-        category_id: 1,
-        sub_category_id: 1,
-        title: 'تصميم ووردبريس',
-        description: 'تصميم الكثير من الأمور',
-        min_price: 20,
-        max_price: 1000,
-        days: 10,
-        skill_ids: [1, 2, 3, 4, 5, 6],
-        file_ids: []
-      },
-      {
-        category_id: 2,
-        sub_category_id: 1,
-        title: 'تصميم لوغو',
-        description: 'يوجد العديد من الأمور الأساسية للقيام بهذه الوظائف',
-        min_price: 15000,
-        max_price: 35000,
-        days: 4,
-        skill_ids: [1, 2, 3, 4, 5, 6],
-        file_ids: []
-      },
-      {
-        category_id: 1,
-        sub_category_id: 1,
-        title: 'برمجة موقع landing page',
-        description: 'تصميم صفحة هبوط لشركة أدوية قادرة على مواكبة السوق',
-        min_price: 9000,
-        max_price: 18000,
-        days: 20,
-        skill_ids: [1, 2, 4, 5, 6],
-        file_ids: []
-      }
-    ]
-
-    for (let i = 0; i < offers.length; i++) {
-      await api('client-offer/client/store', {
-        method: 'POST',
-        body: offers[i]
-      })
-    }
-  }
-
-
-
   const milestone = ref<Milestone>(initMilestone())
 
   const resetMilestone = () => milestone.value = initMilestone()
 
   const createMilestone = async (id: number) => {
     await api(`projects/${id}/milestones`)
+
+    useToasterStore().showSuccessToaster('تم إنشاء المرحلة بنجاح')
+
   }
+
+
+  const finish = async (id: number) => {
+    await api(`projects/${id}/client-ok`)
+
+    useToasterStore().showSuccessToaster('تم تسليم المشروع بنجاح')
+}
 
   return {
     offer,
@@ -173,6 +130,7 @@ export const useClientOfferStore = defineStore('client_offer', () => {
     proposal,
     proposals,
     filters,
+    finish,
     isContributor,
     list,
     create,
@@ -186,6 +144,5 @@ export const useClientOfferStore = defineStore('client_offer', () => {
     milestone,
     resetMilestone,
     createMilestone,
-    seedOffers
   }
 })

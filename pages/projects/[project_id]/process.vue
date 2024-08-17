@@ -17,6 +17,14 @@
           :to="`/projects/${projectId}/process/create`"
           >إضافة مرحلة</base-btn
         >
+
+        <base-btn
+          v-if="getRole() == 'client' && isContributor"
+          icon="mdi:check"
+          color="success"
+          @click="finishToggler = true"
+          >إنهاء المشروع</base-btn
+        >
       </div>
     </div>
     <div class="grid grid-cols-4 gap-8">
@@ -69,7 +77,12 @@
           </div>
 
           <div class="grid grid-cols-3 gap-4 max-h-[400px] overflow-auto">
-            <project-milestone-card v-for="milestone in offer.project.milestones" :milestone active @finish="finishMilestone" />
+            <project-milestone-card
+              v-for="milestone in offer.project.milestones"
+              :milestone
+              active
+              @finish="finishMilestone"
+            />
           </div>
         </div>
       </div>
@@ -77,6 +90,12 @@
       <project-info-sidebar></project-info-sidebar>
     </div>
   </div>
+
+  <base-dialog :open="finishToggler" :loading="finishLoading" @save="finish" @close="finishToggler = false">
+    <template #title> تسليم المشروع؟ </template>
+
+    <template #body> سيتم تحويل المال للمستقل وإنهاء المشروع </template>
+  </base-dialog>
 
   <NuxtPage />
 </template>
@@ -134,11 +153,23 @@ useLazyAsyncData(() => clientStore.get(Number(offer.value.client_id)))
 if (isProjectOwner.value)
   useLazyAsyncData(() => offerStore.listProposals(Number(projectId)))
 
+const finishToggler = ref(false)
+const finishLoading = ref(false)
+
+const finish = async () => {
+  finishLoading.value = true
+  try {
+    await offerStore.finish(Number(offer.value.project.id))
+  
+    navigateTo(`/projects`)
+  } finally {
+    finishLoading.value = false
+  }
+}
+
 const finishMilestone = async () => {
   try {
-    
   } finally {
-
   }
 }
 </script>

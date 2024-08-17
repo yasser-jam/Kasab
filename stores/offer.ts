@@ -97,6 +97,7 @@ export const useOfferStore = defineStore('company-offer', () => {
         listProposals,
         createO,
         propose,
+        finish,
         accept,
         reject
     }
