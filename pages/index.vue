@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white">
+    <div class="bg-white overflow-x-hidden">
         <home-hero-section></home-hero-section>
     
         <div class="container">
