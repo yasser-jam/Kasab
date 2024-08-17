@@ -200,7 +200,9 @@ export interface Portfolio {
   url: string | null
   date: string | null
   file_ids?: number[]
+  files?: any[]
   image_ids?: number[]
+  images?: any[]
   skill_ids?: number[]
   skills?: Skill[]
   section: string | null
